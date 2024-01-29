@@ -1,51 +1,60 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import { AppRoutingModule } from './app-routing.module';
+// --
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// --
+import { HttpClientModule } from '@angular/common/http';
+// --
 import { ReactiveFormsModule } from '@angular/forms';
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatCardModule } from '@angular/material/card';
-// import { MatInputModule } from '@angular/material/input';
-// import { MatRadioModule } from '@angular/material/radio';
-// import { MatFormFieldModule } from "@angular/material/form-field";
-// import { MatSnackBar } from '@angular/material/snack-bar';
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { TableModule } from 'primeng/table';
-import { PaginatorModule } from 'primeng/paginator';
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
-import { CalendarModule } from 'primeng/calendar';
-import { TooltipModule } from 'primeng/tooltip';
-import { DropdownModule } from 'primeng/dropdown';
-// import { MatToolbarModule } from '@angular/material/toolbar';
-// import { MatIconModule } from '@angular/material/icon';
-//--
-// import { TrimPipe } from './pipes/trim.pipe.ts.pipe';
-
-//Sin esto da error!
-// import { Chart, registerables } from 'chart.js';
-// Chart.register(...registerables);
-// import { NgApexchartsModule } from 'ng-apexcharts';
-// import { UserPrintAjaxService } from './service/user.print.ajax.service';
-// import { TranslocoRootModule } from './transloco-root.module';
-//
-// import { NgxCaptchaModule } from 'ngx-captcha';
-// import { ChangePasswordComponent } from './components/change-password/change-password.component';
-// import { SendEmailComponent } from './components/send-email/send-email.component';
-
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CommonModule } from '@angular/common';
+// --
+// INTERCEPTOR
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+// --
+// SHARED COMPONENTS
+import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
+import { FooterRoutedComponent } from './components/shared/footer-routed/footer-routed.component';
+// --
+// SERVICES
+import { CryptoService } from './service/crypto.service';
+import { MediaService } from './service/media.service';
+import { ProductAjaxService } from './service/product.ajax.service';
+import { SessionAjaxService } from './service/session.ajax.service';
+import { UserAjaxService } from './service/user.ajax.service';
+// --
 
 
 //--
 @NgModule({
   declarations: [
+    AppComponent,
+    //SHARED COMPONENTS
+    MenuUnroutedComponent,
+    LogoutRoutedComponent,
+    LoginRoutedComponent,
+    HomeRoutedComponent,
+    FooterRoutedComponent,
   ],
   imports: [
-
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+  ],
+  providers: [
+    // SERVICES
+    CryptoService,
+    MediaService,
+    ProductAjaxService,
+    SessionAjaxService,
+    UserAjaxService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
