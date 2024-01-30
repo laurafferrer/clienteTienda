@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SessionAjaxService } from '../../../service/session.ajax.service';
 
 @Component({
   selector: 'app-logout-routed',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutRoutedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private oSessionAjaxService: SessionAjaxService,
+    private oRouter: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.oSessionAjaxService.logout();
+    this.oSessionAjaxService.emit({ type: 'logout' });
+    this.oRouter.navigate(['/home']);
+  }
+
+  cancel() {
+    this.oRouter.navigate(['/home']);
   }
 
 }
