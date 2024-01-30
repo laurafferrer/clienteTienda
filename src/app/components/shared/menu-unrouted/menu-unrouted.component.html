@@ -1,17 +1,17 @@
-<nav class="bg-slate-400 text-cyan-900 shadow-x1" role="navigation" aria-label="main navigation">
+<nav class="bg-slate text-red shadow-x1" role="navigation" aria-label="main navigation">
   <div class="felx items-center justify-between p-4">
     <a class="text-3x1 font-extrabold tracking-tight" href="/home">
       Desde la Pluma a la Pantalla
     </a>
 
     <div class="hidden md:flex">
-      <a class="hover:text-gray-200 px-4 py-2 font-semibold" href="#">
+      <a class="hover:text-darkRed px-4 py-2 font-semibold" href="#">
         Users
       </a>
-      <a class="hover:text-gray-200 px-4 py-2 font-semibold" href="#">
+      <a class="hover:text-darkRed px-4 py-2 font-semibold" href="#">
         Products
       </a>
-      <a class="hover:text-gray-200 px-4 py-2 font-semibold" href="#">
+      <a class="hover:text-darkRed px-4 py-2 font-semibold" href="#">
         About
       </a>
     </div>
@@ -19,10 +19,10 @@
     <div class="flex items-center">
       <ng-container *ngIf="strUsername">
         <div class="group">
-          <a class="cursor-pointer text-black font-semibold">
+          <a class="cursor-pointer text-dark font-semibold">
             Welcome {{ strUsername }}
           </a>
-          <div class="hidden group-hover:block absolute right-0 mt-2 bg-white text-gray-700 border rounded">
+          <div class="hidden group-hover:block absolute right-0 mt-2 bg-lightRed text-dark border rounded">
             <a class="block px-4 py-2" href="#">
               Profile
             </a>
@@ -35,13 +35,13 @@
             </a>
           </div>
         </div>
-        <a class="ml-4 text-black">
+        <a class="ml-4 text-dark">
           <span class="icon">
             <i class="pi pi-shopping-cart"></i>
           </span>
         </a>
       </ng-container>
-      <a class="ml-4 hover:text-gray-200 text-cyan-900 font-semibold" href="/login" *ngIf="!strUsername">
+      <a class="ml-4 hover:text-dark text-#A62E2E font-semibold" href="/login" *ngIf="!strUsername">
         Login
       </a>
     </div>
