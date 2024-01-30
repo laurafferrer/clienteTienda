@@ -1,4 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { IUser, SessionEvent } from '../../../model/model.interfaces';
+import { SessionAjaxService } from '../../../service/session.ajax.service';
+import { UserAjaxService } from '../../../service/user.ajax.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -7,9 +12,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuUnroutedComponent implements OnInit {
 
-  constructor() { }
+  strUsername: string = '';
+  oUserSesion: IUser | null = null;
+  strUrl: string = '';
+
+  constructor(
+    private oSessionAjaxService: SessionAjaxService,
+    private oUserAjaxService: UserAjaxService,
+    private oRouter: Router
+  ) {
+    this.oRouter.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        this.strUrl = ev.url;
+      }
+    })
+
+    this.strUsername = oSessionAjaxService.getUsername();
+    this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
+      next: (oUser: IUser) => {
+        this.oUserSesion = oUser;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    });
+  }
 
   ngOnInit() {
+    this.oSessionAjaxService.on().subscribe({
+      next: (data: SessionEvent) => {
+        if (data.type === 'login') {
+          this.strUsername = this.oSessionAjaxService.getUsername();
+          this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
+            next: (oUser: IUser) => {
+              this.oUserSesion = oUser;
+            },
+            error: (err: HttpErrorResponse) => {
+              console.log(err);
+            }
+          });
+        } else if (data.type === 'logout') {
+          this.strUsername = '';
+        }
+      }
+    });
   }
 
 }
