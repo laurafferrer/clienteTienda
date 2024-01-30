@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-footer-routed',
-  templateUrl: './footer-routed.component.html',
-  styleUrls: ['./footer-routed.component.css']
+  selector: 'app-footer-unrouted',
+  templateUrl: './footer-unrouted.component.html',
+  styleUrls: ['./footer-unrouted.component.css']
 })
 export class FooterRoutedComponent implements OnInit {
 
