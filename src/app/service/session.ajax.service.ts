@@ -13,7 +13,7 @@ export class SessionAjaxService {
 
   subjectSession = new Subject<SessionEvent>();
 
-  constructor(private http: HttpClient, private userAjaxService: UserAjaxService) {
+  constructor(private oHttpClient: HttpClient, private oUserAjaxService: UserAjaxService) {
 
   }
 
@@ -27,20 +27,20 @@ export class SessionAjaxService {
     return JSON.parse(jsonPayload);
   }
 
+  login(sUsername: string, sPassword: string): Observable<string> {
+    return this.oHttpClient.post<string>(this.url, { username: sUsername, password: sPassword });
+  }
+
   prelogin(): Observable<IPrelogin> {
-    return this.http.get<IPrelogin>(this.url + '/prelogin');
+    return this.oHttpClient.get<IPrelogin>(this.url + '/prelogin');
   }
 
-  loginCaptcha(username: string, password: string, token: string, answer: string): Observable<any> {
-    return this.http.post(this.url + '/loginCaptcha', { username: username, contrasenya: password, token: token, answer: answer }, { responseType: 'text' });
+  loginCaptcha(sUsername: string, sPassword: string, sToken: string, sAnswer: string): Observable<any> {
+    return this.oHttpClient.post(this.url + '/loginCaptcha', { username: sUsername, password: sPassword, token: sToken, answer: sAnswer });
   }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(this.url + '/login', { username: username, contrasenya: password }, { responseType: 'text' });
-  }
-
-  setToken(token: string): void {
-    localStorage.setItem('token', token);
+  setToken(sToken: string): void {
+    localStorage.setItem('token', sToken);
   }
 
   getToken(): string | null {
@@ -52,10 +52,10 @@ export class SessionAjaxService {
   }
 
   isSessionActive(): boolean {
-    let token: string | null = localStorage.getItem('token');
-    if (token) {
-      let decodedToken: IToken = this.parseJwt(token);
-      if (Date.now() >= decodedToken.exp * 1000) {
+    let strToken: string | null = localStorage.getItem('token');
+    if (strToken) {
+      let oDecodedToken: IToken = this.parseJwt(strToken);
+      if (Date.now() >= oDecodedToken.exp * 1000) {
         return false;
       } else {
         return true;
@@ -88,7 +88,7 @@ export class SessionAjaxService {
 
   getSessionUser(): Observable<IUser> | null {
     if (this.isSessionActive()) {
-      return this.userAjaxService.getUserByUsername(this.getUsername());
+      return this.oUserAjaxService.getUserByUsername(this.getUsername());
     } else {
       return null;
     }
