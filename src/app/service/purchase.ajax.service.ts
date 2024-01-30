@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../environment/environment';
 import { IPurchase, IPurchasePage } from './../model/model.interfaces';
-import { get } from 'http';
 
 @Injectable({
   providedIn: 'root'
