@@ -14,16 +14,20 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 // --
 // SHARED COMPONENTS
-import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
-import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
-import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
-import { FooterRoutedComponent } from './components/shared/footer-routed/footer-routed.component';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
 // --
 // SERVICES
+import { CartAjaxService } from './service/cart.ajax.service';
+import { CategoryAjaxService } from './service/category.ajax.service';
 import { CryptoService } from './service/crypto.service';
 import { MediaService } from './service/media.service';
 import { ProductAjaxService } from './service/product.ajax.service';
+import { PurchaseAjaxService } from './service/purchase.ajax.service';
+import { PurchaseDetailAjaxService } from './service/purchaseDetail.ajax.service';
 import { SessionAjaxService } from './service/session.ajax.service';
 import { UserAjaxService } from './service/user.ajax.service';
 // --
@@ -34,11 +38,11 @@ import { UserAjaxService } from './service/user.ajax.service';
   declarations: [
     AppComponent,
     //SHARED COMPONENTS
-    MenuUnroutedComponent,
-    LogoutRoutedComponent,
-    LoginRoutedComponent,
+    FooterUnroutedComponent,
     HomeRoutedComponent,
-    FooterRoutedComponent,
+    LoginRoutedComponent,
+    LogoutRoutedComponent,
+    MenuUnroutedComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,9 +53,13 @@ import { UserAjaxService } from './service/user.ajax.service';
   ],
   providers: [
     // SERVICES
+    CartAjaxService,
+    CategoryAjaxService,
     CryptoService,
     MediaService,
     ProductAjaxService,
+    PurchaseAjaxService,
+    PurchaseDetailAjaxService,
     SessionAjaxService,
     UserAjaxService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
