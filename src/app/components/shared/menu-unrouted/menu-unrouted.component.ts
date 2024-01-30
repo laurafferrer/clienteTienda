@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { IUser, SessionEvent } from '../../../model/model.interfaces';
 import { SessionAjaxService } from '../../../service/session.ajax.service';
 import { UserAjaxService } from '../../../service/user.ajax.service';
@@ -15,6 +15,8 @@ export class MenuUnroutedComponent implements OnInit {
   strUsername: string = '';
   oUserSesion: IUser | null = null;
   strUrl: string = '';
+
+  oShowLogoutMenu: boolean = false;
 
   constructor(
     private oSessionAjaxService: SessionAjaxService,
@@ -56,6 +58,22 @@ export class MenuUnroutedComponent implements OnInit {
         }
       }
     });
+  }
+
+  toggleLogoutMenu() {
+    this.oShowLogoutMenu = !this.oShowLogoutMenu;
+  }
+
+  closeLogoutMenu() {
+    this.oShowLogoutMenu = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  oHandleDocumentClick(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.group')) {
+      this.oShowLogoutMenu = false;
+    }
   }
 
 }
