@@ -1,17 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { CalendarModule } from 'primeng/calendar';
+import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 // --
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // --
-import { HttpClientModule } from '@angular/common/http';
 // --
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 // --
-// INTERCEPTOR
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// INTERCEPTORS
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 // --
 // SHARED COMPONENTS
@@ -46,14 +63,34 @@ import { UserAjaxService } from './service/user.ajax.service';
     MenuUnroutedComponent,
   ],
   imports: [
+    //--
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
-    CommonModule,
+    //--
+    BrowserAnimationsModule,
+    DynamicDialogModule,
+    BrowserAnimationsModule,
+    PaginatorModule,
+    TableModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule,
+    CalendarModule,
+    TooltipModule,
+    DropdownModule,
+    //--
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   providers: [
-    MatSnackBar,
     // SERVICES
     CartAjaxService,
     CategoryAjaxService,
