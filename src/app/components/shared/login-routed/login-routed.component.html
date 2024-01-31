@@ -13,15 +13,15 @@
             name="username" id="username" formControlName="username" placeholder="Introduce tu nombre de usuario">
         </div>
         <div class="py-4">
-          <span class="py-2 font-semibold">Contraseña</span>
+          <span class="py-2 font-semibold">Password</span>
           <input type="password"
             class="w-full p-2 border shadow-xl rounded-md placeholder-light placeholder-opacity-0"
-            name="contrasenya" id="contrasenya" formControlName="contrasenya" placeholder="Introduce tu contraseña">
+            name="password" id="password" formControlName="password" placeholder="Introduce tu password">
         </div>
         <div class="py-4">
           <span class="py-2 font-semibold">Captcha</span>
           <div class="flex items-center justify-center mb-2">
-            <img [src]="'data:image/png;base64,' + oPrelogin?.captchaImage" alt="captcha" class="mr-2">
+            <img [src]=" 'data:image/png;base64,' + oPrelogin?.captchaImage" alt="captcha" class="mr-2">
             <input type="text" id="captcha" name="captcha" formControlName="captcha" placeholder="Introduce el Captcha"
               class="w-1/2 p-2 rounded-md shadow-xl">
           </div>
@@ -31,7 +31,7 @@
             <input type="checkbox" name="checkbox" id="checkbox" class="mr-2">
             <span class="py-2 font-semibold">Recuérdame</span>
           </div>
-          <span class="font-bold text-md text-black hover:text-gray-200 cursor-pointer">¿Te has olvidado de la contraseña?</span>
+          <span class="font-bold text-md text-black hover:text-gray-200 cursor-pointer">¿Te has olvidado de la password?</span>
         </div>
         <button
           class="w-full bg-red font-bold text-gray-200 p-2 rounded-lg mb-6 hover:bg-gray-200 hover:text-black hover:border-gray-300">
