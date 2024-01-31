@@ -63,7 +63,7 @@ export class LoginRoutedComponent implements OnInit {
           this.oRouter.navigate(['/home']);
         }, error: (error: HttpErrorResponse) => {
           this.oStatus = error;
-          this.oMatSnackBar.open("global.error", '', { duration: 2000 });
+          this.oMatSnackBar.open("errorMessage", '', { duration: 2000 });
           this.getPreloginData();
           this.oLoginForm.reset();
         }
@@ -81,11 +81,11 @@ export class LoginRoutedComponent implements OnInit {
   }
 
   loginAdmin() {
-    this.oLoginForm.setValue({ username: 'lauraferrer', password: '132456', captcha: ''});
+    this.oLoginForm.setValue({ username: 'lauraferrer', password: 'foxforum', captcha: ''});
   }
 
   loginUser() {
-    this.oLoginForm.setValue({ username: 'marmarzo', password: '123456', captcha: ''});
+    this.oLoginForm.setValue({ username: 'marmarzo', password: 'foxforum', captcha: ''});
   }
 
 }
