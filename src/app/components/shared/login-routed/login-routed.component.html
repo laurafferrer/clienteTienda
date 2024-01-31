@@ -1,5 +1,5 @@
-<div class="flex items-center justify-center min-h-screen bg-#0B3B59">
-  <div class="relative flex flex-col m-6 space-y-8 bg-#731D1D shadow-2xl rounded-2xl md:flex-row md:space-y-0">
+<div class="flex items-center justify-center min-h-screen bg-green">
+  <div class="relative flex flex-col m-6 space-y-8 bg-neutral-200 shadow-2xl rounded-2xl md:flex-row md:space-y-0">
     <div class="flex flex-col justify-center p-8 md:p-14">
       <span class="mb-3 text-4xl font-bold text-red">Login</span>
       <span class="text-red mb-8 font-medium">
@@ -21,7 +21,7 @@
         <div class="py-4">
           <span class="py-2 font-semibold">Captcha</span>
           <div class="flex items-center justify-center mb-2">
-            <img [src]=" 'data:image/png;base64,' + oPrelogin?.captchaImage" alt="captcha" class="mr-2">
+            <img [attr.src]=" 'data:image/png;base64,' + oPrelogin?.captchaImage" alt="captcha" class="mr-2">
             <input type="text" id="captcha" name="captcha" formControlName="captcha" placeholder="Introduce el Captcha"
               class="w-1/2 p-2 rounded-md shadow-xl">
           </div>
@@ -31,26 +31,26 @@
             <input type="checkbox" name="checkbox" id="checkbox" class="mr-2">
             <span class="py-2 font-semibold">Recuérdame</span>
           </div>
-          <span class="font-bold text-md text-black hover:text-gray-200 cursor-pointer">¿Te has olvidado de la password?</span>
+          <span class="font-bold text-md text-red hover:text-black cursor-pointer">¿Te has olvidado de la password?</span>
         </div>
         <button
-          class="w-full bg-red font-bold text-gray-200 p-2 rounded-lg mb-6 hover:bg-gray-200 hover:text-black hover:border-gray-300">
+          class="w-full bg-red font-bold text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-red hover:border-gray-300">
           Login
         </button>
         <button type="button"
-          class="w-full bg-red font-bold text-gray-200 p-2 rounded-lg mb-6 hover:bg-gray-200 hover:text-black hover:border-gray-300"
+          class="w-full bg-red font-bold text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-red hover:border-gray-300"
           (click)="loginAdmin()">
           Soy Admin
         </button>
         <button type="button"
-          class="w-full bg-red font-bold text-gray-200 p-2 rounded-lg mb-6 hover:bg-gray-200 hover:text-black hover:border-gray-300"
+          class="w-full bg-red font-bold text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-red hover:border-gray-300"
           (click)="loginUser()">
           Soy Usuario
         </button>
       </form>
       <div class="text-center font-semibold">
         ¿No tienes cuenta?
-        <span class="font-bold text-black hover:text-gray-200 cursor-pointer">Regístrate</span>
+        <span class="font-bold text-red hover:text-black cursor-pointer">Regístrate</span>
       </div>
     </div>
   </div>
