@@ -1,8 +1,8 @@
 <div class="flex items-center justify-center min-h-screen bg-green">
-  <div class="relative flex flex-col m-6 space-y-8 bg-neutral-200 shadow-2xl rounded-2xl md:flex-row md:space-y-0">
+  <div class="relative flex flex-col m-6 space-y-8 bg-extraLightGray shadow-2xl rounded-2xl md:flex-row md:space-y-0">
     <div class="flex flex-col justify-center p-8 md:p-14">
-      <span class="mb-3 text-4xl font-bold text-red">Login</span>
-      <span class="text-red mb-8 font-medium">
+      <span class="mb-3 text-4xl font-bold text-colorTexto1">Login</span>
+      <span class="text-colorTexto1 mb-8 font-medium">
         Introduce tus datos
       </span>
       <form [formGroup]="oLoginForm" (ngSubmit)="onSubmit()" class="py-4">
@@ -31,26 +31,26 @@
             <input type="checkbox" name="checkbox" id="checkbox" class="mr-2">
             <span class="py-2 font-semibold">Recuérdame</span>
           </div>
-          <span class="font-bold text-md text-red hover:text-black cursor-pointer">¿Te has olvidado de la password?</span>
+          <span class="font-bold text-md text-black hover:text-colorLink cursor-pointer">¿Te has olvidado de la password?</span>
         </div>
         <button
-          class="w-full bg-red font-bold text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-red hover:border-gray-300">
+          class="w-full bg-colorTexto1 font-bold text-white p-2 rounded-lg mb-6 hover:bg-colorLink hover:text-colorTexto1 hover:border-gray-300">
           Login
         </button>
         <button type="button"
-          class="w-full bg-red font-bold text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-red hover:border-gray-300"
+          class="w-full bg-colorTexto1 font-bold text-white p-2 rounded-lg mb-6 hover:bg-colorLink hover:text-colorTexto1 hover:border-gray-300"
           (click)="loginAdmin()">
           Soy Admin
         </button>
         <button type="button"
-          class="w-full bg-red font-bold text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-red hover:border-gray-300"
+          class="w-full bg-colorTexto1 font-bold text-white p-2 rounded-lg mb-6 hover:bg-colorLink hover:text-colorTexto1 hover:border-gray-300"
           (click)="loginUser()">
           Soy Usuario
         </button>
       </form>
       <div class="text-center font-semibold">
         ¿No tienes cuenta?
-        <span class="font-bold text-red hover:text-black cursor-pointer">Regístrate</span>
+        <span class="font-bold text-black hover:text-colorLink cursor-pointer">Regístrate</span>
       </div>
     </div>
   </div>

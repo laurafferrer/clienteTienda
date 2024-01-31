@@ -1,17 +1,17 @@
-<nav class="bg-neutral-400 text-red shadow-x1" role="navigation" aria-label="main navigation">
+<nav class="bg-lightGray text-colorTexto1 shadow-x1" role="navigation" aria-label="main navigation">
   <div class="felx items-center justify-between p-4">
     <a class="text-3x1 font-extrabold tracking-tight" href="/home">
       Desde la Pluma a la Pantalla
     </a>
 
     <div class="hidden md:flex">
-      <a class="hover:text-darkRed px-4 py-2 font-semibold" href="#">
+      <a class="hover:text-colorLink px-4 py-2 font-semibold" href="#">
         Users
       </a>
-      <a class="hover:text-darkRed px-4 py-2 font-semibold" href="#">
+      <a class="hover:text-colorLink px-4 py-2 font-semibold" href="#">
         Products
       </a>
-      <a class="hover:text-darkRed px-4 py-2 font-semibold" href="#">
+      <a class="hover:text-colorLink px-4 py-2 font-semibold" href="#">
         About
       </a>
     </div>
@@ -22,7 +22,7 @@
           <a class="cursor-pointer text-dark font-semibold">
             Welcome {{ strUsername }}
           </a>
-          <div class="hidden group-hover:block absolute right-0 mt-2 bg-lightRed text-dark border rounded">
+          <div class="hidden group-hover:block absolute right-0 mt-2 bg-colorLink text-dark border rounded">
             <a class="block px-4 py-2" href="#">
               Profile
             </a>
@@ -41,7 +41,7 @@
           </span>
         </a>
       </ng-container>
-      <a class="ml-4 hover:text-darkRed text-#A62E2E font-semibold" href="/login" *ngIf="!strUsername">
+      <a class="ml-4 hover:text-colorLink text-colorTexto1 font-semibold" href="/login" *ngIf="!strUsername">
         Login
       </a>
     </div>
