@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { IPrelogin } from '../../../model/model.interfaces';
 import { Router } from '@angular/router';
 import { CryptoService } from '../../../service/crypto.service';
@@ -16,13 +17,12 @@ export class LoginRoutedComponent implements OnInit {
   oLoginForm: FormGroup;
   oStatus: HttpErrorResponse | null = null;
   oPrelogin: IPrelogin | null = null;
-  oNotificationMessage: string | null = null;
-  oShowNotification = false;
 
   constructor(
     private oFormBuilder: FormBuilder,
     private oRouter: Router,
     private oSessionService: SessionAjaxService,
+    private oMatSnackBar: MatSnackBar,
     private oCryptoService: CryptoService
   ) { 
     this.oLoginForm = this.oFormBuilder.group({
@@ -39,7 +39,7 @@ export class LoginRoutedComponent implements OnInit {
       },
       error: (error) => {
         this.oStatus = error;
-        this.oShowNotificationWithMessage('Error getting prelogin data');
+        this.oMatSnackBar.open("Error getting prelogin operation.", '', { duration: 2000 });
       }
     });
   }
@@ -50,19 +50,20 @@ export class LoginRoutedComponent implements OnInit {
 
   onSubmit() {
     if (this.oLoginForm.valid && this.oPrelogin) {
-      let username = this.oLoginForm.get('username')?.value;
-      let password = this.oLoginForm.get('password')?.value;
-      let passwordSHA256 = this.oCryptoService.getSHA256(password);
+      let username = this.oLoginForm.value.username;
+      let passwordSHA256 = this.oCryptoService.getSHA256(this.oLoginForm.value.password);
       let token = this.oPrelogin.token;
-      let answer = this.oLoginForm.get('captcha')?.value;
+      let answer = this.oLoginForm.value.captcha;
+
       this.oSessionService.loginCaptcha(username, passwordSHA256, token, answer).subscribe({
         next: (data: string) => {
           this.oSessionService.setToken(data);
           this.oSessionService.emit({ type: 'login' });
+          this.oMatSnackBar.open("login.successfull.", '', { duration: 2000 });
           this.oRouter.navigate(['/home']);
         }, error: (error: HttpErrorResponse) => {
           this.oStatus = error;
-          this.oShowNotificationWithMessage('Error logging in');
+          this.oMatSnackBar.open("global.error", '', { duration: 2000 });
           this.getPreloginData();
           this.oLoginForm.reset();
         }
@@ -75,21 +76,16 @@ export class LoginRoutedComponent implements OnInit {
     this.getPreloginData();
   }
 
+  onRegister() {
+    this.oRouter.navigate(['/user/user/new']);
+  }
+
   loginAdmin() {
     this.oLoginForm.setValue({ username: 'lauraferrer', password: '132456', captcha: ''});
   }
 
   loginUser() {
     this.oLoginForm.setValue({ username: 'marmarzo', password: '123456', captcha: ''});
-  }
-
-  oShowNotificationWithMessage(message: string) {
-    this.oNotificationMessage = message;
-    this.oShowNotification = true;
-    setTimeout(() => {
-      this.oNotificationMessage = null;
-      this.oShowNotification = false;
-    }, 2000); // 2 seconds
   }
 
 }
