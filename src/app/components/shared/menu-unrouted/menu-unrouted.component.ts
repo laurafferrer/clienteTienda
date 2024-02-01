@@ -17,6 +17,7 @@ export class MenuUnroutedComponent implements OnInit {
   strUrl: string = '';
 
   oShowLogoutMenu: boolean = false;
+  oShowMenu: boolean = false;
 
   constructor(
     private oSessionAjaxService: SessionAjaxService,
@@ -60,8 +61,10 @@ export class MenuUnroutedComponent implements OnInit {
     });
   }
 
-  toggleLogoutMenu() {
-    this.oShowLogoutMenu = !this.oShowLogoutMenu;
+  toggleMenu() {
+    console.log(this.oShowMenu);
+    this.oShowMenu = !this.oShowMenu;
+    console.log(this.oShowMenu);
   }
 
   closeLogoutMenu() {
