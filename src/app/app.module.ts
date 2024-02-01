@@ -19,6 +19,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 // --
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -63,6 +64,7 @@ import { UserAjaxService } from './service/user.ajax.service';
     MenuUnroutedComponent,
   ],
   imports: [
+    RouterModule,
     //--
     BrowserModule,
     AppRoutingModule,
