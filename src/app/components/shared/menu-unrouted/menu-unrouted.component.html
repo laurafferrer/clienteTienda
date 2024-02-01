@@ -61,13 +61,13 @@
           <a routerLink="#" class="text-colorTexto1 dark:text-white hover:underline" aria-current="page">Home</a>
         </li>
         <li>
-          <a routerLink="#" class="text-colorTexto1 dark:text-white hover:underline" *ngIf="strUsername">User</a>
+          <a class="text-colorTexto1 dark:text-white hover:underline" *ngIf="strUsername" [routerLink]="['/admin', 'user', 'plist']">Users</a>
         </li>
         <li>
-          <a routerLink="#" class="text-colorTexto1 dark:text-white hover:underline" *ngIf="strUsername">Products</a>
+          <a routerLink="['/admin', 'product', 'plist']" class="text-colorTexto1 dark:text-white hover:underline" *ngIf="strUsername">Products</a>
         </li>
         <li>
-          <a routerLink="#" class="text-colorTexto1 dark:text-white hover:underline" *ngIf="strUsername">..</a>
+          <a routerLink="['/admin', 'category', 'plist']" class="text-colorTexto1 dark:text-white hover:underline" *ngIf="strUsername">Categories</a>
         </li>
       </ul>
     </div>
