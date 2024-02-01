@@ -10,6 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PaginatorModule } from 'primeng/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // --
 // INTERCEPTOR
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -40,8 +41,7 @@ import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-pl
 import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-detail-unrouted/admin-user-detail-unrouted.component'; 
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component'; 
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
-import { AdminUserSelectionUnroutedComponentComponent } from './components/user/admin-user-selection-unrouted-component/admin-user-selection-unrouted-component.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted-component/admin-user-selection-unrouted-component';
 
 //--
 @NgModule({
@@ -60,7 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminUserDetailUnroutedComponent,
     AdminUserNewRoutedComponent,
     AdminUserEditRoutedComponent,
-    AdminUserSelectionUnroutedComponentComponent
+    AdminUserSelectionUnroutedComponent
   ],
   imports: [
     BrowserModule,

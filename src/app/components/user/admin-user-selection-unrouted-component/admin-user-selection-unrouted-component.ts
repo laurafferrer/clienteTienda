@@ -7,10 +7,10 @@ import { UserAjaxService } from '../../../service/user.ajax.service';
 
 @Component({
   selector: 'app-admin-user-selection-unrouted-component',
-  templateUrl: './admin-user-selection-unrouted-component.component.html',
-  styleUrls: ['./admin-user-selection-unrouted-component.component.css']
+  templateUrl: './admin-user-selection-unrouted-component.html',
+  styleUrls: ['./admin-user-selection-unrouted-component.css']
 })
-export class AdminUserSelectionUnroutedComponentComponent implements OnInit {
+export class AdminUserSelectionUnroutedComponent implements OnInit {
 
   oPage: IUserPage | undefined;
   oOrderField: string = "id";
