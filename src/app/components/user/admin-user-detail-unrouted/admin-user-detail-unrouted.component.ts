@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
+import { IUser } from '../../../model/model.interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserAjaxService } from '../../../service/user.ajax.service';
 
 @Component({
   selector: 'app-admin-user-detail-unrouted',
@@ -7,9 +11,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUserDetailUnroutedComponent implements OnInit {
 
-  constructor() { }
+  @Input() id: number = 1;
+
+  oUser: IUser = {} as IUser;
+  oStatus: HttpErrorResponse | null = null;
+
+  constructor(
+    private oUserAjaxService: UserAjaxService,
+    @Optional() public ref: DynamicDialogRef,
+    @Optional() public config: DynamicDialogConfig
+  ) {
+    if (config) {
+      if (config.data) {
+        this.id = config.data.id;
+      }
+    }
+   }
 
   ngOnInit() {
+    this.getOne();
+  }
+
+  getOne() {
+    this.oUserAjaxService.getUserById(this.id).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.oStatus = error;
+      }
+    });
   }
 
 }
