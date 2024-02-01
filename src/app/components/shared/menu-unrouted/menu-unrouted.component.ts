@@ -20,20 +20,21 @@ export class MenuUnroutedComponent implements OnInit {
   oShowMenu: boolean = false;
 
   constructor(
-    private oSessionAjaxService: SessionAjaxService,
-    private oUserAjaxService: UserAjaxService,
-    private oRouter: Router
+    private sessionAjaxService: SessionAjaxService,
+    private userAjaxService: UserAjaxService,
+    private router: Router
   ) {
-    this.oRouter.events.subscribe((ev) => {
+    this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         this.strUrl = ev.url;
       }
     })
 
-    this.strUsername = oSessionAjaxService.getUsername();
-    this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
-      next: (oUser: IUser) => {
-        this.oUserSesion = oUser;
+    this.strUsername = sessionAjaxService.getUsername();
+    this.userAjaxService.getUserByUsername(this.sessionAjaxService.getUsername()).subscribe({
+      next: (user: IUser) => {
+        this.oUserSesion = user;
+        console.log(this.oUserSesion.role);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -41,14 +42,16 @@ export class MenuUnroutedComponent implements OnInit {
     });
   }
 
+
   ngOnInit() {
-    this.oSessionAjaxService.on().subscribe({
+    this.sessionAjaxService.on().subscribe({
       next: (data: SessionEvent) => {
         if (data.type === 'login') {
-          this.strUsername = this.oSessionAjaxService.getUsername();
-          this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
-            next: (oUser: IUser) => {
-              this.oUserSesion = oUser;
+          this.strUsername = this.sessionAjaxService.getUsername();
+          this.userAjaxService.getUserByUsername(this.sessionAjaxService.getUsername()).subscribe({
+            next: (user: IUser) => {
+              this.oUserSesion = user;
+              console.log(this.oUserSesion.role);
             },
             error: (err: HttpErrorResponse) => {
               console.log(err);
@@ -61,10 +64,8 @@ export class MenuUnroutedComponent implements OnInit {
     });
   }
 
-  toggleMenu() {
-    console.log(this.oShowMenu);
-    this.oShowMenu = !this.oShowMenu;
-    console.log(this.oShowMenu);
+  toggleLogoutMenu() {
+    this.oShowLogoutMenu = !this.oShowLogoutMenu;
   }
 
   closeLogoutMenu() {
@@ -72,7 +73,7 @@ export class MenuUnroutedComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  oHandleDocumentClick(event: Event) {
+  handleDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
     if (!target.closest('.group')) {
       this.oShowLogoutMenu = false;
