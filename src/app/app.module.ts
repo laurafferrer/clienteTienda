@@ -44,6 +44,7 @@ import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-d
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component'; 
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
+import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
 // --
 // PRODUCT COMPONENTS
 import { AdminProductFormUnroutedComponent } from './components/product/admin-product-form-unrouted/admin-product-form-unrouted.component';
@@ -74,6 +75,7 @@ import { AdminProductViewRoutedComponent } from './components/product/admin-prod
     AdminUserNewRoutedComponent,
     AdminUserEditRoutedComponent,
     AdminUserSelectionUnroutedComponent,
+    AdminUserViewRoutedComponent,
     // PRODUCT COMPONENTS
     AdminProductFormUnroutedComponent,
     AdminProductPlistRoutedComponent,
