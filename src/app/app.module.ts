@@ -43,7 +43,7 @@ import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-pl
 import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-detail-unrouted/admin-user-detail-unrouted.component'; 
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component'; 
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
-import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted-component/admin-user-selection-unrouted-component';
+import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 // --
 // PRODUCT COMPONENTS
 import { AdminProductFormUnroutedComponent } from './components/product/admin-product-form-unrouted/admin-product-form-unrouted.component';
