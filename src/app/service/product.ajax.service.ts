@@ -61,6 +61,10 @@ export class ProductAjaxService {
     return this.http.post<IProduct>(this.url, product);
   }
 
+  generateProducts(amount: number): Observable<number> {
+    return this.http.post<number>(this.url + '/populate/' + amount, {});
+  }
+
   updateProduct(product: IProduct): Observable<IProduct> {
     return this.http.put<IProduct>(this.url, product);
   }
