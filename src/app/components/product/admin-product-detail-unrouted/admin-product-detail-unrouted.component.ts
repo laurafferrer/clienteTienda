@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
+import { IProduct } from '../../../model/model.interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ProductAjaxService } from '../../../service/product.ajax.service';
 
 @Component({
   selector: 'app-admin-product-detail-unrouted',
@@ -7,9 +11,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProductDetailUnroutedComponent implements OnInit {
 
-  constructor() { }
+  @Input() id: number = 1;
+
+  oProduct: IProduct = {} as IProduct;
+  oStatus: HttpErrorResponse | null = null;
+
+  constructor(
+    private oProductAjaxService: ProductAjaxService,
+    @Optional() public ref: DynamicDialogRef,
+    @Optional() public config: DynamicDialogConfig
+  ) {
+    if (config) {
+      if (config.data) {
+        this.id = config.data.id;
+      }
+    }
+   }
 
   ngOnInit() {
+    this.getOne();
+  }
+
+  getOne() {
+    this.oProductAjaxService.getProductById(this.id).subscribe({
+      next: (data: IProduct) => {
+        this.oProduct = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.oStatus = error;
+      }
+    });
   }
 
 }
