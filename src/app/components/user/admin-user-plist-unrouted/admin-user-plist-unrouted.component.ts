@@ -44,7 +44,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     });
   }
 
-  search(filterValue: string): void {
+ /* search(filterValue: string): void {
     if (filterValue && filterValue.length >= 3) {
       this.oUserAjaxService.getUserPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', filterValue)
       .pipe(
@@ -72,6 +72,10 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         }
       );
     }
+  }*/
+
+  getValues(event: any): string {
+    return event.target.value;
   }
 
   getPage(): void {
