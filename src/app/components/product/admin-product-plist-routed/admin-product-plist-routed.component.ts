@@ -3,9 +3,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Subject } from 'rxjs';
 import { ProductAjaxService } from '../../../service/product.ajax.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { error } from 'console';
 import { HttpErrorResponse } from '@angular/common/http';
-import { subscribe } from 'diagnostics_channel';
 
 @Component({
   providers: [ConfirmationService],
