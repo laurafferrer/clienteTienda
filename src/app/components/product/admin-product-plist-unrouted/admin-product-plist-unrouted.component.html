@@ -1,3 +1,58 @@
-<p>
-  admin-product-plist-unrouted works!
-</p>
+<!-- Paginación -->
+<p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+  [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]" class="mx-2">
+</p-paginator>
+
+<div class="container">
+  <div class="field">
+    <label class="label">Order with:</label>
+    <div class="control">
+      <div class="select has-text-centered">
+        <select #selectValue (change)="doOrder(selectValue.value)">
+          <option value="id">ID</option>
+          <option value="name">Nombre</option>
+          <option value="price">Precio</option>
+          <option value="stock">Stock</option>
+          <option value="image">Imagen</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <table class="table is-bordered is-fullwidth is-hoverable has-text-centered">
+    <thead>
+      <tr>
+        <th class="has-text-centered">Name</th>
+        <th class="has-text-centered">Price</th>
+        <th class="has-text-centered">Stock</th>
+        <th class="has-text-centered">Image</th>
+        <th class="has-text-centered">Categoria</th>
+        <th class="has-text-centered">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of oPage?.content" class="user-item">
+        <td (click)="doView(product)"> {{product.name}} </td>
+        <td> {{product.price}} </td>
+        <td> {{product.stock}} </td>
+        <td> {{product.image}} </td>
+        <td> {{product.category}} </td>
+        <td class="productActions">
+          <a [routerLink]="['/admin', 'product', 'edit', product.id]" class="button is-primary is-samll mr-2"
+            title="Actualizar">
+            <i class="fas fa-edit"></i>
+          </a>
+          <button class="button is-success is-small mr-2" (click)="doView(product)" title="Ver Detalles">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="button is-warning is-small mr-2" title="Vista alternativa">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <button (click)="doRemove(product)" class="button is-danger is-small" title="Eliminar">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
