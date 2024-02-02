@@ -1,3 +1,66 @@
-<p>
-  admin-product-form-unrouted works!
-</p>
+<div class="container">
+  <h1 class="title is-3"> User form</h1>
+  <form [formGroup]="oProductForm" (submit)="onSubmit()">
+    <div class="field" v-if="operation === 'EDIT'">
+      <label class="label">ID : </label>
+      <div class="control has-icons-right">
+        <input class="input" formControlName="id" placeholder="ID" readonly>
+        <span class="icon is-small is-right">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+        </span>
+      </div>
+      <p class="help is-pulled-right">(This number cannot be changed )</p>
+    </div>
+
+    <div class="field">
+      <label class="label">Nombre: </label>
+      <div class="control">
+        <input type="text" class="input" id="name" formControlName="name" placeholder="Ingrese el nombre">
+        <div class="help is-danger" *ngIf="hasError('name', 'required')">No has introducido el nombre </div>
+        <div class="help is-danger" *ngIf="hasError('name', 'minlength')">El nombre debe tener al menos 3 caracteres </div>
+        <div class="help is-danger" *ngIf="hasError('name', 'maxlength')">El nombre no puede tener más de 255 caracteres </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label"> Descripción: </label>
+      <div class="control">
+        <input type="text" class="input" id="description" formControlName="description" placeholder="Ingrese una descripción del producto.">
+        <div class="help is-danger" *ngIf="hasError('description', 'required')">No has introducido descripción</div>
+        <div class="help is-danger" *ngIf="hasError('description', 'minlength')">La descripción debe tener al menos 3 caracteres</div>
+        <div class="help is-danger" *ngIf="hasError('description', 'maxlength')">El apellido no puede tener más de 255 caracteres</div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Precio</label>
+      <div class="control">
+        <input class="input" type="number" formControlName="price" placeholder="Ingrese el precio">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Stock</label>
+      <div class="control">
+        <input class="input" type="number" formControlName="stock" placeholder="Ingrese el stock">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Imagen</label>
+      <div class="control">
+        <input class="input" type="file" (change)="onFileSelected($event)" accept="image/*">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Categoría</label>
+      <div class="control">
+        <button class="button is-link" (click)="onShowCategorySelection()">Seleccionar Categoría</button>
+        <span *ngIf="oSelectedCategory" class="selected-category">
+          Categoría seleccionada: {{ oSelectedCategory.name }}
+        </span>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <button type="submit" class="button is-primary">Send form</button>
+      </div>
+    </div>
+  </form>
+</div>
