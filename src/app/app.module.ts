@@ -11,6 +11,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogService } from 'primeng/dynamicdialog';
+
 // --
 // INTERCEPTOR
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -86,6 +88,7 @@ import { AdminUserSelectionUnroutedComponent } from './components/user/admin-use
     PurchaseDetailAjaxService,
     SessionAjaxService,
     UserAjaxService,
+    DialogService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
