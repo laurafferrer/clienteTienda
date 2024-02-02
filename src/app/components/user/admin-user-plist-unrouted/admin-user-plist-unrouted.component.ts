@@ -8,22 +8,22 @@ import { PaginatorState } from 'primeng/paginator';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
-import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
+  providers: [DialogService, ConfirmationService],
   selector: 'app-admin-user-plist-unrouted',
   templateUrl: './admin-user-plist-unrouted.component.html',
   styleUrls: ['./admin-user-plist-unrouted.component.css']
 })
 export class AdminUserPlistUnroutedComponent implements OnInit {
 
-  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  @Input() oForceReload: Subject<boolean> = new Subject<boolean>();
 
   oPage: IUserPage | undefined;
   oOrderField: string = 'id';
   oOrderDirection: string = 'asc';
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
-  status: HttpErrorResponse | null = null;
+  oStatus: HttpErrorResponse | null = null;
   oUserToRemove: IUser | null = null; 
 
   constructor(    
@@ -35,7 +35,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
-    this.forceReload.subscribe({
+    this.oForceReload.subscribe({
       next: (v) => {
         if (v) {
           this.getPage();
@@ -85,7 +85,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.oPaginatorState.pageCount = data.totalPages;
       },
       error: (error: HttpErrorResponse) => {
-        this.status = error;
+        this.oStatus = error;
       }
     });
   }
@@ -122,7 +122,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
-            this.status = error;
+            this.oStatus = error;
           }
         });
       },
