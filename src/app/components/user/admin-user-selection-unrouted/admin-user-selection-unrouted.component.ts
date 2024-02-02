@@ -6,9 +6,9 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserAjaxService } from '../../../service/user.ajax.service';
 
 @Component({
-  selector: 'app-admin-user-selection-unrouted-component',
-  templateUrl: './admin-user-selection-unrouted-component.html',
-  styleUrls: ['./admin-user-selection-unrouted-component.css']
+  selector: 'app-admin-user-selection-unrouted.component',
+  templateUrl: './admin-user-selection-unrouted.component.html',
+  styleUrls: ['./admin-user-selection-unrouted.component.css']
 })
 export class AdminUserSelectionUnroutedComponent implements OnInit {
 
