@@ -8,10 +8,12 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
+import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
 // -- ADMIN PRODUCT COMPONENTS
 import { AdminProductPlistRoutedComponent } from './components/product/admin-product-plist-routed/admin-product-plist-routed.component';
 import { AdminProductEditRoutedComponent } from './components/product/admin-product-edit-routed/admin-product-edit-routed.component';
 import { AdminProductNewRoutedComponent } from './components/product/admin-product-new-routed/admin-product-new-routed.component';
+import { AdminProductViewRoutedComponent } from './components/product/admin-product-view-routed/admin-product-view-routed.component';
 
 
 const routes: Routes = [
@@ -23,10 +25,12 @@ const routes: Routes = [
   { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent},
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent},
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent},
+  { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent},
 
   { path: 'admin/product/plist', component: AdminProductPlistRoutedComponent},
   { path: 'admin/product/edit/:id', component: AdminProductEditRoutedComponent},
   { path: 'admin/product/new', component: AdminProductNewRoutedComponent},
+  { path: 'admin/product/view/:id', component: AdminProductViewRoutedComponent}
 ];
 
 @NgModule({
