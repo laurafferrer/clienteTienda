@@ -44,6 +44,17 @@ import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-d
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component'; 
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted-component/admin-user-selection-unrouted-component';
+// --
+// PRODUCT COMPONENTS
+import { AdminProductFormUnroutedComponent } from './components/product/admin-product-form-unrouted/admin-product-form-unrouted.component';
+import { AdminProductPlistRoutedComponent } from './components/product/admin-product-plist-routed/admin-product-plist-routed.component';
+import { AdminProductPlistUnroutedComponent } from './components/product/admin-product-plist-unrouted/admin-product-plist-unrouted.component';
+import { AdminProductDetailUnroutedComponent } from './components/product/admin-product-detail-unrouted/admin-product-detail-unrouted.component';
+import { AdminProductNewRoutedComponent } from './components/product/admin-product-new-routed/admin-product-new-routed.component';
+import { AdminProductEditRoutedComponent } from './components/product/admin-product-edit-routed/admin-product-edit-routed.component';
+import { AdminProductSelectionUnroutedComponent } from './components/product/admin-product-selection-unrouted/admin-product-selection-unrouted.component';
+import { AdminProductViewRoutedComponent } from './components/product/admin-product-view-routed/admin-product-view-routed.component';
+// --
 
 //--
 @NgModule({
@@ -62,7 +73,16 @@ import { AdminUserSelectionUnroutedComponent } from './components/user/admin-use
     AdminUserDetailUnroutedComponent,
     AdminUserNewRoutedComponent,
     AdminUserEditRoutedComponent,
-    AdminUserSelectionUnroutedComponent
+    AdminUserSelectionUnroutedComponent,
+    // PRODUCT COMPONENTS
+    AdminProductFormUnroutedComponent,
+    AdminProductPlistRoutedComponent,
+    AdminProductPlistUnroutedComponent,
+    AdminProductDetailUnroutedComponent,
+    AdminProductNewRoutedComponent,
+    AdminProductEditRoutedComponent,
+    AdminProductSelectionUnroutedComponent,
+    AdminProductViewRoutedComponent
   ],
   imports: [
     BrowserModule,
