@@ -20,10 +20,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of oPage?.content" class="has-text-centered">
-        <td (click)="doView(product)">
-          <p> {{product.name}} </p>
-        </td>
+      <tr *ngFor="let product of oPage?.content" class="">
+        <td (click)="doView(product)"> <p> {{product.name}} </p> </td>
         <td> {{product.price + "€"}} </td>
         <td> {{product.stock}} </td>
         <td>
