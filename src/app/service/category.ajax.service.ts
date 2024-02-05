@@ -17,8 +17,8 @@ constructor(private http: HttpClient) { }
     return this.http.get<ICategory>(this.url + '/' + id);
   }
 
-  getCategoriesPage(page:number, size: number, sort: string, direction: string): Observable<ICategoryPage> {
-    return this.http.get<ICategoryPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+  getPageCategories(size: number | undefined,  page: number | undefined,  sort: string, direction: string): Observable<ICategoryPage> {
+    return this.http.get<ICategoryPage>(this.url + '?size=' + size + '&page=' + page +  + '&sort=' + sort + ',' + direction);
   }
 
   getCategoriesRandom(): Observable<ICategory> {
