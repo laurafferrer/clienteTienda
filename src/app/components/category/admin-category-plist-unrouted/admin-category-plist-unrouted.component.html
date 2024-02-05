@@ -1,3 +1,62 @@
-<p>
-  admin-category-plist-unrouted works!
-</p>
+<!-- Paginación -->
+<p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+  [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 50]" class="mx-2">
+</p-paginator>
+
+<div class="container">
+  <div class="col-lg-2 col-md-12 d-none d-md-block">
+    <h3 class="text-right">Mostrando {{oPage?.numberOfElements}} de {{oPage?.totalElements}}</h3>
+  </div>
+  <!-- Contenido de usuarios como tabla -->
+  <table class="table is-fullwidth">
+    <thead class="">
+      <tr>
+        <th class="has-text-centered ">ID</th>
+        <th class="has-text-centered ">Nombre</th>
+        <th class="has-text-centered ">Productos</th>
+        <th class="has-text-centered ">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of oPage?.content" class="category-item has-text-centered">
+        <td (click)="doView(category)">
+          <p>{{ category.id }}</p>
+        </td>
+        <td>
+          <p>{{ category.name }}</p>
+        </td>
+        <td>
+          <a [routerLink]="['/admin','category','plist','byproduct',category.id]"
+            *ngIf="category.product>0">{{category.product}}</a>
+          <span *ngIf="category.product==0">0</span>
+        </td>
+        <td class="category-actions has-text-centered">
+          <!-- Botones de CRUD a la derecha -->
+          <a [routerLink]="['/admin', 'category', 'edit', category.id]"
+            class="button is-small" title="Actualizar">
+            <span class="icon">
+              <i class="fas fa-edit"></i>
+            </span>
+          </a>
+          <button class="button is-small" (click)="doView(category)" title="Ver Detalles">
+            <span class="icon">
+              <i class="fas fa-eye"></i>
+            </span>
+          </button>
+          <button (click)="doRemove(category)" class="button is-small" title="Eliminar">
+            <span class="icon">
+              <i class="fas fa-trash-alt"></i>
+            </span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Mensaje si no hay usuarios -->
+  <div class="notification is-info" *ngIf="!oPage?.content || oPage?.content?.length === 0">
+    Don't have categories to mostrate.
+  </div>
+
+  <p-confirmPopup></p-confirmPopup>
+</div>
