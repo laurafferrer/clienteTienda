@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminCategoryEditRoutedComponent implements OnInit {
 
-  constructor() { }
+  id: number = 1;
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { 
+    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id') || '1');
+  }
 
   ngOnInit() {
   }
