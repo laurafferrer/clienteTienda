@@ -1,26 +1,23 @@
-<div class="section bg-slate-300">
+<div class="section">
   <div class="container">
     <div class="columns is-centered">
       <div class="column">
         <div class="is-small has-text-centered">
           <div class="title is-3 mb-4">
-            <span class="icon is-large">
-              <i class="fas fa-tags"></i>
-            </span>
             Categorias
           </div>
           <div class="buttons is-centered">
-            <button class="button is-primary is-shadow" (click)="doGenerateRandom(10)"
+            <button class="button is-shadow" (click)="doGenerateRandom(10)"
               [disabled]="bLoading">+10</button>
-            <button class="button is-primary is-shadow" (click)="doGenerateRandom(50)"
+            <button class="button is-shadow" (click)="doGenerateRandom(50)"
               [disabled]="bLoading">+50</button>
-            <button class="button is-primary is-shadow"
+            <button class="button is-shadow"
               (click)="doGenerateRandom(100)" [disabled]="bLoading">+100</button>
           </div>
           <div class="buttons is-centered mt-3">
-            <button class="button is-danger is-shadow" (click)="doEmpty($event)"
+            <button class="button is-shadow" (click)="doEmpty($event)"
               [disabled]="bLoading">Eliminar categorias</button>
-            <a class="button is-primary is-shadow"
+            <a class="button is-shadow"
               [routerLink]="['/admin', 'category', 'new']">Crear categoria</a>
           </div>
         </div>
