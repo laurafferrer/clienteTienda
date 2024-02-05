@@ -13,7 +13,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 export class AdminProductSelectionUnroutedComponent implements OnInit {
 
   oPage: IProductPage | undefined;
-  oOrderFiled: string = "id";
+  oOrderField: string = "id";
   oOrderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   oStatus: HttpErrorResponse | null = null;
@@ -29,7 +29,7 @@ export class AdminProductSelectionUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderFiled, this.oOrderDirection).subscribe({
+    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection).subscribe({
       next: (data: IProductPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -47,7 +47,7 @@ export class AdminProductSelectionUnroutedComponent implements OnInit {
   }
 
   doOrder(fieldOrder: string) {
-    this.oOrderFiled = fieldOrder;
+    this.oOrderField = fieldOrder;
     if (this.oOrderDirection == "asc") {
       this.oOrderDirection = "desc";
     } else {
