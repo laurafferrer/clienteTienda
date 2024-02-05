@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { PaginatorState } from 'primeng/paginator';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { AdminProductFormUnroutedComponent } from '../admin-product-form-unrouted/admin-product-form-unrouted.component';
+import { AdminProductDetailUnroutedComponent } from '../admin-product-detail-unrouted/admin-product-detail-unrouted.component';
 
 @Component({
   providers: [DialogService, ConfirmationService],
@@ -70,7 +70,7 @@ export class AdminProductPlistUnroutedComponent implements OnInit {
 
   doView(product: IProduct) {
     let ref: DynamicDialogRef | undefined;
-    ref = this.oDialogService.open(AdminProductPlistUnroutedComponent, {
+    ref = this.oDialogService.open(AdminProductDetailUnroutedComponent, {
       header: 'Product Detail',
       width: '70%',
       maximizable: false,
