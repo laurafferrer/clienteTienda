@@ -3,7 +3,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { IUser, SessionEvent } from '../../../model/model.interfaces';
 import { SessionAjaxService } from '../../../service/session.ajax.service';
 import { UserAjaxService } from '../../../service/user.ajax.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -13,28 +13,28 @@ import { NavigationEnd, Router } from '@angular/router';
 export class MenuUnroutedComponent implements OnInit {
 
   strUsername: string = '';
-  oUserSesion: IUser | null = null;
+  oUserSession: IUser | null = null;
   strUrl: string = '';
 
   oShowLogoutMenu: boolean = false;
-  oShowMenu: boolean = false;
 
   constructor(
-    private sessionAjaxService: SessionAjaxService,
-    private userAjaxService: UserAjaxService,
-    private router: Router
+    private oSessionAjaxService: SessionAjaxService,
+    private oUserAjaxService: UserAjaxService,
+    private oRouter: Router,
+    private oRoute: ActivatedRoute
   ) {
-    this.router.events.subscribe((ev) => {
+    this.oRouter.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         this.strUrl = ev.url;
       }
     })
 
-    this.strUsername = sessionAjaxService.getUsername();
-    this.userAjaxService.getUserByUsername(this.sessionAjaxService.getUsername()).subscribe({
+    this.strUsername = oSessionAjaxService.getUsername();
+    this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
       next: (user: IUser) => {
-        this.oUserSesion = user;
-        console.log(this.oUserSesion.role);
+        this.oUserSession = user;
+        console.log(this.oUserSession);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -44,14 +44,14 @@ export class MenuUnroutedComponent implements OnInit {
 
 
   ngOnInit() {
-    this.sessionAjaxService.on().subscribe({
+    this.oSessionAjaxService.on().subscribe({
       next: (data: SessionEvent) => {
         if (data.type === 'login') {
-          this.strUsername = this.sessionAjaxService.getUsername();
-          this.userAjaxService.getUserByUsername(this.sessionAjaxService.getUsername()).subscribe({
+          this.strUsername = this.oSessionAjaxService.getUsername();
+          this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
             next: (user: IUser) => {
-              this.oUserSesion = user;
-              console.log(this.oUserSesion.role);
+              this.oUserSession = user;
+              console.log(this.oUserSession);
             },
             error: (err: HttpErrorResponse) => {
               console.log(err);
@@ -59,6 +59,7 @@ export class MenuUnroutedComponent implements OnInit {
           });
         } else if (data.type === 'logout') {
           this.strUsername = '';
+          this.oUserSession = null;
         }
       }
     });
@@ -70,6 +71,10 @@ export class MenuUnroutedComponent implements OnInit {
 
   closeLogoutMenu() {
     this.oShowLogoutMenu = false;
+  }
+
+  isActive(oRoute: string) {
+    return this.oRouter.isActive(oRoute, true);
   }
 
   @HostListener('document:click', ['$event'])
