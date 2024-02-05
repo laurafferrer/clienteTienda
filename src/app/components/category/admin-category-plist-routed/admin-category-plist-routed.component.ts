@@ -29,14 +29,14 @@ export class AdminCategoryPlistRoutedComponent implements OnInit {
     this.bLoading = true;
     this.oCategoryAjaxService.generateCategories(amount).subscribe({
       next: (response: number) => {
-        this.oMatSnackBar.open('Is generated ' + response + ' categories', 'Close', {duration: 3000});
+        this.oMatSnackBar.open(`Se han generado ${response} categorias`, 'Aceptar', { duration: 3000 });
         this.bLoading = false;
       },
-      error: (error: HttpErrorResponse) => {
-        this.oMatSnackBar.open('Error: ' + error.message, 'Close', {duration: 3000});
+      error: (err: HttpErrorResponse) => {
+        this.oMatSnackBar.open(`Se ha producido un error al generar categorias aleatorios: ${err.message}`, 'Aceptar', { duration: 3000 });
         this.bLoading = false;
       }
-    });
+    })
   }
 
   doEmpty($event: Event) {

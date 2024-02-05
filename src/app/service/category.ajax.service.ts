@@ -34,7 +34,7 @@ constructor(private http: HttpClient) { }
   }
 
   generateCategories(amount: number): Observable<number> {
-    return this.http.post<number>(this.url + '/populate/', amount, {});
+    return this.http.post<number>(this.url + '/populate/' + amount, {});
   }
 
   updateCategory(category: ICategory): Observable<ICategory> {
