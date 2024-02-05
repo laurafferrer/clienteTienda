@@ -1,3 +1,8 @@
+<!-- Paginación -->
+<p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+  [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]" class="mx-2">
+</p-paginator>
+
 <div class="table-container">
   <table class="table is-bordered is-hoverable is-fullwidth">
     <thead>
@@ -25,8 +30,4 @@
       </tr>
     </tbody>
   </table>
-  <div class="pagination-container">
-    <p-paginator (onPageChange)="onPageChange($event)" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-  </div>
 </div>

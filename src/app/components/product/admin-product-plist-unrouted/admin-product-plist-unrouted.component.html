@@ -36,7 +36,7 @@
         <td (click)="doView(product)"> {{product.name}} </td>
         <td> {{product.price + "€"}} </td>
         <td> {{product.stock}} </td>
-        <td> {{product.image}} </td>
+        <td> <img [src]="product.image" alt="Imagen del producto" class="image is-64x64"> </td>
         <td> {{product.category}} </td>
         <td class="productActions">
           <a [routerLink]="['/admin', 'product', 'edit', product.id]" class="button is-primary is-samll mr-2"
