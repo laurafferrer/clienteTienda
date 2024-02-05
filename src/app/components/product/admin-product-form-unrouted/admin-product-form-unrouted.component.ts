@@ -46,8 +46,8 @@ export class AdminProductFormUnroutedComponent implements OnInit {
       stock: [product.stock],
       image: [product.image],
       category: this.oFormBuilder.group({
-        id: [this.oProduct.category.id, [Validators.required]],
-      })
+        id: [product.category ? product.category.id : null, [Validators.required]],
+    })
     });
   }
 
