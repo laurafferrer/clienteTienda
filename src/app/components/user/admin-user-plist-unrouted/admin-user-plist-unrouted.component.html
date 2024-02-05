@@ -4,77 +4,52 @@
 </p-paginator>
 
 <div class="container">
-  <div class="field">
-    <label class="label">Order with:</label>
-    <div class="control">
-      <div class="select has-text-centered">
-        <select #selectEvent (change)="doOrder(selectEvent.value)">
-          <option value="id">Id</option>
-          <option value="dni">DNI</option>
-          <option value="username">Username</option>
-          <option value="name">Nombre</option>
-          <option value="surname">Primer Apellido</option>
-          <option value="last_name">Segundo Apellido</option>
-          <option value="birth_date">Fecha de nacimiento</option>
-          <option value="phone_number">Número de teléfono</option>
-          <option value="email">Email</option>
-          <option value="address">Dirección</option>
-          <option value="city">Ciudad</option>
-          <option value="postal_code">Código postal</option>
-        </select>
-      </div>
-    </div>
+  <div class="col-lg-2 col-md-12 d-none d-md-block">
+    <h3 class="text-right">{{oPage?.numberOfElements}} de {{oPage?.totalElements}}</h3>
   </div>
+
+  <table class="table is-fullwidth">
+    <thead class="">
+      <tr>
+        <th class="has-text-centered">Usuario</th>
+        <th class="has-text-centered">Nombre</th>
+        <th class="has-text-centered">Email</th>
+        <th class="has-text-centered">DNI</th>
+        <th class="has-text-centered">Fecha nacimiento</th>
+        <th class="has-text-centered">Ciudad</th>
+        <th class="has-text-centered">Role</th>
+        <th class="has-text-centered">Carritos</th>
+        <th class="has-text-centered">Compras</th>
+        <th class="has-text-centered">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of oPage?.content" class="">
+        <td (click)="doView(user)"> {{ user.username }} </td>
+        <td> {{ user.name }} {{ user.surname }} </td>
+        <td> {{ user.email }} </td>
+        <td> {{ user.dni }} </td>
+        <td> {{ user.birth_date | date: 'dd-MM-yyyy' }} </td>
+        <td> {{ user.city }} </td>
+        <td> {{ user.role ? 'Admin' : 'User' }} </td>
+        <td> {{ user.carts }} </td>
+        <td> {{ user.purchases }} </td>
+        <td class="has-text-centered">
+          <a [routerLink]="['/admin', 'user', 'edit', user.id]"
+            class="button is-small" title="Actualizar">
+          </a>
+          <button class="button is-small" (click)="doView(user)" title="Ver Detalles">
+          </button>
+          <button (click)="doRemove(user)" class="button is-small" title="Eliminar">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notification" *ngIf="!oPage?.content || oPage?.content?.length === 0">
+    <p>Don't have users.</p>
+  </div>
+
+  <p-confirmPopup></p-confirmPopup>
 </div>
-
-<table class="table is-bordered is-fullwidth is-hoverable has-text-centered">
-  <thead>
-    <tr>
-    <tr>
-      <th class="has-text-centered">Usuario</th>
-      <th class="has-text-centered">Nombre</th>
-      <th class="has-text-centered">Email</th>
-      <th class="has-text-centered">DNI</th>
-      <th class="has-text-centered">Fecha nacimiento</th>
-      <th class="has-text-centered">Ciudad</th>
-      <th class="has-text-centered">Role</th>
-      <th class="has-text-centered">Carritos</th>
-      <th class="has-text-centered">Compras</th>
-      <th class="has-text-centered">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of oPage?.content" class="user-item">
-      <td (click)="doView(user)"> {{ user.username }} </td>
-      <td> {{ user.name }} {{ user.surname }} </td>
-      <td> {{ user.email }} </td>
-      <td> {{ user.dni }} </td>
-      <td> {{ user.birth_date | date: 'dd-MM-yyyy' }} </td>
-      <td> {{ user.city }} </td>
-      <td> {{ user.role ? 'Admin' : 'User' }} </td>
-      <td> {{ user.carts }} </td>
-      <td> {{ user.purchases }} </td>
-      <td class="userActions">
-        <a [routerLink]="['/admin', 'user', 'edit', user.id]" class="button is-primary is-samll mr-2"
-          title="Actualizar">
-          <i class="fas fa-edit"></i>
-        </a>
-        <button class="button is-success is-small mr-2" (click)="doView(user)" title="Ver Detalles">
-          <i class="fas fa-eye"></i>
-        </button>
-        <button class="button is-warning is-small mr-2" title="Vista alternativa">
-          <i class="fas fa-exchange-alt"></i>
-        </button>
-        <button (click)="doRemove(user)" class="button is-danger is-small" title="Eliminar">
-          <i class="fas fa-trash-alt"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="notification" *ngIf="!oPage?.content || oPage?.content?.length === 0">
-  <p>No hay usuarios registrados</p>
-</div>
-
-<p-confirmPopup></p-confirmPopup>
