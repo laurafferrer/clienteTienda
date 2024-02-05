@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 import { ICategory, IProduct, formOperation } from '../../../model/model.interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -20,11 +20,11 @@ export class AdminProductFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW';
 
   oProductForm!: FormGroup;
-  oProduct: IProduct = {} as IProduct;
+  oProduct: IProduct = { image: '', category: {} } as IProduct;
   oStatus: HttpErrorResponse | null = null;
   oDynamicDialogRef: DynamicDialogRef | undefined;
   oSelectedCategory : ICategory | undefined;
-  oSelectedImageUrl: string | undefined;
+  oSelectedImageUrl: string | undefined = '';
 
   constructor(
     private oProductAjaxService: ProductAjaxService,
@@ -39,20 +39,20 @@ export class AdminProductFormUnroutedComponent implements OnInit {
 
   initializeForm(product: IProduct) {
     this.oProductForm = this.oFormBuilder.group({
-      id: [product.id],
-      name: [product.name],
-      description: [product.description],
-      price: [product.price],
-      stock: [product.stock],
-      image: [product.image],
+      id: [this.oProduct.id],
+      name: [this.oProduct.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      description: [this.oProduct.description, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      price: [this.oProduct.price, [Validators.required]],
+      stock: [this.oProduct.stock, [Validators.required]],
+      image: [this.oProduct.image],
       category: this.oFormBuilder.group({
-        id: [product.category ? product.category.id : null, [Validators.required]],
-    })
+        id: [this.oProduct.category.id, [Validators.required]],
+      }),
     });
   }
 
   ngOnInit() {
-    if (this.operation === 'EDIT') {
+    if (this.operation == 'EDIT') {
       this.oProductAjaxService.getProductById(this.id).subscribe({
         next: (data: IProduct) => {
           this.oProduct = data;
@@ -68,19 +68,20 @@ export class AdminProductFormUnroutedComponent implements OnInit {
     }
   }
 
-  public hasError = (controlName: string, errorName: string) => {
-    return this.oProductForm.controls[controlName].hasError(errorName);
+  public hasError = (controlName: string, error: string) => {
+    return this.oProductForm.controls[controlName].hasError(error);
   }
 
   onSubmit() {
     if (this.oProductForm.valid) {
-      if (this.operation === 'NEW') {
+      if (this.operation == 'NEW') {
         this.oProductAjaxService.createProduct(this.oProductForm.value).subscribe({
           next: (data: IProduct) => {
-            this.oProduct = data;
+            this.oProduct = { "image": '', "category": {} } as IProduct;
+            this.oProduct.id = data.id;
             this.initializeForm(this.oProduct);
             this.oMatSnackBar.open("Product created", "Accept", {duration: 3000});
-            this.oRouter.navigate(['/admin', 'product', 'view', this.oProduct]);
+            this.oRouter.navigate(['/admin', 'product', 'view', this.oProduct.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.oStatus = error;
@@ -125,7 +126,7 @@ export class AdminProductFormUnroutedComponent implements OnInit {
 
   onShowCategorySelection() {
     this.oDynamicDialogRef = this.oDialogService.open(AdminCategorySelectionUnroutedComponent, {
-      header: 'Select a category',
+      header: 'Select category',
       width: '70%',
       maximizable: true,
     });
@@ -133,7 +134,6 @@ export class AdminProductFormUnroutedComponent implements OnInit {
     if (this.oDynamicDialogRef) {
       this.oDynamicDialogRef.onClose.subscribe((category: ICategory) => {
         if (category) {
-          this.oSelectedCategory = category;
           this.oProduct.category = category;
           this.oProductForm.controls['category'].patchValue({id: category.id});
         }
