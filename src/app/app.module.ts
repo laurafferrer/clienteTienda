@@ -56,6 +56,16 @@ import { AdminProductEditRoutedComponent } from './components/product/admin-prod
 import { AdminProductSelectionUnroutedComponent } from './components/product/admin-product-selection-unrouted/admin-product-selection-unrouted.component';
 import { AdminProductViewRoutedComponent } from './components/product/admin-product-view-routed/admin-product-view-routed.component';
 // --
+// -- CATEGORY COMPONENTS
+import { AdminCategoryFormUnroutedComponent } from './components/category/admin-category-form-unrouted/admin-category-form-unrouted.component';
+import { AdminCategoryPlistRoutedComponent } from './components/category/admin-category-plist-routed/admin-category-plist-routed.component';
+import { AdminCategoryPlistUnroutedComponent } from './components/category/admin-category-plist-unrouted/admin-category-plist-unrouted.component';
+import { AdminCategoryDetailUnroutedComponent } from './components/category/admin-category-detail-unrouted/admin-category-detail-unrouted.component';
+import { AdminCategoryNewRoutedComponent } from './components/category/admin-category-new-routed/admin-category-new-routed.component';
+import { AdminCategoryEditRoutedComponent } from './components/category/admin-category-edit-routed/admin-category-edit-routed.component';
+import { AdminCategorySelectionUnroutedComponent } from './components/category/admin-category-selection-unrouted/admin-category-selection-unrouted.component';
+import { AdminCategoryViewRoutedComponent } from './components/category/admin-category-view-routed/admin-category-view-routed.component';
+// --
 
 //--
 @NgModule({
@@ -84,7 +94,16 @@ import { AdminProductViewRoutedComponent } from './components/product/admin-prod
     AdminProductNewRoutedComponent,
     AdminProductEditRoutedComponent,
     AdminProductSelectionUnroutedComponent,
-    AdminProductViewRoutedComponent
+    AdminProductViewRoutedComponent,
+    // CATEGORY COMPONENTS
+    AdminCategoryFormUnroutedComponent,
+    AdminCategoryPlistRoutedComponent,
+    AdminCategoryPlistUnroutedComponent,
+    AdminCategoryDetailUnroutedComponent,
+    AdminCategoryNewRoutedComponent,
+    AdminCategoryEditRoutedComponent,
+    AdminCategorySelectionUnroutedComponent,
+    AdminCategoryViewRoutedComponent,
   ],
   imports: [
     BrowserModule,
