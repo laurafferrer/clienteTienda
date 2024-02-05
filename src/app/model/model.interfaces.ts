@@ -52,8 +52,8 @@ export interface IUser extends IEntity {
     city: string,
     postal_code: number,
     role: Boolean,
-    carts?: number,
-    purchases?: number
+    carts: number,
+    purchases: number
 }
 
 export interface IUserPage extends IPage<IUser> {
@@ -66,8 +66,8 @@ export interface IProduct extends IEntity {
    stock: number,
    image?: string,
    category: ICategory,
-   carts?: number,
-   purchaseDetails?: number
+   carts: number,
+   purchaseDetails: number
 }
 
 export interface IProductPage extends IPage<IProduct> {
@@ -84,7 +84,7 @@ export interface ICartPage extends IPage<ICart> {
 
 export interface ICategory extends IEntity {
     name: string,
-    products?: number
+    product: number
 }
 
 export interface ICategoryPage extends IPage<ICategory> {
@@ -95,7 +95,7 @@ export interface IPurchase extends IEntity {
     num_bill: number,
     date_bill: Date,
     user: IUser,
-    purchase_details?: number
+    purchase_details: number
 }
 
 export interface IPurchasePage extends IPage<IPurchase> {
