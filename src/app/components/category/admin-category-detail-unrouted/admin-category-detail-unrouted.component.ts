@@ -3,6 +3,7 @@ import { ICategory } from '../../../model/model.interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CategoryAjaxService } from '../../../service/category.ajax.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-category-detail-unrouted',
@@ -18,6 +19,7 @@ export class AdminCategoryDetailUnroutedComponent implements OnInit {
 
   constructor(
     private oCategoryAjaxService: CategoryAjaxService,
+    private oRouter: Router,
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig
   ) {
@@ -41,6 +43,10 @@ export class AdminCategoryDetailUnroutedComponent implements OnInit {
         this.oStatus = error;
       }
     });
+  }
+
+  do() {
+    this.oRouter.navigate(['/admin', 'category', 'plist']);
   }
 
 }

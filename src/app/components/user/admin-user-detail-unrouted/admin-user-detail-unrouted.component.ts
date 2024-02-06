@@ -45,8 +45,7 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log('onSubmit');
+  do() {
     this.oRouter.navigate(['/admin', 'user', 'plist']);
   }
 

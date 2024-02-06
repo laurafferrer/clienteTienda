@@ -3,6 +3,7 @@ import { IProduct } from '../../../model/model.interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProductAjaxService } from '../../../service/product.ajax.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-product-detail-unrouted',
@@ -18,6 +19,7 @@ export class AdminProductDetailUnroutedComponent implements OnInit {
 
   constructor(
     private oProductAjaxService: ProductAjaxService,
+    private oRouter: Router,
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig
   ) {
@@ -41,6 +43,10 @@ export class AdminProductDetailUnroutedComponent implements OnInit {
         this.oStatus = error;
       }
     });
+  }
+
+  do() {
+    this.oRouter.navigate(['/admin', 'product', 'plist' ]);
   }
 
 }
