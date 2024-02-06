@@ -36,11 +36,11 @@
         <td> {{ product.category ? product.category.name : 'N/A' }} </td>
         <td class="has-text-centered">
           <a [routerLink]="['/admin', 'product', 'edit', product.id]"
-            class="button is-small" title="Actualizar">
+            class="button is-small" title="Actualizar"> Actualizar
           </a>
-          <button class="button is-small" (click)="doView(product)" title="Ver Detalles">
+          <button class="button is-small" (click)="doView(product)" title="Ver Detalles"> Ver
           </button>
-          <button (click)="doRemove(product)" class="button is-small" title="Eliminar">
+          <button (click)="doRemove(product)" class="button is-small" title="Eliminar"> Eliminar
           </button>
         </td>
       </tr>

@@ -38,11 +38,11 @@
         <td> {{ user.purchases }} </td>
         <td class="has-text-centered">
           <a [routerLink]="['/admin', 'user', 'edit', user.id]"
-            class="button is-small" title="Actualizar">
+            class="button is-small" title="Actualizar"> Actualizar
           </a>
-          <button class="button is-small" (click)="doView(user)" title="Ver Detalles">
+          <button class="button is-small" (click)="doView(user)" title="Ver Detalles"> Ver
           </button>
-          <button (click)="doRemove(user)" class="button is-small" title="Eliminar">
+          <button (click)="doRemove(user)" class="button is-small" title="Eliminar"> Eliminar
           </button>
         </td>
       </tr>
