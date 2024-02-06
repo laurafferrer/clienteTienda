@@ -1,21 +1,20 @@
-<nav class="bg-lightGray text-colorTexto1 shadow-xl" role="navigation" aria-label="main navigation">
+<nav class="bg-Gray text-KhakiTitulo shadow-xl" role="navigation" aria-label="main navigation">
   <div class="flex items-center justify-between p-4">
-    <a class="text-3xl font-extrabold tracking-tight" href="/home">
+    <a class="text-3xl font-extrabold hover:text-Moccasin tracking-tight" href="/home">
       Desde la Pluma a la Pantalla 
     </a>
 
     <div class="hidden md:flex">
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/home']">
+      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/home']">
         Inicio
       </a>
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername ">
-        <!-- && oUserSession?.role==true/false-->
+      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername ">
         Usuarios
       </a>
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'product', 'plist']" *ngIf="strUsername">
+      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'product', 'plist']" *ngIf="strUsername">
         Productos
       </a>
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'category', 'plist']" *ngIf="strUsername">
+      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'category', 'plist']" *ngIf="strUsername">
         Categorias
       </a>
     </div>
@@ -23,28 +22,28 @@
     <div class="flex items-center">
       <ng-container *ngIf="strUsername">
         <div class="group relative" (click)="toggleLogoutMenu()">
-          <a class="cursor-pointer text-colorTexto1 font-semibold hover:text-colorLink">
+          <a class="cursor-pointer text-KhakiTitulo font-semibold hover:text-Moccasin">
             Usuario: {{ strUsername }}
           </a>
           <div *ngIf="oShowLogoutMenu" (click)="closeLogoutMenu()"
-            class="absolute right-0 mt-2 bg-white text-gray-700 border rounded">
-            <a class="block px-4 py-2 hover:bg-mediumGray hover:text-colorLink font-semibold" href="#">
+            class="absolute right-0 mt-2 bg-Gray text-KhakiTitulo border rounded">
+            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin font-semibold" href="#">
               <i class="pi pi-user mr-2"></i>
               Perfil
             </a>
-            <a class="block px-4 py-2 hover:bg-mediumGray hover:text-colorLink font-semibold" href="#">
+            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin font-semibold" href="#">
               <i class="pi pi-cog mr-2"></i>
               Ajustes
             </a>
             <hr class="border-t my-2">
-            <a class="block px-4 py-2 hover:bg-darkGray hover:text-colorLink font-semibold" href="/logout">
+            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin font-semibold" href="/logout">
               <i class="pi pi-sign-out mr-2 ml-1"></i>
               Salir
             </a>
           </div>
         </div>
       </ng-container>
-      <a class="ml-4 hover:text-colorLink text-colorTexto1 font-semibold" href="/login" *ngIf="!strUsername">
+      <a class="ml-4 hover:text-Moccasin text-KhakiTitulo font-semibold" href="/login" *ngIf="!strUsername">
         <i class="pi pi-sign-in mr-1"></i>
         Log In
       </a>

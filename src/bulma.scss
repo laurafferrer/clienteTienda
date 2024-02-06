@@ -3,15 +3,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 
 // Colores marrones
+$KhakiTitulo: #ebe58f;
 $DarkKhaki: #BDB76B;
 $Khaki: #F0E68C;
 $PaleGoldenrod: #c8c38f;
-$Moccasin: #FFE4B5;
+$Moccasin: #febd4b;
+$KhakiBotones: #B0AC6D;
 // Colores grises
 $Gainsboro: #DCDCDC;
 $LightGray: #D3D3D3;
 $Silver: #C0C0C0;
 $DarkGray: #A9A9A9;
+$Gray: #8a8a8a;
 // Negro y blanco
 $Black: #000000;
 $White: #FFFFFF;
@@ -25,9 +28,9 @@ $table-row-hover-background-color: $DarkGray;
 $primary: $DarkKhaki;
 $link: $Moccasin;
 // Colores botones
-$button-background-color: $PaleGoldenrod;
-$button-text-color: $White;
-$button-hover-color: $Gainsboro;
+$button-background-color: $KhakiBotones;
+$button-text-color: $Black;
+$button-hover-color: $Moccasin;
 $button-text-hover-color: $Black;
 
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */

@@ -4,15 +4,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Nuevos tonos de rojo
-        colorTexto1: '#8B0000', // Rojo oscuro
-        colorTexto2: '#8b1700', // Rojo menos oscuro
-        colorLink: '#ff6329', // Rojo oscuro salmón
-        // Tonos de gris
-        darkGray: '#333333',
-        mediumGray: '#666666',
-        lightGray: '#999999', // Menu y footer
-        extraLightGray: '#dbdbdb', //Login
+        // Colores marrones
+        KhakiTitulo: '#ebe58f',
+        DarkKhaki: '#BDB76B',
+        Khaki: '#F0E68C',
+        PaleGoldenrod: '#c8c38f',
+        Moccasin: '#febd4b',
+        KhakiBotones: '#B0AC6D',
+        // Colores grises
+        Gainsboro: '#DCDCDC',
+        LightGray: '#D3D3D3',
+        Silver: '#C0C0C0',
+        DarkGray: '#A9A9A9',
+        Gray: '#8a8a8a',
       }
     },
   },
