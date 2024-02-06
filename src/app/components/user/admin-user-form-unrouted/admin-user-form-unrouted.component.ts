@@ -19,6 +19,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   oUserForm!: FormGroup;
   oUser: IUser = {} as IUser;
   oStatus: HttpErrorResponse | null = null;
+  oIsFieldFocused: { [key: string]: boolean } = {};
 
   constructor(
     private oUserAjaxService: UserAjaxService,
@@ -76,7 +77,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oUser = data;
             this.initializeForm(this.oUser);
             this.oMatSnackBar.open("User created", "Accept", {duration: 3000});
-            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
+            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.oStatus = error;
@@ -89,7 +90,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oUser = data;
             this.initializeForm(this.oUser);
             this.oMatSnackBar.open("User updated", "Accept", {duration: 3000});
-            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
+            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.oStatus = error;
