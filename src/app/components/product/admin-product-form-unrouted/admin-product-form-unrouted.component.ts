@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Optional } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ICategory, IProduct, formOperation } from '../../../model/model.interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -77,30 +77,30 @@ export class AdminProductFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.oProductAjaxService.createProduct(this.oProductForm.value).subscribe({
           next: (data: IProduct) => {
-            this.oProduct = { "image": '', "category": {} } as IProduct;
+            this.oProduct = { "image": '', "category": {} } as IProduct; 
             this.oProduct.id = data.id;
             this.initializeForm(this.oProduct);
-            this.oMatSnackBar.open("Product created", "Accept", {duration: 3000});
-            this.oRouter.navigate(['/admin', 'product', 'view', data.id]);          
+            this.oMatSnackBar.open('Product created', 'Aceptar', {duration: 3000});
+            this.oRouter.navigate(['/admin', 'product', 'view', this.oProduct.id]);
           },
-          error: (error: HttpErrorResponse) => {
-            this.oStatus = error;
-            this.oMatSnackBar.open("Error creating product", "Accept", {duration: 3000});
+          error: (err: HttpErrorResponse) => {
+            this.oStatus = err;
+            this.oMatSnackBar.open('Error al crear el registro', 'Aceptar', {duration: 3000});
           }
-        })
+        });
       } else {
         this.oProductAjaxService.updateProduct(this.oProductForm.value).subscribe({
           next: (data: IProduct) => {
             this.oProduct = data;
             this.initializeForm(this.oProduct);
-            this.oMatSnackBar.open("Product updated", "Accept", {duration: 3000});
+            this.oMatSnackBar.open('Product updated', 'Aceptar', {duration: 3000});
             this.oRouter.navigate(['/admin', 'product', 'view', this.oProduct.id]);
           },
-          error: (error: HttpErrorResponse) => {
-            this.oStatus = error;
-            this.oMatSnackBar.open("Error updating product", "Accept", {duration: 3000});
+          error: (err: HttpErrorResponse) => {
+            this.oStatus = err;
+            this.oMatSnackBar.open('Error al actualizar el registro', 'Aceptar', {duration: 3000});
           }
-        })
+        });
       }
     }
   }
@@ -123,8 +123,6 @@ export class AdminProductFormUnroutedComponent implements OnInit {
        });
     }
   }
-
- 
 
   onShowCategorySelection() {
     this.oDynamicDialogRef = this.oDialogService.open(AdminCategorySelectionUnroutedComponent, {
