@@ -5,13 +5,16 @@
     </a>
 
     <div class="hidden md:flex">
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold"  *ngIf="strUsername" [routerLink]="['/admin', 'user', 'plist']">
+      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/home']">
+        Inicio
+      </a>
+      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername "> // && oUserSession?.role==true/false
         Usuarios
       </a>
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" *ngIf="strUsername" [routerLink]="['/admin', 'product', 'plist']">
+      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'product', 'plist']" *ngIf="strUsername">
         Productos
       </a>
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" *ngIf="strUsername" [routerLink]="['/admin', 'category', 'plist']">
+      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'category', 'plist']" *ngIf="strUsername">
         Categorias
       </a>
     </div>
