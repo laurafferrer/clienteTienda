@@ -25,6 +25,9 @@ export class AdminCategoryPlistUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   oStatus: HttpErrorResponse | null = null;
   oCategoryToDelete: ICategory | null = null;
+  oCategories: ICategory[] = [];
+
+  value: string = "";
 
   constructor(
     private oCategoryAjaxService: CategoryAjaxService,
@@ -44,12 +47,29 @@ export class AdminCategoryPlistUnroutedComponent implements OnInit {
     })
   }
 
+  onInputChange(query: string): void {
+    if (query.length > 2) {
+      this.oCategoryAjaxService.getPageCategory(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, query).subscribe({
+          next: (data: ICategoryPage) => {
+            this.oPage = data;
+            this.oCategories = data.content;
+            this.oPaginatorState.pageCount = data.totalPages;
+          },
+          error: (error: HttpErrorResponse) => {
+            this.oStatus = error;
+          }
+        });
+    } else {
+      this.getPage();
+    }
+  }
+
   getPage(): void {
-    this.oCategoryAjaxService.getPageCategories(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection).subscribe({
-      next: (oPage: ICategoryPage) => {
-        this.oPage = oPage;
-        this.oPaginatorState.pageCount = oPage.totalPages;
-        console.log(this.oPage)
+    this.oCategoryAjaxService.getPageCategory(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection).subscribe({
+      next: (data: ICategoryPage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        this.oCategories = data.content;
       },
       error: (response: HttpErrorResponse) => {
         this.oStatus = response;
