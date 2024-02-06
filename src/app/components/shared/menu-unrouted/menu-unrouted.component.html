@@ -8,7 +8,8 @@
       <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/home']">
         Inicio
       </a>
-      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername "> // && oUserSession?.role==true/false
+      <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername ">
+        <!-- && oUserSession?.role==true/false-->
         Usuarios
       </a>
       <a class="hover:text-colorTexto2 px-4 py-2 font-semibold" [routerLink]="['/admin', 'product', 'plist']" *ngIf="strUsername">
