@@ -3,6 +3,7 @@ import { IUser } from '../../../model/model.interfaces';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserAjaxService } from '../../../service/user.ajax.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-user-detail-unrouted',
@@ -18,6 +19,7 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
 
   constructor(
     private oUserAjaxService: UserAjaxService,
+    private oRouter: Router,
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig
   ) {
@@ -41,6 +43,11 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
         this.oStatus = error;
       }
     });
+  }
+
+  onSubmit() {
+    console.log('onSubmit');
+    this.oRouter.navigate(['/admin', 'user', 'plist']);
   }
 
 }
