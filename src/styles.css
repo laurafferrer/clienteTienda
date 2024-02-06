@@ -9,6 +9,8 @@
 @import 'primeng/resources/primeng.min.css';
 @import 'primeng/resources/themes/lara-light-indigo/theme.css';
 
+@import '~font-awesome/css/font-awesome.min.css';
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
