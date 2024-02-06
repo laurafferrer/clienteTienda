@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+// Colores marrones
+$DarkKhaki: #BDB76B;
+$Khaki: #F0E68C;
+$PaleGoldenrod: #c8c38f;
+$Moccasin: #FFE4B5;
+// Colores grises
+$Gainsboro: #DCDCDC;
+$LightGray: #D3D3D3;
+$Silver: #C0C0C0;
+$DarkGray: #A9A9A9;
+// Negro y blanco
+$Black: #000000;
+$White: #FFFFFF;
+
+// Tipografia
+$family-sans-serif: 'Nunito', sans-serif;
+// Colores tabla
+$table-background-color: $LightGray;
+$table-row-hover-background-color: $DarkGray;
+// Colores para letra y links
+$primary: $DarkKhaki;
+$link: $Moccasin;
+// Colores botones
+$button-background-color: $PaleGoldenrod;
+$button-text-color: $White;
+$button-hover-color: $Gainsboro;
+$button-text-hover-color: $Black;
+
+/*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/components/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/helpers/_all.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
