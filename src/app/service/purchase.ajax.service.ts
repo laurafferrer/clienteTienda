@@ -17,12 +17,16 @@ constructor(private http: HttpClient) { }
     return this.http.get<IPurchase>(this.url + '/' + id);
   }
 
-  getPurchaseByUserId(user_id: number, page: number, size: number, direction: string, sort: string): Observable<IPurchasePage> {
-    return this.http.get<IPurchasePage>(this.url + '/user/' + user_id + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+  getPurchaseByUserId(user_id: number, size: number, page: number, direction: string, sort: string): Observable<IPurchasePage> {
+    return this.http.get<IPurchasePage>(this.url + '/user/' + user_id + '?szie=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
   }
 
-  getPagePurchases(page: number, size: number, sort: string, direction: string): Observable<IPurchasePage> {
-    return this.http.get<IPurchasePage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+  getPagePurchases(size: number, page: number, sort: string, direction: string, user_id: number): Observable<IPurchasePage> {
+    let user = "";
+    if (user_id > 0) {
+      user = '&user_id=' + user_id;
+    }
+    return this.http.get<IPurchasePage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + user);
   }
 
   getPurchaseRnadom(): Observable<IPurchase> {
