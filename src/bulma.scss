@@ -19,11 +19,13 @@ $Gray: #8a8a8a;
 $Black: #000000;
 $White: #FFFFFF;
 
+$Roig: #ff0000;
+
 // Tipografia
 $family-sans-serif: 'Nunito', sans-serif;
 // Colores tabla
 $table-background-color: $LightGray;
-$table-row-hover-background-color: $DarkGray;
+
 // Colores para letra y links
 $link: $Moccasin;
 // Colores botones
@@ -31,6 +33,7 @@ $button-background-color: $KhakiBotones;
 $button-text-color: $Black;
 $button-hover-color: $Moccasin;
 $button-text-hover-color: $Black;
+  
 
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 @import "../node_modules/bulma/sass/utilities/_all.sass";

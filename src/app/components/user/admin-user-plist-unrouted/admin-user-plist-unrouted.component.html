@@ -1,57 +1,75 @@
-<!-- Paginación -->
-<p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-  [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]" class="mx-2">
-</p-paginator>
-
 <div class="container">
-  <div class="col-lg-2 col-md-12 d-none d-md-block">
-    <h3 class="text-right">{{oPage?.numberOfElements}} de {{oPage?.totalElements}}</h3>
+  <div class="field is-grouped">
+    <div class="control is-expanded has-icons-left">
+      <input type="text" [(ngModel)]="value" (ngModelChange)="onInputChange($event)"
+        class="input is-rounded" />
+      <span class="icon is-left">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
   </div>
 
-  <table class="table is-fullwidth is-hoverable has-shadow">
-    <thead class="table-background-color">
+  <div class="is-hidden-touch">
+    <h3 class="has-text-right is-size-6 has-text-KhakiTitulo">{{ oPage?.numberOfElements }} de {{ oPage?.totalElements }}</h3>
+  </div>
+
+  <table class="table is-fullwidth is-striped is-hoverable">
+    <thead class="has-background-danger-dark">
       <tr>
-        <th class="has-text-centered">Usuario</th>
-        <th class="has-text-centered">Nombre</th>
-        <th class="has-text-centered">Email</th>
-        <th class="has-text-centered">DNI</th>
-        <th class="has-text-centered">Fecha nacimiento</th>
-        <th class="has-text-centered">Ciudad</th>
-        <th class="has-text-centered">Dirección</th>
-        <th class="has-text-centered">Role</th>
-        <th class="has-text-centered">Carritos</th>
-        <th class="has-text-centered">Compras</th>
-        <th class="has-text-centered">Actions</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Usuario</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Nombre</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Email</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">DNI</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Fecha nacimiento</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Ciudad</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Dirección</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Role</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Carritos</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Compras</th>
+        <th class="has-text-centered has-text-Khaki px-4 py-2">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of oPage?.content" class="">
-        <td (click)="doView(user)"> {{ user.username }} </td>
-        <td> {{ user.name }} {{ user.surname }} </td>
-        <td> {{ user.email }} </td>
-        <td> {{ user.dni }} </td>
-        <td> {{ user.birth_date | date: 'dd-MM-yyyy' }} </td>
-        <td> {{ user.city }} </td>
-        <td> {{ user.address }} </td>
-        <td> {{ user.role ? 'Admin' : 'User' }} </td>
-        <td> {{ user.carts }} </td>
-        <td> {{ user.purchases }} </td>
-        <td class="has-text-centered">
-          <a [routerLink]="['/admin', 'user', 'edit', user.id]"
-            class="button is-small" title="Actualizar"> Actualizar
+      <tr *ngFor="let user of oPage?.content" class="has-text-Black">
+        <td class="has-text-centered px-4 py-2" (click)="doView(user)">{{ user.username }}</td>
+        <td class="px-4 py-2">{{ user.name }} {{ user.surname }}</td>
+        <td class="px-4 py-2">{{ user.email }}</td>
+        <td class="has-text-centered px-4 py-2">{{ user.dni }}</td>
+        <td class="has-text-centered px-4 py-2">{{ user.birth_date | date: 'dd-MM-yyyy' }}</td>
+        <td class="px-4 py-2">{{ user.city }}</td>
+        <td class="px-4 py-2">{{ user.address }}</td>
+        <td class="has-text-centered px-4 py-2">{{ user.role ? 'Admin' : 'User' }}</td>
+        <td class="has-text-centered px-4 py-2">{{ user.carts }}</td>
+        <td class="has-text-centered px-4 py-2">{{ user.purchases }}</td>
+        <td class="has-text-centered px-4 py-2">
+          <a [routerLink]="['/admin', 'user', 'edit', user.id]" class="button is-small is-primary" title="Actualizar">
+            <i class="fas fa-edit"></i>
           </a>
-          <button class="button is-small" (click)="doView(user)" title="Ver Detalles"> Ver
+          <button (click)="doView(user)" class="button is-small is-info" title="Ver Detalles">
+            <i class="fas fa-info-circle"></i>
           </button>
-          <button (click)="doRemove(user)" class="button is-small" title="Eliminar"> Eliminar
+          <button (click)="doRemove(user)" class="button is-small is-danger" title="Eliminar">
+            <i class="fas fa-trash-alt"></i>
           </button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div class="notification" *ngIf="!oPage?.content || oPage?.content?.length === 0">
-    <p>Don't have users.</p>
+  <div class="notification is-info" *ngIf="!oPage?.content || oPage?.content?.length === 0">
+    <p class="has-text-black">No hay usuarios.</p>
   </div>
+
+  <!-- Paginación -->
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="oPaginatorState.first!"
+    [rows]="oPaginatorState.rows!"
+    [totalRecords]="oPage?.totalElements || 0"
+    [rowsPerPageOptions]="[10, 20, 30]"
+    class="mx-2 flex justify-center items-center space-x-2"
+  >
+  </p-paginator>
 
   <p-confirmPopup></p-confirmPopup>
 </div>

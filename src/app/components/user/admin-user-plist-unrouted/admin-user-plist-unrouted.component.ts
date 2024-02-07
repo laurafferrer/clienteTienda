@@ -25,6 +25,9 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   oStatus: HttpErrorResponse | null = null;
   oUserToRemove: IUser | null = null; 
+  oUsuarios: IUser[] = [];
+
+  value: string = '';
 
   constructor(    
     private oUserAjaxService: UserAjaxService,
@@ -130,6 +133,24 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.oMatSnackBar.open("User has not been deleted", "Accept", {duration: 3000});
       }
     })
+  }
+
+  onInputChange(query: string): void {
+    if (query.length >= 3) {
+      this.oUserAjaxService.getUserPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, query)
+        .subscribe({
+          next: (data: IUserPage) => {
+            this.oPage = data;
+            this.oUsuarios = data.content;
+            this.oPaginatorState.pageCount = data.totalPages;
+          },
+          error: (error: HttpErrorResponse) => {
+            this.oStatus = error;
+          }
+        });
+    } else {
+      this.getPage();
+    }
   }
 
 }
