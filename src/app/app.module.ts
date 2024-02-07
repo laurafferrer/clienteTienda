@@ -71,6 +71,9 @@ import { AdminCartPlistUnroutedComponent } from './components/cart/admin-cart-pl
 // -- PURCHASE COMPONENTS
 import { AdminPurchaseDetailUnroutedComponent } from './components/purchase/admin-purchase-detail-unrouted/admin-purchase-detail-unrouted.component';
 import { AdminPurchasePlistUnroutedComponent } from './components/purchase/admin-purchase-plist-unrouted/admin-purchase-plist-unrouted.component';
+// -- PURCHASE DETAIL COMPONENTS
+import { AdminPurchase_detailDetailUnroutedComponent } from './components/purchase_detail/admin-purchase_detail-detail-unrouted/admin-purchase_detail-detail-unrouted.component';
+import { AdminPurchase_detailPlistUnroutedComponent } from './components/purchase_detail/admin-purchase_detail-plist-unrouted/admin-purchase_detail-plist-unrouted.component';
 //--
 @NgModule({
   declarations: [
@@ -114,6 +117,9 @@ import { AdminPurchasePlistUnroutedComponent } from './components/purchase/admin
     // PURCHASE COMPONENTS
     AdminPurchaseDetailUnroutedComponent,
     AdminPurchasePlistUnroutedComponent,
+    // PURCHASE DETAIL COMPONENTS
+    AdminPurchase_detailDetailUnroutedComponent,
+    AdminPurchase_detailPlistUnroutedComponent
   ],
   imports: [
     BrowserModule,
