@@ -65,7 +65,9 @@ import { AdminCategoryNewRoutedComponent } from './components/category/admin-cat
 import { AdminCategoryEditRoutedComponent } from './components/category/admin-category-edit-routed/admin-category-edit-routed.component';
 import { AdminCategorySelectionUnroutedComponent } from './components/category/admin-category-selection-unrouted/admin-category-selection-unrouted.component';
 import { AdminCategoryViewRoutedComponent } from './components/category/admin-category-view-routed/admin-category-view-routed.component';
-// --
+// -- CART COMPONENTS
+import { AdminCartDetailUnroutedComponent } from './components/cart/admin-cart-detail-unrouted/admin-cart-detail-unrouted.component';
+import { AdminCartPlistUnroutedComponent } from './components/cart/admin-cart-plist-unrouted/admin-cart-plist-unrouted.component';
 
 //--
 @NgModule({
@@ -104,6 +106,9 @@ import { AdminCategoryViewRoutedComponent } from './components/category/admin-ca
     AdminCategoryEditRoutedComponent,
     AdminCategorySelectionUnroutedComponent,
     AdminCategoryViewRoutedComponent,
+    // CART COMPONENTS
+    AdminCartDetailUnroutedComponent,
+    AdminCartPlistUnroutedComponent,
   ],
   imports: [
     BrowserModule,
