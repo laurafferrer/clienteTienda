@@ -77,7 +77,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oUser = data;
             this.initializeForm(this.oUser);
             this.oMatSnackBar.open("User created", "Accept", {duration: 3000});
-            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
+            this.oRouter.navigate(['/admin', 'user', 'plist']);
           },
           error: (error: HttpErrorResponse) => {
             this.oStatus = error;

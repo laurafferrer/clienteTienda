@@ -64,7 +64,7 @@ export class AdminCategoryFormUnroutedComponent implements OnInit {
           this.oCategory = data;
           this.initializeForm(this.oCategory);
           if (this.oCategory.id) {
-            this.oRouter.navigate(['/admin', 'category', 'view', this.oCategory.id]);
+            this.oRouter.navigate(['/admin', 'category', 'plist', this.oCategory.id]);
           }
           this.oMatSanckBar.open("Category created", "Close", {duration: 3000});
         },
