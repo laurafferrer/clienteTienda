@@ -5,18 +5,21 @@ module.exports = {
     extend: {
       colors: {
         // Colores marrones
-        KhakiTitulo: '#ebe58f',
-        DarkKhaki: '#BDB76B',
-        Khaki: '#F0E68C',
-        PaleGoldenrod: '#c8c38f',
-        Moccasin: '#febd4b',
-        KhakiBotones: '#B0AC6D',
+        KhakiTitulo: '#411917',
+        DarkKhaki: '#672c2c',
+        Khaki: '#8b2f23',
+        PaleGoldenrod: '#884d4d',
+        Moccasin: '#f7896b',
+        KhakiBotones: '#bd5946',
         // Colores grises
         Gainsboro: '#DCDCDC',
         LightGray: '#D3D3D3',
         Silver: '#C0C0C0',
         DarkGray: '#A9A9A9',
         Gray: '#8a8a8a',
+        // Base
+        White: '#FFFFFF',
+        Black: '#000000',
       }
     },
   },
