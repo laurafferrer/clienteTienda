@@ -1,3 +1,55 @@
-<p>
-  admin-purchase-plist-unrouted works!
-</p>
+<div class="container">
+
+  <div class="filters" *ngIf="oUser">
+    <p>Filtrado por usuario: {{oUser.name}} {{oUser.surname}}</p>
+    <button class="delete" *ngIf="oIdUser>0" routerLink="['/admin', 'purchase', 'plist']">Quitar filtro</button>
+  </div>
+
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectElement (change)="doOrder(selectElement.value)">
+          <option value="user">Usuario</option>
+          <option value="date_purchase">Fecha de compra</option>
+          <option value="num_bill">Código de compra</option>
+          <option value="id">ID de factura</option>
+          <option value="date_bill">Fecha de factura</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="column is-one-third" *ngFor="let purchase of oPage?.content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title" (click)="doView(purchase)">Compra #{{ purchase.id }}</p>
+          <a class="card-header-icon" aria-label="more options" (click)="doOrder('fecha')">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>Fecha: {{ purchase.date_purchase }}</p>
+            <p>Código pedido: {{ purchase.id }}</p>
+            <p *ngIf="purchase.id"> Factura: {{ purchase.id }}</p>
+            <p *ngIf="purchase.date_bill"> Fecha de factura: {{ purchase.date_bill }}</p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" routerLink="['/admin', 'purchase', 'edit', purchase.id]">Actualizar</a>
+          <a href="#" class="card-footer-item" (click)="doRemove(purchase)">Eliminar</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification is-info" *ngIf="!oPage?.content || oPage?.content?.length === 0">
+    No hay compras para mostrar.
+  </div>
+
+  <p-paginator (onPageChange)="onPageChange($event)" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
+
+</div>
