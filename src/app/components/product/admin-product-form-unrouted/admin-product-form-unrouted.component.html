@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="title is-3"> Product form</h1>
   <form [formGroup]="oProductForm" (submit)="onSubmit()">
-    <div class="field" v-if="operation === 'EDIT'">
+    <div class="field" *ngIf="operation === 'EDIT'">
       <label class="label">ID : </label>
       <div class="control has-icons-right">
         <input class="input" formControlName="id" placeholder="ID" readonly>
