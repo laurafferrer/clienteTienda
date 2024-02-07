@@ -61,14 +61,9 @@
   </div>
 
   <!-- Paginación -->
-  <p-paginator
-    (onPageChange)="onPageChange($event)"
-    [first]="oPaginatorState.first!"
-    [rows]="oPaginatorState.rows!"
-    [totalRecords]="oPage?.totalElements || 0"
-    [rowsPerPageOptions]="[10, 20, 30]"
-    class="mx-2 flex justify-center items-center space-x-2"
-  >
+  <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
+    [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
+    [rowsPerPageOptions]="[10, 20, 30]">
   </p-paginator>
 
   <p-confirmPopup></p-confirmPopup>
