@@ -1,20 +1,20 @@
 <nav class="bg-Gray text-KhakiTitulo shadow-xl" role="navigation" aria-label="main navigation">
   <div class="flex items-center justify-between p-4">
-    <a class="text-3xl font-extrabold hover:text-Moccasin tracking-tight" href="/home">
+    <a class="text-3xl font-extrabold text-KhakiTitulo hover:text-Moccasin" href="/home">
       Desde la Pluma a la Pantalla 
     </a>
 
     <div class="hidden md:flex">
-      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/home']">
+      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/home']">
         Inicio
       </a>
-      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername ">
+      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername ">
         Usuarios
       </a>
-      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'product', 'plist']" *ngIf="strUsername">
+      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'product', 'plist']" *ngIf="strUsername">
         Productos
       </a>
-      <a class="hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'category', 'plist']" *ngIf="strUsername">
+      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'category', 'plist']" *ngIf="strUsername">
         Categorias
       </a>
     </div>
@@ -43,7 +43,7 @@
           </div>
         </div>
       </ng-container>
-      <a class="ml-4 hover:text-Moccasin text-KhakiTitulo font-semibold" href="/login" *ngIf="!strUsername">
+      <a class="ml-4 text-KhakiTitulo hover:text-Moccasin font-semibold" href="/login" *ngIf="!strUsername">
         <i class="pi pi-sign-in mr-1"></i>
         Log In
       </a>
