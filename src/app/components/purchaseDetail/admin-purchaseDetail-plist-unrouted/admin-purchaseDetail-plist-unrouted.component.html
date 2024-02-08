@@ -1,3 +1,51 @@
-<p>
-  admin-purchase_detail-plist-unrouted works!
-</p>
+<div class="container">
+  <div class="filters">
+    <div class="notification" *ngIf="oIdPurchase > 0">
+      Filtrando por compra: {{ oPurchase?.id}}
+      <button class="delete" *ngIf="oIdPurchase > 0" [routerLink]="['/admin', 'purchaseDetail', 'plist']">Quitar filtro</button>
+    </div>
+    <div class="notification" *ngIf="oIdProduct > 0">
+      Filtrando por producto: {{ oProduct?.name}}
+      <button class="delete" *ngIf="oIdProduct > 0" [routerLink]="['/admin', 'purchaseDetail', 'plist']">Quitar filtro</button>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectElement (change)="doOrder(selectElement.value)">
+          <option value="purchase.id">Compra</option>
+          <option value="product.name">Producto</option>
+          <option value="amount">Cantidad</option>
+          <option value="price">Precio</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="colum is-one-third" *ngFor="let purchaseDetail of oPage?.content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title" (click)="doView(purchaseDetail)">Detalle de compra #{{purchaseDetail.id}}</p>
+          <a class="card-header-icon" aria-label="more options" (click)="doOrder('precio')">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>Producto: {{purchaseDetail.product.name}}</p>
+            <p>Precio: {{purchaseDetail.price}} </p>
+            <p>Cantidad: {{purchaseDetail.amount}}</p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" [routerLink]="['/admin', 'purchaseDetail', 'edit', purchaseDetail.id]">Actualizar</a>
+          <a href="#" class="card-footer-item" (click)="doRemove(purchaseDetail)">Eliminar</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+</div>
