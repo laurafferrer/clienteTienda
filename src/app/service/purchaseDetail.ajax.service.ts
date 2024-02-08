@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_URL } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IPurchase, IPurchaseDetail, IPurchaseDetailPage } from '../model/model.interfaces';
+import { IPurchaseDetail, IPurchaseDetailPage } from '../model/model.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +33,8 @@ constructor(private http: HttpClient) { }
     return this.http.get<IPurchaseDetail>(this.url + '/random');
   }
 
-  getPurchaseDetailPage(page: number, size: number, sort: string, direction: string, purchase_id: number, product_id: number): Observable<IPurchaseDetailPage> {
-    return this.http.get<IPurchaseDetailPage>(this.url + '?page=' + page + '&szie=' + size + '&sort=' + sort + ',' + direction + '&purchase_id=' + purchase_id + '&product_id=' + product_id);
+  getPurchaseDetailPage(size: number, page: number, sort: string, direction: string, productId: number, purchaseId: number): Observable<IPurchaseDetailPage> {
+    return this.http.get<IPurchaseDetailPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&productId=' + productId + '&purchaseId=' + purchaseId);
   }
 
   getPurchaseDetailByPriceDesc(): Observable<IPurchaseDetail[]> {
