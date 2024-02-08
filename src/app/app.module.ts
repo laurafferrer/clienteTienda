@@ -68,12 +68,17 @@ import { AdminCategoryViewRoutedComponent } from './components/category/admin-ca
 // -- CART COMPONENTS
 import { AdminCartDetailUnroutedComponent } from './components/cart/admin-cart-detail-unrouted/admin-cart-detail-unrouted.component';
 import { AdminCartPlistUnroutedComponent } from './components/cart/admin-cart-plist-unrouted/admin-cart-plist-unrouted.component';
+import { AdminCartPlistRoutedComponent } from './components/cart/admin-cart-plist-routed/admin-cart-plist-routed.component';
+import { AdminCartViewRoutedComponent } from './components/cart/admin-cart-view-routed/admin-cart-view-routed.component';
 // -- PURCHASE COMPONENTS
 import { AdminPurchaseDetailUnroutedComponent } from './components/purchase/admin-purchase-detail-unrouted/admin-purchase-detail-unrouted.component';
 import { AdminPurchasePlistUnroutedComponent } from './components/purchase/admin-purchase-plist-unrouted/admin-purchase-plist-unrouted.component';
+import { AdminPurchasePlistRoutedComponent } from './components/purchase/admin-purchase-plist-routed/admin-purchase-plist-routed.component';
+import { AdminPurchaseViewRoutedComponent } from './components/purchase/admin-purchase-view-routed/admin-purchase-view-routed.component';
 // -- PURCHASE DETAIL COMPONENTS
 import { AdminPurchaseDetailDetailUnroutedComponent } from './components/purchaseDetail/admin-purchaseDetail-detail-unrouted/admin-purchaseDetail-detail-unrouted.component';
 import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchaseDetail/admin-purchaseDetail-plist-unrouted/admin-purchaseDetail-plist-unrouted.component';
+
 //--
 @NgModule({
   declarations: [
@@ -114,9 +119,13 @@ import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchase
     // CART COMPONENTS
     AdminCartDetailUnroutedComponent,
     AdminCartPlistUnroutedComponent,
+    AdminCartPlistRoutedComponent,
+    AdminCartViewRoutedComponent,
     // PURCHASE COMPONENTS
     AdminPurchaseDetailUnroutedComponent,
     AdminPurchasePlistUnroutedComponent,
+    AdminPurchasePlistRoutedComponent,
+    AdminPurchaseViewRoutedComponent,
     // PURCHASE DETAIL COMPONENTS
     AdminPurchaseDetailDetailUnroutedComponent,
     AdminPurchaseDetailPlistUnroutedComponent
