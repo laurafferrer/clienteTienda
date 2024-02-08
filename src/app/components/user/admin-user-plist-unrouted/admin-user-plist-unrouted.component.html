@@ -14,41 +14,41 @@
   </div>
 
   <table class="table is-fullwidth is-striped is-hoverable">
-    <thead class="has-background-danger-dark">
+    <thead class="">
       <tr>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Usuario</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Nombre</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Email</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">DNI</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Fecha nacimiento</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Ciudad</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Dirección</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Role</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Carritos</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Compras</th>
-        <th class="has-text-centered has-text-Khaki px-4 py-2">Actions</th>
+        <th class="has-text-centered table-color px-4 py-2">Usuario</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Nombre</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Email</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">DNI</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Fecha nacimiento</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Ciudad</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Dirección</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Role</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Carritos</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Compras</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of oPage?.content" class="has-text-Black">
-        <td class="has-text-centered px-4 py-2" (click)="doView(user)">{{ user.username }}</td>
-        <td class="px-4 py-2">{{ user.name }} {{ user.surname }}</td>
-        <td class="px-4 py-2">{{ user.email }}</td>
-        <td class="has-text-centered px-4 py-2">{{ user.dni }}</td>
-        <td class="has-text-centered px-4 py-2">{{ user.birth_date | date: 'dd-MM-yyyy' }}</td>
-        <td class="px-4 py-2">{{ user.city }}</td>
-        <td class="px-4 py-2">{{ user.address }}</td>
-        <td class="has-text-centered px-4 py-2">{{ user.role ? 'Admin' : 'User' }}</td>
-        <td class="has-text-centered px-4 py-2">{{ user.carts }}</td>
-        <td class="has-text-centered px-4 py-2">{{ user.purchases }}</td>
-        <td class="has-text-centered px-4 py-2">
-          <a [routerLink]="['/admin', 'user', 'edit', user.id]" class="button is-small is-primary" title="Actualizar">
+      <tr *ngFor="let user of oPage?.content" class=" hover:table-hover-color">
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color" (click)="doView(user)">{{ user.username }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.name }} {{ user.surname }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.email }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.dni }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.birth_date | date: 'dd-MM-yyyy' }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.city }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.address }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.role ? 'Admin' : 'User' }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.carts }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.purchases }}</td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">
+          <a [routerLink]="['/admin', 'user', 'edit', user.id]" class="button is-small" title="Actualizar">
             <i class="fas fa-edit"></i>
           </a>
-          <button (click)="doView(user)" class="button is-small is-info" title="Ver Detalles">
+          <button (click)="doView(user)" class="button is-small" title="Ver Detalles">
             <i class="fas fa-info-circle"></i>
           </button>
-          <button (click)="doRemove(user)" class="button is-small is-danger" title="Eliminar">
+          <button (click)="doRemove(user)" class="button is-small" title="Eliminar">
             <i class="fas fa-trash-alt"></i>
           </button>
         </td>

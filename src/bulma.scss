@@ -24,14 +24,22 @@ $Roig: #ff0000;
 // Tipografia
 $family-sans-serif: 'Nunito', sans-serif;
 // Colores tabla
-$table-background-color: $LightGray;
+.table-color {
+    background-color: $LightGray;
+    color: $Roig;
+}
+
+.table-hover-color {
+    background-color: $Roig;
+    color: $Roig;
+}
 
 // Colores para letra y links
 $link: $Moccasin;
 // Colores botones
 .button-color { 
     background-color: $KhakiBotones;
-    color: $Black 
+    color: $Black;
 }
 
 .button-hover-color { 
