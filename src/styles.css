@@ -1,6 +1,4 @@
 
-@import "bulma/css/bulma.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -29,11 +29,15 @@ $table-background-color: $LightGray;
 // Colores para letra y links
 $link: $Moccasin;
 // Colores botones
-$button-background-color: $KhakiBotones;
-$button-text-color: $Black;
-$button-hover-color: $Moccasin;
-$button-text-hover-color: $Black;
-  
+.button-color { 
+    background-color: $KhakiBotones;
+    color: $Black 
+}
+
+.button-hover-color { 
+    background-color: $Moccasin;
+    color: $Black;
+ }
 
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 @import "../node_modules/bulma/sass/utilities/_all.sass";
@@ -44,3 +48,4 @@ $button-text-hover-color: $Black;
 @import "../node_modules/bulma/sass/grid/_all.sass";
 @import "../node_modules/bulma/sass/helpers/_all.sass";
 @import "../node_modules/bulma/sass/layout/_all.sass";
+

@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+.button-color {
+  background-color: #bd5946;
+  color: #000000; }
+
+.button-hover-color {
+  background-color: #f7896b;
+  color: #000000; }
+
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 .button, .input, .textarea, .select select, .file-cta,
@@ -406,7 +414,7 @@ a.box:active {
   box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2), 0 0 0 1px #f7896b; }
 
 .button {
-  background-color: #bd5946;
+  background-color: white;
   border-color: #dbdbdb;
   border-width: 1px;
   color: #363636;
@@ -434,7 +442,7 @@ a.box:active {
     margin-right: calc(-0.5em - 1px); }
   .button:hover, .button.is-hovered {
     border-color: #b5b5b5;
-    color: #f7896b; }
+    color: #363636; }
   .button:focus, .button.is-focused {
     border-color: #485fc7;
     color: #363636; }
@@ -446,14 +454,14 @@ a.box:active {
   .button.is-text {
     background-color: transparent;
     border-color: transparent;
-    color: #000000;
+    color: #4a4a4a;
     text-decoration: underline; }
     .button.is-text:hover, .button.is-text.is-hovered, .button.is-text:focus, .button.is-text.is-focused {
       background-color: whitesmoke;
-      color: #000000; }
+      color: #363636; }
     .button.is-text:active, .button.is-text.is-active {
       background-color: #e8e8e8;
-      color: #000000; }
+      color: #363636; }
     .button.is-text[disabled],
     fieldset[disabled] .button.is-text {
       background-color: transparent;
