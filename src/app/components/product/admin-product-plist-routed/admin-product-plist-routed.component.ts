@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { ProductAjaxService } from '../../../service/product.ajax.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   providers: [ConfirmationService],
@@ -15,12 +16,16 @@ export class AdminProductPlistRoutedComponent implements OnInit {
 
   oForceReload: Subject<boolean> = new Subject<boolean>();
   bLoading: boolean = false;
+  category_id: number;
 
   constructor(
+    private oActivatedaRoute: ActivatedRoute,
     private oProductAjaxService: ProductAjaxService,
     private oConfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar,
-  ) { }
+  ) { 
+    this.category_id = parseInt(this.oActivatedaRoute.snapshot.paramMap.get('category_id') ?? "0");
+  }
 
   ngOnInit() {
   }

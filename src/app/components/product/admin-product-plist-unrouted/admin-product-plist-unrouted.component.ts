@@ -2,12 +2,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductAjaxService } from '../../../service/product.ajax.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IProduct, IProductPage } from '../../../model/model.interfaces';
+import { ICategory, IProduct, IProductPage } from '../../../model/model.interfaces';
 import { Subject } from 'rxjs';
 import { PaginatorState } from 'primeng/paginator';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminProductDetailUnroutedComponent } from '../admin-product-detail-unrouted/admin-product-detail-unrouted.component';
+import { CategoryAjaxService } from '../../../service/category.ajax.service';
 
 @Component({
   providers: [DialogService, ConfirmationService],
@@ -18,6 +19,7 @@ import { AdminProductDetailUnroutedComponent } from '../admin-product-detail-unr
 export class AdminProductPlistUnroutedComponent implements OnInit {
 
   @Input() oForceReload:Subject<boolean> = new Subject<boolean>();
+  @Input() oCategory_id: number = 0;
 
   oPage: IProductPage | undefined;
   oOrderField: string = "id";
@@ -26,11 +28,13 @@ export class AdminProductPlistUnroutedComponent implements OnInit {
   oStatus: HttpErrorResponse | null = null;
   oProductToDelete: IProduct | null = null;
   oProducts: IProduct[] = [];
+  oCategory: ICategory | null = null;
 
   value: string = "";
 
   constructor(
     private oProductAjaxService: ProductAjaxService,
+    private oCategoryAjaxService: CategoryAjaxService,
     public oDialogService: DialogService,
     private oConfirmationService : ConfirmationService,
     private oMatSnackBar: MatSnackBar
@@ -38,18 +42,21 @@ export class AdminProductPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
+    if (this.oCategory_id > 0) {
+      this.getCategory();
+    }
     this.oForceReload.subscribe({
       next: (v) => {
         if (v) {
           this.getPage();
         }
       }
-    })
+    });
   }
 
   onInputChange(query: string): void { 
     if (query.length > 2) {
-      this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, query).subscribe({
+      this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, this.oCategory_id, query).subscribe({
         next: (data: IProductPage) => {
           this.oPage = data;
           this.oProducts = data.content;
@@ -59,11 +66,13 @@ export class AdminProductPlistUnroutedComponent implements OnInit {
           this.oStatus = error;
         }
       });
-    }
+    } else{
+      this.getPage();
+    } 
   }
 
   getPage() {
-    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection).subscribe({
+    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, this.oCategory_id).subscribe({
       next: (data: IProductPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -112,6 +121,30 @@ export class AdminProductPlistUnroutedComponent implements OnInit {
       },
       reject: (type: ConfirmEventType) => {
         this.oMatSnackBar.open("Product has not been removed", "Close", { duration: 3000 });
+      }
+    });
+  }
+
+  getCategory(): void {
+    this.oCategoryAjaxService.getCategoryById(this.oCategory_id).subscribe({
+      next: (data: ICategory) => {
+        this.oCategory = data;
+        this.getPage();
+      },
+      error: (err: HttpErrorResponse) => {
+        this.oStatus = err;
+      }
+    });
+  }
+
+  getProductsByCategory(): void {
+    this.oProductAjaxService.getProductsByCategory(this.oCategory_id, this.oPaginatorState.rows || 0, this.oPaginatorState.page || 0, this.oOrderField, this.oOrderDirection).subscribe({
+      next: (data: IProductPage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+      },
+      error: (err: HttpErrorResponse) => {
+        this.oStatus = err;
       }
     });
   }
