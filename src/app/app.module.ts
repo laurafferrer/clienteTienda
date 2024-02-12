@@ -65,11 +65,12 @@ import { AdminCategoryNewRoutedComponent } from './components/category/admin-cat
 import { AdminCategoryEditRoutedComponent } from './components/category/admin-category-edit-routed/admin-category-edit-routed.component';
 import { AdminCategorySelectionUnroutedComponent } from './components/category/admin-category-selection-unrouted/admin-category-selection-unrouted.component';
 import { AdminCategoryViewRoutedComponent } from './components/category/admin-category-view-routed/admin-category-view-routed.component';
-// -- CART COMPONENTS
+// -- ADMIN CART COMPONENTS
 import { AdminCartDetailUnroutedComponent } from './components/cart/admin-cart-detail-unrouted/admin-cart-detail-unrouted.component';
 import { AdminCartPlistUnroutedComponent } from './components/cart/admin-cart-plist-unrouted/admin-cart-plist-unrouted.component';
-import { AdminCartPlistRoutedComponent } from './components/cart/admin-cart-plist-routed/admin-cart-plist-routed.component';
-import { AdminCartViewRoutedComponent } from './components/cart/admin-cart-view-routed/admin-cart-view-routed.component';
+// -- USER CART COMPONENTS
+import { UserCartPlistUnorutedComponent } from './components/cart/user-cart-plist-unoruted/user-cart-plist-unoruted.component';
+import { UserCartPlistRoutedComponent } from './components/cart/user-cart-plist-routed/user-cart-plist-routed.component';
 // -- PURCHASE COMPONENTS
 import { AdminPurchaseDetailUnroutedComponent } from './components/purchase/admin-purchase-detail-unrouted/admin-purchase-detail-unrouted.component';
 import { AdminPurchasePlistUnroutedComponent } from './components/purchase/admin-purchase-plist-unrouted/admin-purchase-plist-unrouted.component';
@@ -116,11 +117,12 @@ import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchase
     AdminCategoryEditRoutedComponent,
     AdminCategorySelectionUnroutedComponent,
     AdminCategoryViewRoutedComponent,
-    // CART COMPONENTS
+    // ADMIN CART COMPONENTS
     AdminCartDetailUnroutedComponent,
     AdminCartPlistUnroutedComponent,
-    AdminCartPlistRoutedComponent,
-    AdminCartViewRoutedComponent,
+    // USER CART COMPONENTS
+    UserCartPlistUnorutedComponent,
+    UserCartPlistRoutedComponent,
     // PURCHASE COMPONENTS
     AdminPurchaseDetailUnroutedComponent,
     AdminPurchasePlistUnroutedComponent,

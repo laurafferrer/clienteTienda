@@ -20,8 +20,7 @@ import { AdminCategoryEditRoutedComponent } from './components/category/admin-ca
 import { AdminCategoryNewRoutedComponent } from './components/category/admin-category-new-routed/admin-category-new-routed.component';
 import { AdminCategoryViewRoutedComponent } from './components/category/admin-category-view-routed/admin-category-view-routed.component';
 // -- ADMIN CART COMPONENTS
-import { AdminCartPlistRoutedComponent } from './components/cart/admin-cart-plist-routed/admin-cart-plist-routed.component';
-import { AdminCartViewRoutedComponent } from './components/cart/admin-cart-view-routed/admin-cart-view-routed.component';
+import { UserCartPlistRoutedComponent } from './components/cart/user-cart-plist-routed/user-cart-plist-routed.component';
 // -- ADMIN PURCHASE COMPONENTS
 import { AdminPurchasePlistRoutedComponent } from './components/purchase/admin-purchase-plist-routed/admin-purchase-plist-routed.component';
 import { AdminPurchaseViewRoutedComponent } from './components/purchase/admin-purchase-view-routed/admin-purchase-view-routed.component';
@@ -49,8 +48,7 @@ const routes: Routes = [
   { path: 'admin/category/new', component: AdminCategoryNewRoutedComponent},
   { path: 'admin/category/view/:id', component: AdminCategoryViewRoutedComponent},
 
-  { path: 'admin/cart/plist', component: AdminCartPlistRoutedComponent},
-  { path: 'admin/cart/view/:id', component: AdminCartViewRoutedComponent},
+  { path: 'admin/cart/plist', component: UserCartPlistRoutedComponent},
 
   { path: 'admin/purchase/plist', component: AdminPurchasePlistRoutedComponent},
   { path: 'admin/purchase/view/:id', component: AdminPurchaseViewRoutedComponent},
