@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-4" *ngFor="let oPurchase of oPage?.content">
+      <div class="card">
+        <div class="card-content">
+          <p class="title is-4">Compra #{{oPurchase.id}}</p>
+          <p class="subtitle is-6">Fecha: {{oPurchase.date_purchase| date: 'dd/MM/yyyy'}}</p>
+          <p *ngIf="oPurchase.id" class="subtitle is-6">Número de factura: {{oPurchase.num_bill}}</p>
+          <p *ngIf="oPurchase.id" class="subtitle is-6">Fecha de factura: {{oPurchase.date_bill| date: 'dd/MM/yyyy'}}</p>
+          <a [routerLink]="['/user', 'purchase', 'view', oPurchase.id]">Ver detalles de la compra</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification is-info" *ngIf="!oPage?.content || oPage?.content?.length === 0">
+    No has hecho ninguna compra todavía. <a [routerLink]="['/user', 'product', 'plist']">Seguir comprando</a>
+  </div>
+
+
+  <div class="level is-justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+
+</div>
