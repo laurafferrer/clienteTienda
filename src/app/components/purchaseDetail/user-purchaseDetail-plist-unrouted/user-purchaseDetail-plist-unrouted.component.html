@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="notification" *ngIf="oPurchaseId>0">
+    Mostrando los datos de la compra: {{oPurchase?.date_bill}}
+  </div>
+
+  <table class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchaseDetail of oPage?.content">
+        <td>{{purchaseDetail.id}}</td>
+        <td>{{purchaseDetail.product.name}}</td>
+        <td>{{purchaseDetail.price}}</td>
+        <td>{{purchaseDetail.quantity}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
