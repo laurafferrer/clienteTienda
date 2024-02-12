@@ -13,7 +13,7 @@ export class UserAjaxService {
 
   constructor(private oHttpClient: HttpClient) { }
 
-  getUserById(id: number) {
+  getUserById(id: number): Observable<IUser> {
     return this.oHttpClient.get<IUser>(this.url + '/' + id);
   }
 
@@ -25,16 +25,10 @@ export class UserAjaxService {
     return this.oHttpClient.get<IUser>(this.url + '/random');
   }
 
-  getUserPage(size: number | undefined, page: number | undefined, sort: string, direction: string, strFilter?: string): Observable<IUserPage> {
-    let sUrl_filter: string;
+  getUserPage(size: number | undefined, page: number | undefined, orderField: string, direction: string): Observable<IUserPage> {
     if (!size) size = 10;
     if (!page) page = 0;
-    if (strFilter && strFilter.trim().length > 0) {
-      sUrl_filter = `&filter=${strFilter}`;
-    } else {
-      sUrl_filter = '';
-    }
-    return this.oHttpClient.get<IUserPage>(this.url + "?size=" + size + "&page=" + page + "&sort" + sort + "," + direction + sUrl_filter);
+    return this.oHttpClient.get<IUserPage>(this.url + "?size=" + size + "&page=" + page + + "&sort" +  orderField + "," + direction );
   }
 
   getUsersByPurchaseDetailDesc(page: number, size: number): Observable<IUserPage> {

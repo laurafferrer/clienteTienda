@@ -135,22 +135,4 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     })
   }
 
-  onInputChange(query: string): void {
-    if (query.length >= 3) {
-      this.oUserAjaxService.getUserPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, query)
-        .subscribe({
-          next: (data: IUserPage) => {
-            this.oPage = data;
-            this.oUsuarios = data.content;
-            this.oPaginatorState.pageCount = data.totalPages;
-          },
-          error: (error: HttpErrorResponse) => {
-            this.oStatus = error;
-          }
-        });
-    } else {
-      this.getPage();
-    }
-  }
-
 }

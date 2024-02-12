@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { IUser, SessionEvent } from '../../../model/model.interfaces';
 import { SessionAjaxService } from '../../../service/session.ajax.service';
 import { UserAjaxService } from '../../../service/user.ajax.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -12,29 +12,31 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class MenuUnroutedComponent implements OnInit {
 
-  strUsername: string = '';
-  oUserSession: IUser | null = null;
-  strUrl: string = '';
+  username: string = '';
+  userSession: IUser | null = null;
+  url: string = '';
 
-  oShowLogoutMenu: boolean = false;
-
+  showLogoutMenu: boolean = false;
+    
   constructor(
-    private oSessionAjaxService: SessionAjaxService,
-    private oUserAjaxService: UserAjaxService,
-    private oRouter: Router,
-    private oRoute: ActivatedRoute
+    private sessionAjaxService: SessionAjaxService,
+    private userAjaxService: UserAjaxService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
-    this.oRouter.events.subscribe((ev) => {
+    console.log('MenuUnroutedComponent created'); // Agrega este log al constructor
+
+    this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
-        this.strUrl = ev.url;
+        this.url = ev.url;
       }
     })
 
-    this.strUsername = oSessionAjaxService.getUsername();
-    this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
+    this.username = sessionAjaxService.getUsername();
+    this.userAjaxService.getUserByUsername(this.sessionAjaxService.getUsername()).subscribe({
       next: (user: IUser) => {
-        this.oUserSession = user;
-        console.log('User Session:', this.oUserSession);
+        this.userSession = user;
+        console.log('User Session:', this.userSession); // Agrega este log
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -43,45 +45,47 @@ export class MenuUnroutedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.oSessionAjaxService.on().subscribe({
+    this.sessionAjaxService.on().subscribe({
       next: (data: SessionEvent) => {
+        console.log('Received session event:', data); // Agrega este log
+        
         if (data.type === 'login') {
-          this.strUsername = this.oSessionAjaxService.getUsername();
-          this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
+          this.username = this.sessionAjaxService.getUsername();
+          this.userAjaxService.getUserByUsername(this.sessionAjaxService.getUsername()).subscribe({
             next: (user: IUser) => {
-              this.oUserSession = user;
-              console.log('User Session:', this.oUserSession);
+              this.userSession = user;
+              console.log('User Session:', this.userSession); // Agrega este log
             },
             error: (err: HttpErrorResponse) => {
               console.log(err);
             }
           });
         } else if (data.type === 'logout') {
-          this.strUsername = '';
-          this.oUserSession = null;
-          console.log('User Session after logout:', this.oUserSession);
+          this.username = '';
+          this.userSession = null; // Asegúrate de establecer userSession a null en caso de cierre de sesión
+          console.log('User Session after logout:', this.userSession); // Agrega este log
         }
       }
     });
   }
 
   toggleLogoutMenu() {
-    this.oShowLogoutMenu = !this.oShowLogoutMenu;
+    this.showLogoutMenu = !this.showLogoutMenu;
   }
 
   closeLogoutMenu() {
-    this.oShowLogoutMenu = false;
+    this.showLogoutMenu = false;
   }
 
-  isActive(oRoute: string) {
-    return this.oRouter.isActive(oRoute, true);
-  }
+  isActive(route: string): boolean {
+    return this.router.isActive(route, true);
+  }  
 
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
     if (!target.closest('.group')) {
-      this.oShowLogoutMenu = false;
+      this.showLogoutMenu = false;
     }
   }
 

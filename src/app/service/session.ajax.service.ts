@@ -27,16 +27,16 @@ export class SessionAjaxService {
     return JSON.parse(jsonPayload);
   }
 
-  login(sUsername: string, sPassword: string): Observable<string> {
-    return this.oHttpClient.post<string>(this.url, { username: sUsername, password: sPassword });
+  login(sUsername: string, sPassword: string): Observable<any> {
+    return this.oHttpClient.post(this.url + '/login', { username: sUsername, password: sPassword });
   }
 
   prelogin(): Observable<IPrelogin> {
     return this.oHttpClient.get<IPrelogin>(this.url + '/prelogin');
   }
 
-  loginCaptcha(sUsername: string, sPassword: string, sToken: string, sAnswer: string): Observable<string> {
-    return this.oHttpClient.post<string>(this.url + '/loginCaptcha', { username: sUsername, password: sPassword, token: sToken, answer: sAnswer });
+  loginCaptcha(sUsername: string, sPassword: string, sToken: string, sAnswer: string): Observable<any> {
+    return this.oHttpClient.post(this.url + '/loginCaptcha', { username: sUsername, password: sPassword, token: sToken, answer: sAnswer }, { responseType: 'text'});
   }
 
   setToken(sToken: string): void {
@@ -82,13 +82,13 @@ export class SessionAjaxService {
     return this.subjectSession.asObservable();
   }
 
-  emit(event: SessionEvent) {
+  emit(event: SessionEvent): void {
     this.subjectSession.next(event);
   }
 
   getSessionUser(): Observable<IUser> | null {
     if (this.isSessionActive()) {
-      return this.oUserAjaxService.getUserByUsername(this.getUsername())
+      return this.oUserAjaxService.getUserByUsername(this.getUsername());
     } else {
       return null;
     }
