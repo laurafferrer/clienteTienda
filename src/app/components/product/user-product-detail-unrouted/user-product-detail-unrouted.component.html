@@ -1,3 +1,38 @@
-<p>
-  user-product-detail-unrouted works!
-</p>
+<div class="container">
+  <div class="columns">
+    <div class="column is-6">
+      <img src="{{ oProduct.image }}" alt="{{ oProduct.name }}" class="image">
+    </div>
+    <div class="column is-6">
+      <h1 class="title">{{ oProduct.name }}</h1>
+      <p><strong>Category:</strong> {{ oProduct.category.name }}</p>
+      <p><strong>Precio:</strong> {{ oProduct.price }}€</p>
+      <ng-container *ngIf="oProduct.stock > 25">
+        <p><strong>Stock:</strong> Product disponible en tienda</p>
+      </ng-container>
+      <ng-container *ngIf="oProduct.stock <= 25 && oProduct.stock > 10">
+        <p><strong>Stock:</strong> Quedan pocas undiades en tienda</p>
+      </ng-container>
+      <ng-container *ngIf="oProduct.stock <= 10">
+        <p><strong>Stock:</strong> ¡Últimas unidades disponibles!</p>
+      </ng-container>
+
+      <div class="field">
+        <label class="label">Cantidad:</label>
+        <div class="control">
+          <input class="input" type="number" min="1" max="{{oProduct.stock}}" [(ngModel)]="oAmountSelected">
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary" (click)="addToCart()">Agregar al carrito</button>
+        </div>
+        <div class="control">
+          <button class="button is-success" (click)="buyDirectly()">Comprar directamente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
