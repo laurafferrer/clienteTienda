@@ -17,9 +17,13 @@ constructor(private http: HttpClient) { }
     return this.http.get<IPurchaseDetail>(this.url + '/' + id);
   }
 
-  getPurchaseDetailByPurchaseId(id: number): Observable<IPurchaseDetail[]> {
-    return this.http.get<IPurchaseDetail[]>(this.url + '/byPurchase/purchase_id' + id);
-  }
+  getPurchaseDetailPage(size: number, page: number, sort: string, direction: string, camisetaId: number, purchase_id: number): Observable<IPurchaseDetailPage> {
+    return this.http.get<IPurchaseDetailPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&camisetaId=' + camisetaId + '&compraId=' + purchase_id);
+}
+
+  getPurchaseDetailByPurchaseId(purchase_id: number, size: number, page: number, sort: string, direction: string): Observable<IPurchaseDetailPage> {
+    return this.http.get<IPurchaseDetailPage>(this.url + '/byPurchase/' + purchase_id + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+}
 
   getPurchaseDetailByProductId(id: number): Observable<IPurchaseDetail[]> {
     return this.http.get<IPurchaseDetail[]>(this.url + '/byProduct/product_id' + id);
@@ -31,10 +35,6 @@ constructor(private http: HttpClient) { }
 
   getRandomPurchaseDetail(): Observable<IPurchaseDetail> {
     return this.http.get<IPurchaseDetail>(this.url + '/random');
-  }
-
-  getPurchaseDetailPage(size: number, page: number, sort: string, direction: string, product_id: number, purchase_id: number): Observable<IPurchaseDetailPage> {
-    return this.http.get<IPurchaseDetailPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&product_id=' + product_id + '&purchase_id=' + purchase_id);
   }
 
   getPurchaseDetailByPriceDesc(): Observable<IPurchaseDetail[]> {
