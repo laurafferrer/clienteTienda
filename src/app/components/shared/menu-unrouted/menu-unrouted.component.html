@@ -5,16 +5,23 @@
     </a>
 
     <div class="hidden md:flex">
-      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/home']">
+      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold 
+      rounded-full {{ strUrl.startsWith('/home') ? 'bg-slate-300' : '' }}" [routerLink]="['/home']">
         Inicio
       </a>
-      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'user', 'plist']" *ngIf="strUsername ">
+      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold 
+      rounded-full {{ strUrl.startsWith('/admin/user') ? 'bg-slate-300' : '' }}" [routerLink]="['/admin', 'user', 'plist']" 
+      *ngIf="strUsername "> <!-- && oUserSession?.role==true -->
         Usuarios
       </a>
-      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'product', 'plist']" *ngIf="strUsername">
+      <a class="nav-link nav-item text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold
+      rounded-full {{ strUrl.startsWith('/admin/product') ? 'bg-slate-300' : '' }}" routerLink="/admin/product/plist"
+      *ngIf="strUsername ">
         Productos
       </a>
-      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold" [routerLink]="['/admin', 'category', 'plist']" *ngIf="strUsername">
+      <a class="text-KhakiTitulo hover:text-Moccasin px-4 py-2 font-semibold 
+      rounded-full {{ strUrl.startsWith('/admin/category') ? 'bg-slate-300' : '' }}"[routerLink]="['/admin', 'category', 'plist']" 
+      *ngIf="strUsername ">
         Categorias
       </a>
     </div>
