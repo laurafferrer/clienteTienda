@@ -52,10 +52,12 @@
   </div>
 
   <!-- Paginación -->
-  <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
-    [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
-    [rowsPerPageOptions]="[10, 20, 30]">
-  </p-paginator>
+  <div class="flex-auto mx-auto">
+    <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
+      [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
+      [rowsPerPageOptions]="[10, 20, 30]">
+    </p-paginator>
+  </div>
 
   <p-confirmPopup></p-confirmPopup>
 </div>

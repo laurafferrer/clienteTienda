@@ -1,9 +1,3 @@
-<!-- Paginación -->
-<p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
-  [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
-  [rowsPerPageOptions]="[10, 20, 30]">
-</p-paginator>
-
 <div class="container">
   <div class="relative flex items-center">
     <input type="text" [(ngModel)]="value" (ngModelChange)="onInputChange($event)"
@@ -51,6 +45,14 @@
   <div class="notification" *ngIf="!oPage?.content || oPage?.content?.length === 0">
     <p>Don't have products.</p>
   </div>
+
+    <!-- Paginación -->
+    <div class="flex-auto mx-auto">
+      <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
+        [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
+        [rowsPerPageOptions]="[10, 20, 30]">
+      </p-paginator>
+    </div>
 
   <p-confirmPopup></p-confirmPopup>
 </div>
