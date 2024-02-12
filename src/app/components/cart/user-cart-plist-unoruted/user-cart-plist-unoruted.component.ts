@@ -9,7 +9,6 @@ import { PurchaseAjaxService } from '../../../service/purchase.ajax.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationService } from 'primeng/api';
-import { error } from 'console';
 
 @Component({
   selector: 'app-user-cart-plist-unoruted',
