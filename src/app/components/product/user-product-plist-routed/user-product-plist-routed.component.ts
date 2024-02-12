@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-product-plist-routed',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProductPlistRoutedComponent implements OnInit {
 
-  constructor() { }
+  oForceReload: Subject<boolean> = new Subject<boolean>();
+  oCategoryId: number;
+
+  constructor(
+    private oActivatedRoute: ActivatedRoute
+  ) { 
+    this.oCategoryId = parseInt(this.oActivatedRoute.snapshot.paramMap.get('category_id') || '0');
+  }
 
   ngOnInit() {
   }
