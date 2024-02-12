@@ -33,8 +33,8 @@ constructor(private http: HttpClient) { }
     return this.http.get<IPurchaseDetail>(this.url + '/random');
   }
 
-  getPurchaseDetailPage(size: number, page: number, sort: string, direction: string, productId: number, purchaseId: number): Observable<IPurchaseDetailPage> {
-    return this.http.get<IPurchaseDetailPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&productId=' + productId + '&purchaseId=' + purchaseId);
+  getPurchaseDetailPage(size: number, page: number, sort: string, direction: string, product_id: number, purchase_id: number): Observable<IPurchaseDetailPage> {
+    return this.http.get<IPurchaseDetailPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&product_id=' + product_id + '&purchase_id=' + purchase_id);
   }
 
   getPurchaseDetailByPriceDesc(): Observable<IPurchaseDetail[]> {
