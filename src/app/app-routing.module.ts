@@ -9,11 +9,16 @@ import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plis
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
+// -- USER USER COMPONENTS
+import { UserUserViewRoutedComponent } from './components/user/user-user-view-routed/user-user-view-routed.component';
 // -- ADMIN PRODUCT COMPONENTS
 import { AdminProductPlistRoutedComponent } from './components/product/admin-product-plist-routed/admin-product-plist-routed.component';
 import { AdminProductEditRoutedComponent } from './components/product/admin-product-edit-routed/admin-product-edit-routed.component';
 import { AdminProductNewRoutedComponent } from './components/product/admin-product-new-routed/admin-product-new-routed.component';
 import { AdminProductViewRoutedComponent } from './components/product/admin-product-view-routed/admin-product-view-routed.component';
+// -- USER PRODUCT COMPONENTS
+import { UserProductPlistRoutedComponent } from './components/product/user-product-plist-routed/user-product-plist-routed.component';
+import { UserProductViewRoutedComponent } from './components/product/user-product-view-routed/user-product-view-routed.component';
 // -- ADMIN CATEGORY COMPONENTS
 import { AdminCategoryPlistRoutedComponent } from './components/category/admin-category-plist-routed/admin-category-plist-routed.component';
 import { AdminCategoryEditRoutedComponent } from './components/category/admin-category-edit-routed/admin-category-edit-routed.component';
@@ -21,9 +26,9 @@ import { AdminCategoryNewRoutedComponent } from './components/category/admin-cat
 import { AdminCategoryViewRoutedComponent } from './components/category/admin-category-view-routed/admin-category-view-routed.component';
 // -- ADMIN CART COMPONENTS
 import { UserCartPlistRoutedComponent } from './components/cart/user-cart-plist-routed/user-cart-plist-routed.component';
-// -- ADMIN PURCHASE COMPONENTS
-import { AdminPurchasePlistRoutedComponent } from './components/purchase/admin-purchase-plist-routed/admin-purchase-plist-routed.component';
-import { AdminPurchaseViewRoutedComponent } from './components/purchase/admin-purchase-view-routed/admin-purchase-view-routed.component';
+// -- USER PURCHASE COMPONENTS
+import { UserPurchasePlistRoutedComponent } from './components/purchase/user-purchase-plist-routed/user-purchase-plist-routed.component';
+import { UserPurchaseViewRoutedComponent } from './components/purchase/user-purchase-view-routed/user-purchase-view-routed.component';
 
 
 const routes: Routes = [
@@ -37,11 +42,17 @@ const routes: Routes = [
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent},
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent},
 
+  { path: 'user/user/view/:id', component: UserUserViewRoutedComponent},
+
   { path: 'admin/product/plist', component: AdminProductPlistRoutedComponent},
+  { path: 'admin/product/plist/bycategory/:category_id', component: AdminProductPlistRoutedComponent}, 
   { path: 'admin/product/edit/:id', component: AdminProductEditRoutedComponent},
   { path: 'admin/product/new', component: AdminProductNewRoutedComponent},
   { path: 'admin/product/view/:id', component: AdminProductViewRoutedComponent},
-  { path: 'admin/product/plist/bycategory/:category_id', component: AdminProductPlistRoutedComponent}, 
+  
+  { path: 'user/product/plist', component: UserProductPlistRoutedComponent },
+  { path: 'user/product/plist/bycategory/:category_id', component: UserProductPlistRoutedComponent },
+  { path: 'user/product/view/:id', component: UserProductViewRoutedComponent },
 
   { path: 'admin/category/plist', component: AdminCategoryPlistRoutedComponent},
   { path: 'admin/category/edit/:id', component: AdminCategoryEditRoutedComponent},
@@ -50,8 +61,9 @@ const routes: Routes = [
 
   { path: 'admin/cart/plist', component: UserCartPlistRoutedComponent},
 
-  { path: 'admin/purchase/plist', component: AdminPurchasePlistRoutedComponent},
-  { path: 'admin/purchase/view/:id', component: AdminPurchaseViewRoutedComponent},
+  { path: 'user/purchase/plist', component: UserPurchasePlistRoutedComponent},
+  { path: 'user/purchase/view/:id', component: UserPurchaseViewRoutedComponent}
+ 
 ];
 
 @NgModule({

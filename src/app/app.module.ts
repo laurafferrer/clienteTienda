@@ -12,7 +12,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogService } from 'primeng/dynamicdialog';
-
 // --
 // INTERCEPTOR
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -36,7 +35,7 @@ import { PurchaseDetailAjaxService } from './service/purchaseDetail.ajax.service
 import { SessionAjaxService } from './service/session.ajax.service';
 import { UserAjaxService } from './service/user.ajax.service';
 // --
-// USER COMPONENTS
+// ADMIN USER COMPONENTS
 import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component'; 
 import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-plist-unrouted/admin-user-plist-unrouted.component'; 
@@ -45,8 +44,11 @@ import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-ro
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
+// USER USER COMPONENTS
+import { UserUserDetailUnroutedComponent } from './components/user/user-user-detail-unrouted/user-user-detail-unrouted.component';
+import { UserUserViewRoutedComponent } from './components/user/user-user-view-routed/user-user-view-routed.component';
 // --
-// PRODUCT COMPONENTS
+// ADMIN PRODUCT COMPONENTS
 import { AdminProductFormUnroutedComponent } from './components/product/admin-product-form-unrouted/admin-product-form-unrouted.component';
 import { AdminProductPlistRoutedComponent } from './components/product/admin-product-plist-routed/admin-product-plist-routed.component';
 import { AdminProductPlistUnroutedComponent } from './components/product/admin-product-plist-unrouted/admin-product-plist-unrouted.component';
@@ -55,8 +57,13 @@ import { AdminProductNewRoutedComponent } from './components/product/admin-produ
 import { AdminProductEditRoutedComponent } from './components/product/admin-product-edit-routed/admin-product-edit-routed.component';
 import { AdminProductSelectionUnroutedComponent } from './components/product/admin-product-selection-unrouted/admin-product-selection-unrouted.component';
 import { AdminProductViewRoutedComponent } from './components/product/admin-product-view-routed/admin-product-view-routed.component';
+// USER PRODUCT COMPONENTS
+import { UserProductDetailUnroutedComponent} from './components/product/user-product-detail-unrouted/user-product-detail-unrouted.component';
+import { UserProductPlistRoutedComponent } from './components/product/user-product-plist-routed/user-product-plist-routed.component';
+import { UserProductPlistUnroutedComponent } from './components/product/user-product-plist-unrouted/user-product-plist-unrouted.component';
+import { UserProductViewRoutedComponent } from './components/product/user-product-view-routed/user-product-view-routed.component';
 // --
-// -- CATEGORY COMPONENTS
+// ADMIN CATEGORY COMPONENTS
 import { AdminCategoryFormUnroutedComponent } from './components/category/admin-category-form-unrouted/admin-category-form-unrouted.component';
 import { AdminCategoryPlistRoutedComponent } from './components/category/admin-category-plist-routed/admin-category-plist-routed.component';
 import { AdminCategoryPlistUnroutedComponent } from './components/category/admin-category-plist-unrouted/admin-category-plist-unrouted.component';
@@ -65,20 +72,28 @@ import { AdminCategoryNewRoutedComponent } from './components/category/admin-cat
 import { AdminCategoryEditRoutedComponent } from './components/category/admin-category-edit-routed/admin-category-edit-routed.component';
 import { AdminCategorySelectionUnroutedComponent } from './components/category/admin-category-selection-unrouted/admin-category-selection-unrouted.component';
 import { AdminCategoryViewRoutedComponent } from './components/category/admin-category-view-routed/admin-category-view-routed.component';
+// --
 // -- ADMIN CART COMPONENTS
 import { AdminCartDetailUnroutedComponent } from './components/cart/admin-cart-detail-unrouted/admin-cart-detail-unrouted.component';
 import { AdminCartPlistUnroutedComponent } from './components/cart/admin-cart-plist-unrouted/admin-cart-plist-unrouted.component';
 // -- USER CART COMPONENTS
 import { UserCartPlistUnorutedComponent } from './components/cart/user-cart-plist-unoruted/user-cart-plist-unoruted.component';
 import { UserCartPlistRoutedComponent } from './components/cart/user-cart-plist-routed/user-cart-plist-routed.component';
-// -- PURCHASE COMPONENTS
+// --
+// -- ADMIN PURCHASE COMPONENTS
 import { AdminPurchaseDetailUnroutedComponent } from './components/purchase/admin-purchase-detail-unrouted/admin-purchase-detail-unrouted.component';
 import { AdminPurchasePlistUnroutedComponent } from './components/purchase/admin-purchase-plist-unrouted/admin-purchase-plist-unrouted.component';
-import { AdminPurchasePlistRoutedComponent } from './components/purchase/admin-purchase-plist-routed/admin-purchase-plist-routed.component';
-import { AdminPurchaseViewRoutedComponent } from './components/purchase/admin-purchase-view-routed/admin-purchase-view-routed.component';
-// -- PURCHASE DETAIL COMPONENTS
+// -- USER PURCHASE COMPONENTS
+import { UserPurchaseDetailUnroutedComponent} from './components/purchase/user-purchase-detail-unrouted/user-purchase-detail-unrouted.component';
+import { UserPurchasePlistRoutedComponent } from './components/purchase/user-purchase-plist-routed/user-purchase-plist-routed.component';
+import { UserPurchasePlistUnroutedComponent } from './components/purchase/user-purchase-plist-unrouted/user-purchase-plist-unrouted.component';
+import { UserPurchaseViewRoutedComponent } from './components/purchase/user-purchase-view-routed/user-purchase-view-routed.component';
+// --
+// -- ADMIN PURCHASE DETAIL COMPONENTS
 import { AdminPurchaseDetailDetailUnroutedComponent } from './components/purchaseDetail/admin-purchaseDetail-detail-unrouted/admin-purchaseDetail-detail-unrouted.component';
 import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchaseDetail/admin-purchaseDetail-plist-unrouted/admin-purchaseDetail-plist-unrouted.component';
+// -- USER PURCHASE DETAIL COMPONENTS
+import { UserPurchaseDetailPlistUnroutedComponent } from './components/purchaseDetail/user-purchaseDetail-plist-unrouted/user-purchaseDetail-plist-unrouted.component';
 
 //--
 @NgModule({
@@ -90,7 +105,7 @@ import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchase
     LoginRoutedComponent,
     LogoutRoutedComponent,
     MenuUnroutedComponent,
-    // USER COMPONENTS
+    // ADMIN USER COMPONENTS
     AdminUserFormUnroutedComponent,
     AdminUserPlistRoutedComponent,
     AdminUserPlistUnroutedComponent,
@@ -99,7 +114,10 @@ import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchase
     AdminUserEditRoutedComponent,
     AdminUserSelectionUnroutedComponent,
     AdminUserViewRoutedComponent,
-    // PRODUCT COMPONENTS
+    // USER USER COMPONENTS
+    UserUserDetailUnroutedComponent,
+    UserUserViewRoutedComponent,
+    // ADMIN PRODUCT COMPONENTS
     AdminProductFormUnroutedComponent,
     AdminProductPlistRoutedComponent,
     AdminProductPlistUnroutedComponent,
@@ -108,7 +126,12 @@ import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchase
     AdminProductEditRoutedComponent,
     AdminProductSelectionUnroutedComponent,
     AdminProductViewRoutedComponent,
-    // CATEGORY COMPONENTS
+    // USER PRODUCT COMPONENTS
+    UserProductDetailUnroutedComponent,
+    UserProductPlistRoutedComponent,
+    UserProductPlistUnroutedComponent,
+    UserProductViewRoutedComponent,
+    // ADMIN CATEGORY COMPONENTS
     AdminCategoryFormUnroutedComponent,
     AdminCategoryPlistRoutedComponent,
     AdminCategoryPlistUnroutedComponent,
@@ -123,14 +146,19 @@ import { AdminPurchaseDetailPlistUnroutedComponent } from './components/purchase
     // USER CART COMPONENTS
     UserCartPlistUnorutedComponent,
     UserCartPlistRoutedComponent,
-    // PURCHASE COMPONENTS
+    // ADMIN PURCHASE COMPONENTS
     AdminPurchaseDetailUnroutedComponent,
     AdminPurchasePlistUnroutedComponent,
-    AdminPurchasePlistRoutedComponent,
-    AdminPurchaseViewRoutedComponent,
-    // PURCHASE DETAIL COMPONENTS
+    // USER PURCHASE COMPONENTS
+    UserPurchaseDetailUnroutedComponent,
+    UserPurchasePlistRoutedComponent,
+    UserPurchasePlistUnroutedComponent,
+    UserPurchaseViewRoutedComponent,
+    // ADMIN PURCHASE DETAIL COMPONENTS
     AdminPurchaseDetailDetailUnroutedComponent,
-    AdminPurchaseDetailPlistUnroutedComponent
+    AdminPurchaseDetailPlistUnroutedComponent,
+    // USER PURCHASE DETAIL COMPONENTS
+    UserPurchaseDetailPlistUnroutedComponent
   ],
   imports: [
     BrowserModule,
