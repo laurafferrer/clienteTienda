@@ -72,6 +72,9 @@ import { AdminCategoryNewRoutedComponent } from './components/category/admin-cat
 import { AdminCategoryEditRoutedComponent } from './components/category/admin-category-edit-routed/admin-category-edit-routed.component';
 import { AdminCategorySelectionUnroutedComponent } from './components/category/admin-category-selection-unrouted/admin-category-selection-unrouted.component';
 import { AdminCategoryViewRoutedComponent } from './components/category/admin-category-view-routed/admin-category-view-routed.component';
+// USER CATEGORY COMPONENTS
+import { UserCategoryPlistRoutedComponent } from './components/category/user-category-plist-routed/user-category-plist-routed.component';
+import { UserCategoryPlistUnroutedComponent } from './components/category/user-category-plist-unrouted/user-category-plist-unrouted.component';
 // --
 // -- ADMIN CART COMPONENTS
 import { AdminCartDetailUnroutedComponent } from './components/cart/admin-cart-detail-unrouted/admin-cart-detail-unrouted.component';
@@ -140,6 +143,9 @@ import { UserPurchaseDetailPlistUnroutedComponent } from './components/purchaseD
     AdminCategoryEditRoutedComponent,
     AdminCategorySelectionUnroutedComponent,
     AdminCategoryViewRoutedComponent,
+    // USER CATEGORY COMPONENTS
+    UserCategoryPlistRoutedComponent,
+    UserCategoryPlistUnroutedComponent,
     // ADMIN CART COMPONENTS
     AdminCartDetailUnroutedComponent,
     AdminCartPlistUnroutedComponent,
