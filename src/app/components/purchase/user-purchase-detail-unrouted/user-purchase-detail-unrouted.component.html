@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="box">
+    <h1 class="title is-4">Compra #{{oPurchase.id}}</h1>
+  </div>
+  <div class="content">
+    <p><strong>Cliente: </strong>{{oPurchase.user.name}} {{oPurchase.user.surname}}</p>
+    <p><strong>Fecha: </strong>{{oPurchase.date_purchase| date: 'dd/MM/yyyy'}}</p>
+    <p><strong>Dirección de entrega: </strong>{{oPurchase.user.address}}</p>
+    <ng-container *ngIf="oPurchase.num_bill">
+      <p><strong>Número de factura: </strong>{{oPurchase.num_bill}}</p>
+      <p><strong>Fecha de factura: </strong>{{oPurchase.date_bill | date:'dd/MM/yyyy'}}</p>
+    </ng-container>
+  </div>
+  <div class="box">
+    <h2 class="subtitle is-5">Detalles de la compra</h2>
+   <app-user-purchaseDetail-plist-unrouted [oPurchaseId]="id"></app-user-purchaseDetail-plist-unrouted>
+</div>
