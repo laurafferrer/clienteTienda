@@ -41,8 +41,12 @@ constructor(private http: HttpClient) { }
     return this.http.get<IPurchasePage>(this.url + '/findPurchaseByDateOrderAsc?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
   }
 
-  findPurchaseByDateOrderContaining(date: string, page: number, size: number, sort: string, direction: string): Observable<IPurchasePage> {
-    return this.http.get<IPurchasePage>(this.url + '/findPurchaseByDateOrderContaining/' + date + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+  getPurchasMostExpensiveByUserId(userId: number, size: number, page: number, sort: string, direction: string): Observable<IPurchasePage> {
+    return this.http.get<IPurchasePage>(this.url + '/mostExpensiveByUserId/' + userId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+  }
+
+  getPurchasCheapestByUserId(userId: number, size: number, page: number, sort: string, direction: string): Observable<IPurchasePage> {
+    return this.http.get<IPurchasePage>(this.url + '/cheapestByUserId/' + userId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
   }
 
   makeSingleCartPurchase(user_id: number, cart_id: number): Observable<IPurchase> {
@@ -51,6 +55,18 @@ constructor(private http: HttpClient) { }
 
   makeAllCartPurchase(user_id: number): Observable<IPurchase> {
     return this.http.post<IPurchase>(this.url + '/makeAllCartPurchase/' + user_id, {});
+  }
+
+  createPurchaseProduct(productId: number, userId: number, amount: number): Observable<IPurchase> {
+    return this.http.post<IPurchase>(this.url + '/createPurchaseProduct/' + productId + '/' + userId + '/' + amount, {});
+  }
+
+  createPurchaseOneCart(userId: number, cartId: number): Observable<IPurchase> {
+    return this.http.post<IPurchase>(this.url + '/createPurchaseOneCart/' + userId + '/' + cartId, {});
+  }
+
+  createPurchaseAllCarts(userId: number): Observable<IPurchase> {
+    return this.http.post<IPurchase>(this.url + '/createPurchaseAllCarts/' + userId, {});
   }
 
   generatePurchases(amount: number): Observable<number> {
