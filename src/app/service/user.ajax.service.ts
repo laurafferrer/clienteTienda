@@ -18,7 +18,7 @@ export class UserAjaxService {
   }
 
   getUserByUsername(username: string): Observable<IUser> {
-    return this.oHttpClient.get<IUser>(this.url + '/username/' + username);
+    return this.oHttpClient.get<IUser>(this.url + '/byUsername/' + username);
   }
 
   getUserRandom(): Observable<IUser> {
