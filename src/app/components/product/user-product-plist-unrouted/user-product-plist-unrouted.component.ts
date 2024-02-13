@@ -21,7 +21,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class UserProductPlistUnroutedComponent implements OnInit {
 
   @Input() oForceReload: Subject<boolean> = new Subject<boolean>();
-  @Input() oCategoryId: number = 0;
+  @Input() oCategory_id: number = 0;
 
   oPage: IProductPage | undefined;
   oCategory: ICategory | null = null;
@@ -38,31 +38,45 @@ export class UserProductPlistUnroutedComponent implements OnInit {
     private oCartAjaxService: CartAjaxService,
     private oPurchaseAjaxService: PurchaseAjaxService,
     private oCategoryAjaxService: CategoryAjaxService,
-    public oDialogService: DialogService,
     private oConfirmService: ConfirmationService,
     private oRouter: Router,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    public oDialogService: DialogService,
 
   ) { }
 
   ngOnInit() {
-    if (this.oCategoryId > 0) {
+    this.getPage();
+    if (this.oCategory_id > 0) {
       this.getCategory();
     }
     this.oForceReload.subscribe({
       next: (v) => {
         if (v) {
-          this.getProducts();
+          this.getPage();
         }
       }
     });
   }
 
-  getProducts(): void {
-    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows || 0, this.oPaginatorState.page || 0, this.oOrderField, this.oOrderDirection, this.oCategoryId).subscribe({
+  getPage() {
+    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, this.oCategory_id).subscribe({
       next: (data: IProductPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
+      },
+      error: (response: HttpErrorResponse) => {
+        this.oStatus = response;
+      }
+    });
+  }
+
+  getProducts(): void {
+    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows || 0, this.oPaginatorState.page || 0, this.oOrderField, this.oOrderDirection, this.oCategory_id).subscribe({
+      next: (data: IProductPage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        console.log(data);
 
         const productosIds = this.oPage.content.map(product => product.id);
         const precios: { [id: number]: number} = {};
@@ -97,7 +111,7 @@ export class UserProductPlistUnroutedComponent implements OnInit {
   }
 
   getCategory(): void {
-    this.oCategoryAjaxService.getCategoryById(this.oCategoryId).subscribe({
+    this.oCategoryAjaxService.getCategoryById(this.oCategory_id).subscribe({
       next: (data: ICategory) => {
         this.oCategory = data;
         this.getProducts();

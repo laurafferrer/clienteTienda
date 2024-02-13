@@ -1,37 +1,46 @@
 <div class="container">
-  <div class="notification" *ngIf="oCategoryId>0">
+  <div class="notification" *ngIf="oCategory_id>0">
     Filtrando por categoría: {{oCategory?.name}}
-    <button class="delete" *ngIf="oCategoryId>0" [routerLink]="['/user', 'product', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="oCategory_id>0" [routerLink]="['/user', 'product', 'plist']">Quitar filtro</button>
   </div>
 
-  <div class="columns is-multiline">
-    <div class="column is-one-third-desktop is-half-tablet is-full-mobile" *ngFor="let product of oPage?.content">
-     <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
+  <table class="table is-fullwidth">
+    <thead class="">
+      <tr>
+        <th  class="has-text-centered">Imagen</th>
+        <th  class="has-text-centered">Nombre</th>
+        <th  class="has-text-centered">Precio</th>
+        <th  class="has-text-centered">Categoría</th>
+        <th  class="has-text-centered">Estado</th>
+        <th  class="has-text-centered">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of oPage?.content">
+        <td>
           <a [routerLink]="['/user', 'product', 'view', product.id]">
             <img src="{{product.image}}" alt="Producto">
           </a>
-        </figure>
-      </div>
-      <div class="card-content">
-        <p class="title">
+        </td>
+        <td>
           <a [routerLink]="['/user', 'product', 'view', product.id]">
             {{product.name}}
           </a>
-        </p>
-        <p class="subtitle">Precio: {{product.price | currency}} € </p>
-        <p class="subtitle">Categoría: {{product.category.name}}</p>
-        <p class="stock-available" *ngIf="product.stock > 0">Producto disponible</p>
-        <p class="stock-not-available" *ngIf="product.stock == 0">Producto no disponible</p>
-      </div>
-      <div class="card-footer">
-        <a class="card-footer-item" (click)="addToCart(product)">Añadir al carrito</a>
-        <a class="card-footer-item" (click)="buyDirectly(product)">Comprar directamente</a>
-      </div>
-     </div> 
-    </div>
-  </div>
+        </td>
+        <td>{{product.price | currency}} €</td>
+        <td>{{product.category.name}}</td>
+        <td  class="has-text-centered">
+          <span *ngIf="product.stock > 0" class="stock-available">Producto disponible</span>
+          <span *ngIf="product.stock == 0" class="stock-not-available">Producto no disponible</span>
+        </td>
+        <td  class="has-text-centered">
+          <a class="card-footer-item" (click)="addToCart(product)">Añadir al carrito</a>
+          <a class="card-footer-item" (click)="buyDirectly(product)">Comprar directamente</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
 
   <!-- Paginación -->
   <div class="flex-auto mx-auto">
