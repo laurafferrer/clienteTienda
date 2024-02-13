@@ -1,3 +1,46 @@
-<p>
-  user-product-plist-unrouted works!
-</p>
+<div class="container">
+  <div class="notification" *ngIf="oCategoryId>0">
+    Filtrando por categoría: {{oCategory?.name}}
+    <button class="delete" *ngIf="oCategoryId>0" [routerLink]="['/user', 'product', 'plist']">Quitar filtro</button>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="column is-one-third-desktop is-half-tablet is-full-mobile" *ngFor="let product of oPage?.content">
+     <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <a [routerLink]="['/user', 'product', 'view', product.id]">
+            <img src="{{product.image}}" alt="Producto">
+          </a>
+        </figure>
+      </div>
+      <div class="card-content">
+        <p class="title">
+          <a [routerLink]="['/user', 'product', 'view', product.id]">
+            {{product.name}}
+          </a>
+        </p>
+        <p class="subtitle">Precio: {{product.price | currency}} € </p>
+        <p class="subtitle">Categoría: {{product.category.name}}</p>
+        <p class="stock-available" *ngIf="product.stock > 0">Producto disponible</p>
+        <p class="stock-not-available" *ngIf="product.stock == 0">Producto no disponible</p>
+      </div>
+      <div class="card-footer">
+        <a class="card-footer-item" (click)="addToCart(product)">Añadir al carrito</a>
+        <a class="card-footer-item" (click)="buyDirectly(product)">Comprar directamente</a>
+      </div>
+     </div> 
+    </div>
+  </div>
+
+  <!-- Paginación -->
+  <div class="flex-auto mx-auto">
+    <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
+      [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
+      [rowsPerPageOptions]="[10, 20, 30]">
+    </p-paginator>
+  </div>
+
+</div>
+
+<p-confirmPopup></p-confirmPopup>
