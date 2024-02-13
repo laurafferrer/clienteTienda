@@ -12,7 +12,7 @@ import { CategoryAjaxService } from '../../../service/category.ajax.service';
 })
 export class UserCategoryPlistUnroutedComponent implements OnInit {
 
-  @Input() oForceReload: Subject<boolean> = new Subject<boolean>();
+  @Input() oForceReload: Subject<Boolean> = new Subject<Boolean>();
   
   oPage: ICategoryPage | undefined;
   oOrderField: string = "id";
