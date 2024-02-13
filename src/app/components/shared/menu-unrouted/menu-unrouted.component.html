@@ -11,7 +11,7 @@
     </button>
 
     <div class="navbar-start">
-      <ng-container *ngIf="username"> <!-- && userSession?.role==true -->
+      <ng-container *ngIf="username && userSession?.role==true">
         <a class="navbar-item" href="/admin/user/plist">
           Usuarios
         </a>
@@ -22,7 +22,7 @@
           Categorias
         </a>
       </ng-container>
-      <ng-container *ngIf="username"> <!-- && userSession?.role==false -->
+      <ng-container *ngIf="username && userSession?.role==false">
         <a class="navbar-item" href="/user/product/plist">
           Productos
         </a>
