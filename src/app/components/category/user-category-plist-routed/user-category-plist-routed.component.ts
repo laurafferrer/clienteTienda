@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-category-plist-routed',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserCategoryPlistRoutedComponent implements OnInit {
 
-  constructor() { }
+  oForceReload: Subject<Boolean> = new Subject<Boolean>();
+
+  constructor(
+    private oActivadedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
   }
