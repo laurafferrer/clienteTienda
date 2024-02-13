@@ -1,3 +1,31 @@
-<p>
-  user-category-plist-unrouted works!
-</p>
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-4" *ngFor="let category of oPage?.content">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <p class="title is-4">
+              <a [routerLink]="['/user', 'product', 'plist', 'byCategory', category.id]">
+              {{category.name}}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification is-info" *ngIf="!oPage?.content || oPage?.content?.length === 0">
+    No hay categorias para mostrar.
+  </div>
+
+  <!-- Paginación -->
+  <div class="flex-auto mx-auto">
+    <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
+      [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
+      [rowsPerPageOptions]="[10, 20, 30]">
+    </p-paginator>
+  </div>
+
+  <p-confirmPopup></p-confirmPopup>
+</div>
