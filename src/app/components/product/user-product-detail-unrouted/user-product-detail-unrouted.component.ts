@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-product-detail-unrouted',
@@ -17,6 +18,7 @@ import { DialogService, DynamicDialogRef, DynamicDialogConfig } from 'primeng/dy
 })
 export class UserProductDetailUnroutedComponent implements OnInit {
 
+  @Input() oForceReload: Subject<boolean> = new Subject<boolean>();
   @Input() id: number = 0;
   oProduct: IProduct = {} as IProduct;
   oUser: IUser | null = null;
