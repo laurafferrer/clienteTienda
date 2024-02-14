@@ -14,15 +14,14 @@
       <tr *ngFor="let cart of oPage?.content">
         <td><img [src]="cart.product.image" alt="Imagen del producto" class="image is-64x640"></td>
         <td>{{ cart.product.name }}</td>
-        <td> {{ cart.product.price }} </td> 
         <td> {{ cart.product }} </td>
-        <td> {{ cart.product.price | currency }} </td>
+        <td> {{ cart.product.price }} € </td>
         <td>
           <button class="button is-danger" (click)="updateAmount(cart, cart.amount - 1)">-</button>
           {{cart.amount}}
           <button class="button is-success" (click)="updateAmount(cart, cart.amount + 1)">+</button>
         </td>
-        <td> {{ oPriceIndividualMap.get(cart.id) | currency }}</td>
+        <td> {{ oPriceIndividualMap.get(cart.id) }} €</td>
         <td>
           <button class="button" (click)="deleteFromCart(cart.id)">Eliminar</button>
           <button class="button" (click)="purchaseOneCart(cart.id)">Comprar</button>
@@ -35,7 +34,7 @@
     <div class="column is-half">
       <div class="box">
         <h3 class="title is-4">Total</h3>
-        <p> Coste total: {{ oTotalPrice | currency}} </p>
+        <p> Coste total: {{ oTotalPrice }} €</p>
         <button class="button" (click)="oUser && deleteAllCarts(oUser.id)"> Vacíar el carrito </button>
         <button class="button" (click)="purchaseAllCarts()">Comprar</button>
       </div>
