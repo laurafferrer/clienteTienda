@@ -13,6 +13,9 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+
 // --
 // INTERCEPTOR
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -178,7 +181,9 @@ import { UserPurchaseDetailPlistUnroutedComponent } from './components/purchaseD
     MatSnackBarModule,
     PaginatorModule,
     MatProgressSpinnerModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    ButtonModule,
+    ToastModule
   ],
   providers: [
     // SERVICES

@@ -12,7 +12,15 @@
             <button class="button is-shadow" (click)="doGenerateRandom(100)" [disabled]="bLoading">+100</button>
           </div>
           <div class="buttons is-centered mt-3">
-            <button class="button is-shadow" (click)="doEmpty($event)" [disabled]="bLoading">Eliminar productos</button>
+            <p-confirmPopup>
+              <ng-template pTemplate="content" let-message>
+                  <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3">
+                      <i [class]="message.icon" class="text-6xl text-primary-500"></i>
+                      <p>{{ message.message }}</p>
+                  </div>
+              </ng-template>
+          </p-confirmPopup>
+            <button class="button is-shadow" (click)="doEmpty($event)" [disabled]="bLoading">Eliminar</button>
             <a class="button is-shadow" [routerLink]="['/admin', 'product', 'new']">Crear producto</a>
           </div>
         </div>
@@ -30,4 +38,7 @@
   </div>
 </div>
 
-<p-confirmPopup></p-confirmPopup>
+<!--
+    <p-confirmPopup></p-confirmPopup>
+    <p-button (click)="confirm1($event)" icon="pi pi-check" label="Confirm"></p-button>
+<p-button (click)="confirm2($event)" icon="pi pi-times" label="Delete" severity="danger"></p-button>-->

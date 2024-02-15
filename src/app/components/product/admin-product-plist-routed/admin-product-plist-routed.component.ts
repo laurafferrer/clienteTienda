@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { Subject } from 'rxjs';
 import { ProductAjaxService } from '../../../service/product.ajax.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmPopup } from 'primeng/confirmpopup';
 
 @Component({
   providers: [ConfirmationService],
@@ -23,7 +24,7 @@ export class AdminProductPlistRoutedComponent implements OnInit {
     private oProductAjaxService: ProductAjaxService,
     private oConfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar,
-  ) { 
+      ) { 
     this.category_id = parseInt(this.oActivatedaRoute.snapshot.paramMap.get('category_id') ?? "0");
   }
 
@@ -49,6 +50,10 @@ export class AdminProductPlistRoutedComponent implements OnInit {
       target: $event.target as EventTarget,
       message: 'Are you sure you want to delete all products?',
       icon: 'pi pi-exclamation-triangle',
+      acceptIcon: 'pi pi-check mr-1',
+      rejectIcon: 'pi pi-times mr-1',
+      rejectButtonStyleClass: 'p-button-text p-button-danger',
+      acceptButtonStyleClass: 'p-button-text p-button-success',
       accept: () => {
         this.oProductAjaxService.deleteAllProducts().subscribe({
           next: (response: number) => {
