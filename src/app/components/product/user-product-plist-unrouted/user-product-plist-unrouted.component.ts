@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ICart, ICategory, IProduct, IProductPage, IUser } from '../../../model/model.interfaces';
+import { ICart, ICategory, ICategoryPage, IProduct, IProductPage, IPurchase, IUser } from '../../../model/model.interfaces';
 import { PaginatorState } from 'primeng/paginator';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProductAjaxService } from '../../../service/product.ajax.service';
@@ -8,10 +8,11 @@ import { SessionAjaxService } from '../../../service/session.ajax.service';
 import { CartAjaxService } from '../../../service/cart.ajax.service';
 import { PurchaseAjaxService } from '../../../service/purchase.ajax.service';
 import { CategoryAjaxService } from '../../../service/category.ajax.service';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
-import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserAjaxService } from '../../../service/user.ajax.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-product-plist-unrouted',
@@ -24,32 +25,69 @@ export class UserProductPlistUnroutedComponent implements OnInit {
   @Input() oCategory_id: number = 0;
 
   oPage: IProductPage | undefined;
-  oCategory: ICategory | null = null;
-  oUser: IUser | null = null;
-  oCart: ICart = { user: {}, product: {}, amount: 0 } as ICart;
+  oPaginatorState: PaginatorState = { first: 0, rows: 15, page: 0, pageCount: 0 };
+  oValue: string = "";
+  oStatus: HttpErrorResponse | null = null;
   oOrderField: string = "id";
   oOrderDirection: string = "asc";
-  oPaginatorState: PaginatorState = { first: 0, rows: 15, page: 0, pageCount: 0 };
-  oStatus: HttpErrorResponse | null = null;
+  oPurchase: IPurchase | null = null;
+  oProducts: IProduct[] = [];
+  oProduct: IProduct = {} as IProduct;
+  oProductSelected: IProduct[] = [];
+  oProductToRemove: IProduct | null = null;
+  oProductsPorPage: number = 10;
+  oCategory: ICategory | null = null;
+  oCategories: ICategory[] = [];
+  oIdCategoryFind: number | null = null;
+  oFindByCategory: boolean = false;
+  oRef: DynamicDialogRef | undefined;
+  strUserName: String = "";
+  oUsername : String = "";
+  oUserSession: IUser | null = null;
+  oCart: ICart = { user: {}, product: {}, amount: 0 } as ICart; 
+  oQuantitySelected: number = 1; 
+
+  oUrl: string = '';
 
   constructor(
     private oProductAjaxService: ProductAjaxService,
-    private oSessionAjaxService: SessionAjaxService,
     private oCartAjaxService: CartAjaxService,
+    private oSessionAjaxService: SessionAjaxService,
     private oPurchaseAjaxService: PurchaseAjaxService,
     private oCategoryAjaxService: CategoryAjaxService,
+    private oUserAjaxService: UserAjaxService,
     private oConfirmService: ConfirmationService,
     private oRouter: Router,
     private oMatSnackBar: MatSnackBar,
     public oDialogService: DialogService,
 
-  ) { }
+  ) {
+    this.oRouter.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        this.oUrl = ev.url;
+      }
+    })
+
+    this.oUsername = oSessionAjaxService.getUsername();
+    this.oUserAjaxService.getUserByUsername(this.oSessionAjaxService.getUsername()).subscribe({
+      next: (user: IUser) => {
+        this.oUserSession = user;
+        console.log('User Session:', this.oUserSession); // Agrega este log
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    });
+   }
 
   ngOnInit() {
+    this.strUserName = this.oSessionAjaxService.getUsername();
     this.getPage();
+    this.getCategories();
     if (this.oCategory_id > 0) {
       this.getCategory();
     }
+
     this.oForceReload.subscribe({
       next: (v) => {
         if (v) {
@@ -59,11 +97,48 @@ export class UserProductPlistUnroutedComponent implements OnInit {
     });
   }
 
+  removeFilter(): void {
+    this.oValue = '';
+
+    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, 0).subscribe({
+      next: (data: IProductPage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        this.oProducts = data.content;
+      },
+      error: (response: HttpErrorResponse) => {
+        this.oStatus = response;
+      }
+    });
+
+    this.oCategory_id = 0;
+    this.oFindByCategory = false;
+  }
+
+  onInputChange(query: string): void {
+    if (query.length > 2) {
+      this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, this.oCategory_id, query).subscribe({
+        next: (data: IProductPage) => {
+          this.oPage = data;
+          this.oProducts = data.content;
+          this.oPaginatorState.pageCount = data.totalPages;
+        },
+        error: (response: HttpErrorResponse) => {
+          this.oStatus = response;
+        }
+      });
+    } else {
+      this.getPage();
+    }
+  }
+
+  
   getPage() {
     this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows, this.oPaginatorState.page, this.oOrderField, this.oOrderDirection, this.oCategory_id).subscribe({
       next: (data: IProductPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
+        this.oProducts = data.content;
       },
       error: (response: HttpErrorResponse) => {
         this.oStatus = response;
@@ -71,53 +146,36 @@ export class UserProductPlistUnroutedComponent implements OnInit {
     });
   }
 
-  getProducts(): void {
-    this.oProductAjaxService.getPageProducts(this.oPaginatorState.rows || 0, this.oPaginatorState.page || 0, this.oOrderField, this.oOrderDirection, this.oCategory_id).subscribe({
-      next: (data: IProductPage) => {
-        this.oPage = data;
-        this.oPaginatorState.pageCount = data.totalPages;
-        console.log(data);
-
-        const productosIds = this.oPage.content.map(product => product.id);
-        const precios: { [id: number]: number} = {};
-
-        productosIds.forEach(id => {
-          this.oProductAjaxService.getProductPrice(id).subscribe({
-            next: (precio: number) => {
-              precios[id] = precio;
-
-              if (Object.keys(precios).length === productosIds.length) {
-                this.oPage?.content.forEach(product => {
-                  product.price = precios[product.id];
-                });
-              }
-            },
-            error: (err: HttpErrorResponse) => {
-              this.oStatus = err;
-            }
-          });
-        });
-      },
-      error: (err: HttpErrorResponse) => {
-        this.oStatus = err;
-      }
-    })
-  }
-
   onPageChange(event: PaginatorState) {
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
-    this.getProducts();
+    this.getPage();
+  }
+
+  doOrder(fieldOrder: string) {
+    this.oOrderField = fieldOrder;
+    this.oOrderDirection = this.oOrderDirection === 'asc' ? 'desc' : 'asc';
+    this.getPage();
   }
 
   getCategory(): void {
     this.oCategoryAjaxService.getCategoryById(this.oCategory_id).subscribe({
       next: (data: ICategory) => {
         this.oCategory = data;
-        this.getProducts();
       },
       error: (err: HttpErrorResponse) => {
         this.oStatus = err;
+      }
+    });
+  }
+
+  getCategories(): void {
+    this.oCategoryAjaxService.getPageCategory(undefined, undefined, 'id', 'asc').subscribe({
+      next: (data: ICategoryPage) => {
+        this.oCategories = data.content;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log('Error al obtener las categorías', err);
       }
     });
   }
@@ -141,19 +199,30 @@ export class UserProductPlistUnroutedComponent implements OnInit {
     }
   }
 
-  buyDirectly(product: IProduct): void {
+  getTotalToPay(): number {
+    const totalToPay = this.oProductSelected.reduce((total, product) => total + product.price, 0);
+    return totalToPay;
+  }
+
+  doView(product: IProduct) {
+    this.oRouter.navigate(['/user', 'product', 'view', product.id]);
+  }
+
+  makeProductPurhase(product: IProduct): void {
     this.oSessionAjaxService.getSessionUser()?.subscribe({
-      next: (user : IUser) => {
+      next: (user: IUser) => {
         if (user) {
           this.oConfirmService.confirm({
-            message: '¿Desea comprar el producto?',
+            message: '¿Quieres comprar el producto?',
             accept: () => {
-              const amount = 1;
-              this.oPurchaseAjaxService.createPurchaseProduct(product.id, user.id, amount).subscribe({
+              const cantidad = 1;
+              this.oPurchaseAjaxService.makeProductPurhase(product.id, user.id, cantidad).subscribe({
                 next: () => {
-                  this.oMatSnackBar.open('Porducto comprado', 'Aceptar', { duration: 3000 });
+                  this.oMatSnackBar.open('Producto comprado', 'Aceptar', { duration: 3000 });
+
+                  // Navegar a la lista de compras del usuario actual
                   this.oRouter.navigate(['/user', 'purchase', 'plist', user.id]);
-                }, 
+                },
                 error: (err: HttpErrorResponse) => {
                   this.oStatus = err;
                   this.oMatSnackBar.open('Error al comprar el producto', 'Aceptar', { duration: 3000 });
@@ -163,9 +232,9 @@ export class UserProductPlistUnroutedComponent implements OnInit {
             reject: () => {
               this.oMatSnackBar.open('Compra cancelada', 'Aceptar', { duration: 3000 });
             }
-          })
+          });
         } else {
-          this.oMatSnackBar.open('Debe iniciar sesión para comprar', 'Aceptar', { duration: 3000 });
+          this.oMatSnackBar.open('Debes estar logueado para comprar productos', 'Aceptar', { duration: 3000 });
         };
       },
       error: (err: HttpErrorResponse) => {
@@ -173,6 +242,13 @@ export class UserProductPlistUnroutedComponent implements OnInit {
         this.oMatSnackBar.open('Error al obtener el usuario', 'Aceptar', { duration: 3000 });
       }
     });
+  }
+
+  findByCategory(idCategory: number): void {
+    this.oCategory_id = idCategory;
+    this.getPage();
+    this.oIdCategoryFind = idCategory;
+    this.oFindByCategory = true;
   }
 
 }

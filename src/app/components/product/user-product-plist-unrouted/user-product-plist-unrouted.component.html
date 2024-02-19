@@ -1,55 +1,69 @@
-<div class="container">
-  <div class="notification" *ngIf="oCategory_id>0">
-    Filtrando por categoría: {{oCategory?.name}}
-    <button class="delete" *ngIf="oCategory_id>0" [routerLink]="['/user', 'product', 'plist']">Quitar filtro</button>
+<div class="container flex justify-end mr-1">
+  <div class="columns">
+    <div class="column">
+      <div class="field has-addons">
+        <div class="relative flex items-center">
+          <input type="text" [(ngModel)]="oValue" (ngModelChange)="onInputChange($event)"
+            class="w-96 h-10 pl-10 border rounded-full mb-5 focus:outline-none focus:border-cyan-900 text-cyan-900" />
+          <i class="fas fa-search absolute left-3 mb-5 text-cyan-900 cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+<!-- Columna de Categorías -->
+<div class="column is-2">
+  <h1 class="title">Categorías</h1>
+
+  <!-- Utilizando botones en lugar de una lista -->
+  <div class="buttons">
+    <button *ngFor="let category of oCategories" class="button categoria-item" (click)="findByCategory(category.id)"
+      [class.active]="category.id === oIdCategoryFind && oFindByCategory">
+      {{ category.name }}
+    </button>
   </div>
 
-  <table class="table is-fullwidth">
-    <thead class="">
-      <tr>
-        <th  class="has-text-centered">Imagen</th>
-        <th  class="has-text-centered">Nombre</th>
-        <th  class="has-text-centered">Precio</th>
-        <th  class="has-text-centered">Categoría</th>
-        <th  class="has-text-centered">Estado</th>
-        <th  class="has-text-centered">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of oPage?.content">
-        <td>
-          <a [routerLink]="['/user', 'product', 'view', product.id]">
-            <img src="{{product.image}}" alt="Producto">
-          </a>
-        </td>
-        <td>
-          <a [routerLink]="['/user', 'product', 'view', product.id]">
-            {{product.name}}
-          </a>
-        </td>
-        <td>{{product.price}} €</td>
-        <td>{{product.category.name}}</td>
-        <td  class="has-text-centered">
-          <span *ngIf="product.stock > 0" class="stock-available">Producto disponible</span>
-          <span *ngIf="product.stock == 0" class="stock-not-available">Producto no disponible</span>
-        </td>
-        <td  class="has-text-centered">
-          <a class="card-footer-item" (click)="addToCart(product)">Añadir al carrito</a>
-          <a class="card-footer-item" (click)="buyDirectly(product)">Comprar directamente</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
+  <!-- Botón "Quitar filtro" con estilo de Bulma -->
+  <button *ngIf="oFindByCategory" type="button" (click)="removeFilter()" class="button is-primary">Quitar filtro</button>
+</div>
 
-  <!-- Paginación -->
-  <div class="flex-auto mx-auto">
-    <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
-      [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
-      [rowsPerPageOptions]="[10, 20, 30]">
-    </p-paginator>
+  <!-- Columna de Productos -->
+  <div class="column is-10">
+    <div class="columns is-multiline align-right"> <!-- Add custom-align-right class -->
+      <ng-container *ngFor="let product of oProducts">
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img [src]="product.image" alt="Imagen del producto" (click)="doView(product)">
+              </figure>
+            </div>
+            <div class="card-content">
+              <p class="font-semibold text-2xl text-cyan-950">{{ product.name }}</p>
+              <p class="font-semibold text-xl text-cyan-950 mt-2">Precio: {{ product.price }}€</p>
+              <p class="text-xl font-normal text-cyan-900" *ngIf="product.stock === 0">Sin existencias</p>
+            </div>
+
+            <footer class="card-footer" *ngIf="oUsername && product.stock != 0">
+              <button class="card-footer-item button" (click)="makeProductPurhase(product)" [disabled]="product.stock === 0">
+                Comprar<i class="fas fa-shopping-basket ml-2"></i>
+              </button>
+              <button class="card-footer-item button" (click)="addToCart(product)" [disabled]="product.stock === 0">
+                Añadir al carrito <i class="fas fa-cart-plus ml-1"></i>
+              </button>
+            </footer>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="flex-auto mx-auto">
+      <p-paginator class="flex items-center justify-center rounded" (onPageChange)="onPageChange($event)"
+        [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0">
+      </p-paginator>
+    </div>
   </div>
-
 </div>
 
 <p-confirmPopup></p-confirmPopup>
