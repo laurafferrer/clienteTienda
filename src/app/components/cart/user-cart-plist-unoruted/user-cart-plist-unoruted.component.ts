@@ -9,6 +9,7 @@ import { PurchaseAjaxService } from '../../../service/purchase.ajax.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationService } from 'primeng/api';
+import { error } from 'console';
 
 @Component({
   selector: 'app-user-cart-plist-unoruted',
@@ -80,24 +81,32 @@ export class UserCartPlistUnorutedComponent implements OnInit {
   }
 
   updateAmount(cart: ICart, newAmount: number): void {
-    cart.user = {id: cart.user.id } as IUser;
-    cart.product = { id: cart.product.id } as IProduct;
-    cart.amount = newAmount;
-    if ( newAmount == 0) {
-      this.deleteFromCart(cart.id)
+    const stock = cart.product.stock;
+
+    if (newAmount >= 0 && newAmount <= stock) {
+
+
+      cart.user = { id: cart.user.id } as IUser;
+      cart.product = { id: cart.product.id } as IProduct;
+      cart.amount = newAmount;
+      if (newAmount == 0) {
+        this.deleteCart(cart.id)
+      } else {
+        this.oCartAjaxService.updateCart(cart).subscribe({
+          next: (data: ICart) => {
+            this.oMatSnackBar.open('Cantidad actualizada', 'Aceptar', { duration: 3000 });
+            this.getPriceCart(data);
+            this.updateTotalPrice();
+            this.getCarts();
+          },
+          error: (error: HttpErrorResponse) => {
+            this.oStatus = error;
+            this.oMatSnackBar.open('Error al actualizar la cantidad', 'Aceptar', { duration: 3000 });
+          }
+        });
+      }
     } else {
-      this.oCartAjaxService.updateCart(cart).subscribe({
-        next: (data: ICart) => {
-          this.oMatSnackBar.open('Cantidad actualizada', 'Aceptar', { duration: 3000 });
-          this.getPriceCart(data);
-          this.updateTotalPrice();
-          this.getCarts();
-        },
-        error: (error: HttpErrorResponse) => {
-          this.oStatus = error;
-          this.oMatSnackBar.open('Error al actualizar la cantidad', 'Aceptar', { duration: 3000 });
-        }
-      });
+      this.oMatSnackBar.open('No hay suficiente stock disponible', 'Aceptar', { duration: 3000 });
     }
   }
 
@@ -178,22 +187,17 @@ export class UserCartPlistUnorutedComponent implements OnInit {
     });
   }
 
-  deleteFromCart(cartId: number): void {
-    this.oConfirmationService.confirm({
-      message: '¿Desea eliminar este carrito?',
-      accept: () => {
-        this.oCartAjaxService.deleteCart(cartId).subscribe({
-          next: () => {
-            this.oMatSnackBar.open('Carrito eliminado', 'Aceptar', { duration: 3000});
-            this.getCarts();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.oStatus = error;
-            this.oMatSnackBar.open('Error al eliminar el carrito', 'Aceptar', { duration: 3000 });
-          }
-        });
+  deleteCart(cartId: number): void {
+    this.oCartAjaxService.deleteCart(cartId).subscribe({
+      next: () => {
+        this.oMatSnackBar.open('Carrito eliminado', 'Aceptar', { duration: 3000});
+        this.getCarts();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.oStatus = error;
+        this.oMatSnackBar.open('Error al eliminar el carrito', 'Aceptar', { duration: 3000})
       }
-    });
+    }); 
   }
 
   deleteAllCarts(userId: number): void {
