@@ -43,15 +43,25 @@
 
   <div class="columns is-centered">
     <div class="column is-half">
-      <a class="button" [routerLink]="['/user', 'product', 'plist']" >Seguir comprando</a>
+      <a class="button is-large" [routerLink]="['/home']">
+        <span>Seguir comprando</span>
+        <span class="icon is-large">
+          <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
     </div>
   </div>
 
 </div>
 
-<div class="container" *ngIf="oPage && oPage.content.length === 0">
-  <p> Todavía no has añadido nada a tu carrito.</p>
-  <a class="button" [routerLink]="['/user', 'product', 'plist']">Seguir comprando</a>
+<div class="notification" *ngIf="oPage && oPage.content.length === 0">
+  <p class="ml-5">Todavía no has añadido nada a tu carrito.</p>
+  <a class="text-xl ml-5" [routerLink]="['/home']">
+    <span>Seguir comprando</span>
+    <span class="icon is-large">
+      <i class="fas fa-arrow-right"></i>
+    </span>
+  </a>
 </div>
 
 <p-confirmPopup></p-confirmPopup>
