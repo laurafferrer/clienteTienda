@@ -18,7 +18,7 @@ constructor(private http: HttpClient) { }
   }
 
   getCartByUserId(user_id: number, size: number, page: number, sort: string, direction: string): Observable<ICartPage> {
-    return this.http.get<ICartPage>(this.url + '/user/' + user_id + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+    return this.http.get<ICartPage>(this.url + '/byUser/' + user_id + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
   }
 
   getCartByUserAndProduct(user_id: number, product_id: number): Observable<ICart> {
@@ -60,10 +60,5 @@ constructor(private http: HttpClient) { }
   deleteAllCarts(): Observable<number> {
     return this.http.delete<number>(this.url + '/empty');
   }
-
-
-
-
-
 
 }
