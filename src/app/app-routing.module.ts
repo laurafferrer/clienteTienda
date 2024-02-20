@@ -16,9 +16,6 @@ import { AdminProductPlistRoutedComponent } from './components/product/admin-pro
 import { AdminProductEditRoutedComponent } from './components/product/admin-product-edit-routed/admin-product-edit-routed.component';
 import { AdminProductNewRoutedComponent } from './components/product/admin-product-new-routed/admin-product-new-routed.component';
 import { AdminProductViewRoutedComponent } from './components/product/admin-product-view-routed/admin-product-view-routed.component';
-// -- USER PRODUCT COMPONENTS
-import { UserProductPlistRoutedComponent } from './components/product/user-product-plist-routed/user-product-plist-routed.component';
-import { UserProductViewRoutedComponent } from './components/product/user-product-view-routed/user-product-view-routed.component';
 // -- ADMIN CATEGORY COMPONENTS
 import { AdminCategoryPlistRoutedComponent } from './components/category/admin-category-plist-routed/admin-category-plist-routed.component';
 import { AdminCategoryEditRoutedComponent } from './components/category/admin-category-edit-routed/admin-category-edit-routed.component';
@@ -51,10 +48,6 @@ const routes: Routes = [
   { path: 'admin/product/edit/:id', component: AdminProductEditRoutedComponent},
   { path: 'admin/product/new', component: AdminProductNewRoutedComponent},
   { path: 'admin/product/view/:id', component: AdminProductViewRoutedComponent},
-  
-  { path: 'user/product/plist', component: UserProductPlistRoutedComponent },
-  { path: 'user/product/plist/bycategory/:category_id', component: UserProductPlistRoutedComponent },
-  { path: 'user/product/view/:id', component: UserProductViewRoutedComponent },
 
   { path: 'admin/category/plist', component: AdminCategoryPlistRoutedComponent},
   { path: 'admin/category/edit/:id', component: AdminCategoryEditRoutedComponent},

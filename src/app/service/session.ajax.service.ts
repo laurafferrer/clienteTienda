@@ -28,7 +28,7 @@ export class SessionAjaxService {
   }
 
   login(sUsername: string, sPassword: string): Observable<any> {
-    return this.oHttpClient.post(this.url + '/login', { username: sUsername, password: sPassword });
+    return this.oHttpClient.post(this.url + '/login', { username: sUsername, password: sPassword }, { responseType: 'text'});
   }
 
   prelogin(): Observable<IPrelogin> {

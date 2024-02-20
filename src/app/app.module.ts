@@ -63,7 +63,6 @@ import { AdminProductSelectionUnroutedComponent } from './components/product/adm
 import { AdminProductViewRoutedComponent } from './components/product/admin-product-view-routed/admin-product-view-routed.component';
 // USER PRODUCT COMPONENTS
 import { UserProductDetailUnroutedComponent} from './components/product/user-product-detail-unrouted/user-product-detail-unrouted.component';
-import { UserProductPlistRoutedComponent } from './components/product/user-product-plist-routed/user-product-plist-routed.component';
 import { UserProductPlistUnroutedComponent } from './components/product/user-product-plist-unrouted/user-product-plist-unrouted.component';
 import { UserProductViewRoutedComponent } from './components/product/user-product-view-routed/user-product-view-routed.component';
 // --
@@ -132,7 +131,6 @@ import { UserPurchaseDetailPlistUnroutedComponent } from './components/purchaseD
     AdminProductViewRoutedComponent,
     // USER PRODUCT COMPONENTS
     UserProductDetailUnroutedComponent,
-    UserProductPlistRoutedComponent,
     UserProductPlistUnroutedComponent,
     UserProductViewRoutedComponent,
     // ADMIN CATEGORY COMPONENTS

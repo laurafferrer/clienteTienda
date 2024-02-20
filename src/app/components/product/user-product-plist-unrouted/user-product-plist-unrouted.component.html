@@ -26,7 +26,7 @@
   </div>
 
   <!-- Botón "Quitar filtro" con estilo de Bulma -->
-  <button *ngIf="oFindByCategory" type="button" (click)="removeFilter()" class="button is-primary">Quitar filtro</button>
+  <button *ngIf="oFindByCategory" type="button" (click)="removeFilter()" class="button">Quitar filtro</button>
 </div>
 
   <!-- Columna de Productos -->
@@ -41,9 +41,9 @@
               </figure>
             </div>
             <div class="card-content">
-              <p class="font-semibold text-2xl text-cyan-950">{{ product.name }}</p>
-              <p class="font-semibold text-xl text-cyan-950 mt-2">Precio: {{ product.price }}€</p>
-              <p class="text-xl font-normal text-cyan-900" *ngIf="product.stock === 0">Sin existencias</p>
+              <p class="font-semibold text-2xl">{{ product.name }}</p>
+              <p class="font-semibold text-xl mt-2">Precio: {{ product.price }}€</p>
+              <p class="text-xl font-normal" *ngIf="product.stock === 0">Sin existencias</p>
             </div>
 
             <footer class="card-footer" *ngIf="oUsername && product.stock != 0">
