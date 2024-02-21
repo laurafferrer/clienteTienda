@@ -1,7 +1,3 @@
-<div class="container-fluid px-5">
-  <div class="row align-items-start">
-    <div class="col-xxl-12 text-center p-3 mt-2">
-      <h1 class="title">TIENDA</h1>
-    </div>
-  </div>
+<div class="section" *ngIf="!oUsername || (oUserSession && oUserSession.role === false)">
+  <app-user-product-plist-unrouted></app-user-product-plist-unrouted>
 </div>
