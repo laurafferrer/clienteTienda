@@ -37,9 +37,13 @@
 
     <div class="flex items-center">
       <ng-container *ngIf="username">
+        <p class="text-KhakiTitulo font-semibold">
+          {{ username }} 
+        </p>
+        <br>
         <div class="group relative" (click)="toggleLogoutMenu()">
           <a class="cursor-pointer text-KhakiTitulo font-semibold hover:text-Moccasin">
-            Usuario: {{ username }}
+            <i class="fa-regular fa-circle-user"></i>
           </a>
           <div *ngIf="showLogoutMenu" (click)="closeLogoutMenu()"
             class="absolute right-0 mt-2 bg-Gray text-KhakiTitulo border rounded">

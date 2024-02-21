@@ -25,7 +25,7 @@ export class UserProductPlistUnroutedComponent implements OnInit {
   @Input() oCategory_id: number = 0;
 
   oPage: IProductPage | undefined;
-  oPaginatorState: PaginatorState = { first: 0, rows: 15, page: 0, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 20, page: 0, pageCount: 0 };
   oValue: string = "";
   oStatus: HttpErrorResponse | null = null;
   oOrderField: string = "id";
