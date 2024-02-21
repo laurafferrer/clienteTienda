@@ -63,7 +63,7 @@ const routes: Routes = [
 
   { path: 'admin/cart/plist', component: UserCartPlistRoutedComponent},
 
-  { path: 'user/purchase/plist', component: UserPurchasePlistRoutedComponent},
+  { path: 'user/purchase/plist/:id', component: UserPurchasePlistRoutedComponent},
   { path: 'user/purchase/view/:id', component: UserPurchaseViewRoutedComponent}
  
 ];
