@@ -208,7 +208,7 @@ export class UserProductPlistUnroutedComponent implements OnInit {
     this.oRouter.navigate(['/user', 'product', 'view', product.id]);
   }
 
-  makeProductPurhase(product: IProduct): void {
+  makeProductPurchase(product: IProduct): void {
     this.oSessionAjaxService.getSessionUser()?.subscribe({
       next: (user: IUser) => {
         if (user) {
@@ -216,7 +216,7 @@ export class UserProductPlistUnroutedComponent implements OnInit {
             message: '¿Quieres comprar el producto?',
             accept: () => {
               const cantidad = 1;
-              this.oPurchaseAjaxService.makeProductPurhase(product.id, user.id, cantidad).subscribe({
+              this.oPurchaseAjaxService.makeProductPurchase(product.id, user.id, cantidad).subscribe({
                 next: () => {
                   this.oMatSnackBar.open('Producto comprado', 'Aceptar', { duration: 3000 });
 

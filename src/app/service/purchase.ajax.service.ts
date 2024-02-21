@@ -49,8 +49,8 @@ constructor(private http: HttpClient) { }
     return this.http.get<IPurchasePage>(this.url + '/cheapestByUserId/' + userId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
   }
 
-  makeProductPurhase(product_id: number, user_id: number, amount: number): Observable<IPurchase> {
-    return this.http.post<IPurchase>(this.url + '/makeProductPurhase/' + product_id + '/' + user_id + '/' + amount, {});
+  makeProductPurchase(productId: number, userId: number, amount: number): Observable<IPurchase> {
+    return this.http.post<IPurchase>(this.url + '/makeProductPurchase/' + productId + '/' + userId + '/' + amount, {});
   }
 
   makeSingleCartPurchase(user_id: number, cart_id: number): Observable<IPurchase> {

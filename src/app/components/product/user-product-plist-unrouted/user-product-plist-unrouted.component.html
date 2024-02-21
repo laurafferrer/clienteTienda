@@ -47,7 +47,7 @@
             </div>
 
             <footer class="card-footer" *ngIf="oUsername && product.stock != 0">
-              <button class="card-footer-item button" (click)="makeProductPurhase(product)" [disabled]="product.stock === 0">
+              <button class="card-footer-item button" (click)="makeProductPurchase(product)" [disabled]="product.stock === 0">
                 Comprar<i class="fas fa-shopping-basket ml-2"></i>
               </button>
               <button class="card-footer-item button" (click)="addToCart(product)" [disabled]="product.stock === 0">

@@ -134,7 +134,7 @@ export class UserProductDetailUnroutedComponent implements OnInit {
       this.oConfirmService.confirm({
         message: `¿Quieres comprar ${this.oAmountSelected} producto(s)?`,
         accept: () => {
-          this.oPurchaseAjaxService.makeProductPurhase(this.oProduct.id, userId, this.oAmountSelected).subscribe({
+          this.oPurchaseAjaxService.makeProductPurchase(this.oProduct.id, userId, this.oAmountSelected).subscribe({
             next: () => {
               this.oMatSnackBar.open(`Has comprado ${this.oAmountSelected} producto(s)`, 'Aceptar', { duration: 3000 });
               this.oRouter.navigate(['/user', 'purchase', 'plist', userId]);
