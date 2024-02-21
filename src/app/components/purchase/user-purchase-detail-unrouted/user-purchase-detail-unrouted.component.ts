@@ -49,4 +49,8 @@ export class UserPurchaseDetailUnroutedComponent implements OnInit {
     return Array.from({ length: this.oPurchase.purchase_details }, (_, index) => index);
   }
 
+  goBack() {
+    window.history.back();
+  }
+
 }
