@@ -1,69 +1,93 @@
-<nav class="relative z-50 bg-Gray text-KhakiTitulo shadow-xl" role="navigation" aria-label="main navigation">
-  <div class="flex items-center justify-between p-4">
-    <a class="text-3xl font-extrabold text-KhakiTitulo hover:text-Moccasin" href="/home">
-      Desde la Pluma a la Pantalla 
+<nav class="relative z-50 bg-Gray text-KhakiTitulo shadow-xl">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="" alt="Logo" />
     </a>
-
-    <button class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button data-collapse-toggle="navbar-default" type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15" />
+      </svg>
     </button>
-
-    <div class="navbar-start">
-      <ng-container *ngIf="username && userSession?.role==true">
-        <a class="navbar-item" href="/admin/user/plist">
-          Usuarios
-        </a>
-        <a class="navbar-item" href="/admin/product/plist">
-          Productos
-        </a>
-        <a class="navbar-item" href="/admin/category/plist">
-          Categorias
-        </a>
-      </ng-container>
-      <ng-container *ngIf="username && userSession?.role==false">
-        <a class="navbar-item" href="/user/product/plist">
-          Productos
-        </a>
-        <a class="navbar-item" href="/user/category/plist">
-          Categorias
-        </a>
-        <a class="navbar-item" href="/user/purchase/plist/{{ userSession?.id }}">
-          Mis compras
-        </a>
-      </ng-container>
-    </div>
-
-    <div class="flex items-center">
-      <ng-container *ngIf="username">
-        <p class="text-KhakiTitulo font-semibold">
-          {{ username }} 
-        </p>
-        <br>
-        <div class="group relative" (click)="toggleLogoutMenu()">
-          <a class="cursor-pointer text-KhakiTitulo font-semibold hover:text-Moccasin">
-            <i class="fa-regular fa-circle-user"></i>
-          </a>
-          <div *ngIf="showLogoutMenu" (click)="closeLogoutMenu()"
-            class="absolute right-0 mt-2 bg-Gray text-KhakiTitulo border rounded">
-            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin" role="menuitem" [routerLink]="['/user', 'user', 'view', userSession?.id]">
-              <i class="pi pi-user mr-2"></i>
-              Perfil
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul
+      class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-tradewind-500 rounded-lg bg-tradewind-500 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-tradewind-500 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a class="block py-2 px-3 md:p-0 md:border-0 font-bold text-xl nav-link nav-item rounded {{ url=='/home' || url=='/' ? 'bg-slate-300' : ''}}"
+            aria-current="page" routerLink="/home">Home</a>
+        </li>
+        <ng-container *ngIf="username && userSession?.role==true">
+          <li>
+            <a class="block py-2 px-3 md:p-0 md:border-0 font-bold text-xl nav-link nav-item rounded {{ url.startsWith('/admin/user') ? 'bg-slate-300' : '' }}"
+              aria-current="page" routerLink="/admin/user/plist" *ngIf="username && userSession?.role==true">
+              Usuarios
             </a>
-            <hr class="border-t my-2">
-            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin" href="/logout">
-              <i class="pi pi-sign-out mr-2 ml-1"></i>
-              Cerrar sesión
+          </li>
+          <li>
+            <a class="block py-2 px-3 md:p-0 md:border-0 font-bold text-xl nav-link nav-item rounded {{ url.startsWith('/admin/product') ? 'bg-slate-300' : '' }}"
+              aria-current="page" routerLink="/admin/product/plist" *ngIf="username && userSession?.role==true">
+              Productos
             </a>
+          </li>
+          <li>
+            <a class="block py-2 px-3 md:p-0 md:border-0 font-bold text-xl nav-link nav-item rounded {{ url.startsWith('/admin/category') ? 'bg-slate-300' : '' }}"
+              aria-current="page" routerLink="/admin/category/plist" *ngIf="username && userSession?.role==true">
+              Categorias
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="username && userSession?.role==false">
+          <li>
+            <a class="block py-2 px-3 md:border-0 font-bold text-xl nav-link nav-item rounded {{ url.startsWith('/user/product') ? 'bg-slate-300' : '' }}"
+              aria-current="page" routerLink="/user/product/plist">
+              Productos
+            </a>
+          </li>
+          <li>
+            <a class="block py-2 px-3 md:border-0 font-bold text-xl nav-link nav-item rounded {{ url.startsWith('/user/category') ? 'bg-slate-300' : '' }}"
+              aria-current="page" routerLink="/user/category/plist">
+              Categorias
+            </a>
+          </li>
+          <li>
+            <a class="block py-2 px-3 md:border-0 font-bold text-xl nav-link nav-item rounded {{ url.startsWith('/user/purchase') ? 'bg-slate-300' : '' }}"
+              aria-current="page" [routerLink]="['/user', 'purchase', 'plist', userSession?.id]">
+              Mis compras
+            </a>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf="username">
+          <div class="group relative" (click)="toggleLogoutMenu()">
+            <a class="cursor-pointer text-KhakiTitulo font-semibold hover:text-Moccasin">
+              <i class="fa-regular fa-circle-user"></i>
+            </a>
+            <div *ngIf="showLogoutMenu" (click)="closeLogoutMenu()"
+              class="absolute right-0 mt-2 bg-Gray text-KhakiTitulo border rounded">
+              <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin" role="menuitem"
+                [routerLink]="['/user', 'user', 'view', userSession?.id]">
+                <i class="pi pi-user mr-2"></i>
+                Perfil
+              </a>
+              <hr class="border-t my-2">
+              <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin" href="/logout">
+                <i class="pi pi-sign-out mr-2 ml-1"></i>
+                Cerrar
+              </a>
+            </div>
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
 
-      <a class="ml-4 text-KhakiTitulo hover:text-Moccasin font-semibold" href="/login" *ngIf="!username">
-        <i class="pi pi-sign-in mr-1"></i>
-        Iniciar sesión
-      </a>
+        <li class="block py-2 px-3 md:p-0 text-KhakiTitulo md:border-0 font-bold text-x1" routerLink="/login"
+          *ngIf="!username">
+          <i class="pi pi-sign-in mr-1"></i>
+          Iniciar sesión
+        </li>
+
+      </ul>
     </div>
   </div>
 </nav>
