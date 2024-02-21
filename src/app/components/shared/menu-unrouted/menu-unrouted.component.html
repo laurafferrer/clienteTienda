@@ -1,4 +1,4 @@
-<nav class="bg-Gray text-KhakiTitulo shadow-xl" role="navigation" aria-label="main navigation">
+<nav class="relative z-50 bg-Gray text-KhakiTitulo shadow-xl" role="navigation" aria-label="main navigation">
   <div class="flex items-center justify-between p-4">
     <a class="text-3xl font-extrabold text-KhakiTitulo hover:text-Moccasin" href="/home">
       Desde la Pluma a la Pantalla 
@@ -47,18 +47,14 @@
           </a>
           <div *ngIf="showLogoutMenu" (click)="closeLogoutMenu()"
             class="absolute right-0 mt-2 bg-Gray text-KhakiTitulo border rounded">
-            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin font-semibold" href="#">
+            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin" role="menuitem" [routerLink]="['/user', 'user', 'view', userSession?.id]">
               <i class="pi pi-user mr-2"></i>
               Perfil
             </a>
-            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin font-semibold" href="#">
-              <i class="pi pi-cog mr-2"></i>
-              Ajustes
-            </a>
             <hr class="border-t my-2">
-            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin font-semibold" href="/logout">
+            <a class="block px-4 py-2 hover:bg-Silver hover:text-Moccasin" href="/logout">
               <i class="pi pi-sign-out mr-2 ml-1"></i>
-              Salir
+              Cerrar sesión
             </a>
           </div>
         </div>
@@ -66,7 +62,7 @@
 
       <a class="ml-4 text-KhakiTitulo hover:text-Moccasin font-semibold" href="/login" *ngIf="!username">
         <i class="pi pi-sign-in mr-1"></i>
-        Log In
+        Iniciar sesión
       </a>
     </div>
   </div>
