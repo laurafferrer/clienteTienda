@@ -35,4 +35,8 @@ export class UserUserDetailUnroutedComponent implements OnInit {
     })
   }
 
+  goBack() {
+    window.history.back();
+  }
+
 }
