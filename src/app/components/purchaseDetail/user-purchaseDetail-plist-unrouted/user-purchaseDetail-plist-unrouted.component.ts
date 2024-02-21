@@ -72,4 +72,8 @@ export class UserPurchaseDetailPlistUnroutedComponent implements OnInit {
     })
   }
 
+  goBack() {
+    window.history.back();
+  }
+
 }

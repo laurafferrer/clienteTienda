@@ -1,3 +1,4 @@
+<!--
 <div class="container">
   <div class="columns">
     <div class="column is-6">
@@ -29,6 +30,85 @@
         </div>
         <div class="control">
           <button class="button is-success" (click)="buyDirectly()">Comprar directamente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>*
+-->
+
+<div class="card box">
+  <div class="card-content">
+    <div class="columns is-vcentered">
+      <!-- Columna para la imagen -->
+      <div class="column is-4">
+        <figure class="image is-3by4 box">
+          <img [src]="oProduct.image" alt="Imagen del producto" class="img-fluid"
+            style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        </figure>
+      </div>
+
+      <!-- Columna para la información del producto y botones -->
+      <div class="column is-8">
+        <!-- Información del producto -->
+        <div class="column is-12">
+          <h1 class="text-4xl font-medium text-cyan-900">{{ oProduct.name }}</h1>
+          <h2 class="text-xl font-normal text-cyan-900 mt-1">Precio: {{ oProduct.price }}€ </h2>
+          <p class="text-xl font-normal text-cyan-900" *ngIf="oProduct.stock === 0">Sin existencias</p>
+          <p class="text-xl font-normal text-cyan-900" *ngIf="oProduct.stock > 0">En Existencias</p>
+        </div>
+
+        <!-- Detalles de envío -->
+        <div class="column is-12 mt-2">
+          <h2 class="text-3xl font-medium text-cyan-900">Detalles de envío</h2>
+          <p class="text-xl font-normal text-cyan-900 mt-1 ml-1">
+            <span class="icon is-small mr-3">
+              <i class="fas fa-clock"></i>
+            </span>
+            Entrega en 4-8 días laborables.
+          </p>
+          <p class="text-xl font-normal text-cyan-900 ml-1">
+            <span class="icon is-small mr-3">
+              <i class="fas fa-truck"></i>
+            </span>
+            Envío gratuito para pedidos superiores a 50€.
+          </p>
+          <p class="text-xl font-normal text-cyan-900 ml-1">
+            <span class="icon is-small mr-3">
+              <i class="fas fa-undo"></i>
+            </span>
+            Política de devoluciones de 30 días.
+          </p>
+        </div>
+
+        <div class="field column is-4">
+         
+          <div class="control">
+            <span class="text-2xl text-cyan-900 font-normal">Cantidad: </span>
+            <input name="cantidad" style="max-width: 60px" class="input" type="number" min="1" max="{{oProduct.stock}}" [(ngModel)]="oAmountSelected" (keydown)="handleKeyDown($event)">
+          </div>
+        </div>
+
+        <!-- Botones debajo de la información del producto -->
+        <div class="columns mt-2" *ngIf="oUsername">
+          <div class="column is-4">
+            <button type="button" class="button is-primary is-fullwidth" (click)="addToCart()" [disabled]="oProduct.stock === 0">
+              <span>Añadir</span>
+              <span class="icon">
+                <i class="fas fa-shopping-basket"></i>
+              </span>
+            </button>
+          </div>
+          <div class="column is-4">
+            <button type="button" class="button is-primary is-fullwidth" (click)="buyDirectly()" [disabled]="oProduct.stock === 0">
+              <span>Comprar</span>
+              <span class="icon">
+                <i class="fas fa-credit-card"></i>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

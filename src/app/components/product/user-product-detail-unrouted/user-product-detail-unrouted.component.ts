@@ -149,4 +149,11 @@ export class UserProductDetailUnroutedComponent implements OnInit {
       this.oMatSnackBar.open('Debes estar logueado para comprar productos', 'Aceptar', { duration: 3000 });
     }
   }
+
+  handleKeyDown(event: KeyboardEvent): void {
+    // Verificar si la tecla presionada no es una flecha hacia arriba o abajo
+    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
+      event.preventDefault(); // Prevenir la acción predeterminada (escribir el valor)
+    }
+  }
 }

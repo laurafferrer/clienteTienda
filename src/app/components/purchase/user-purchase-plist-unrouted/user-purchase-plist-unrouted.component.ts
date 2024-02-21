@@ -28,7 +28,6 @@ export class UserPurchasePlistUnroutedComponent implements OnInit {
   constructor(
     private oPurchaseAjaxService: PurchaseAjaxService,
     private oSessionAjaxSevice: SessionAjaxService,
-    private oRouter: Router,
     private oMatSnackBar: MatSnackBar
   ) { }
 
