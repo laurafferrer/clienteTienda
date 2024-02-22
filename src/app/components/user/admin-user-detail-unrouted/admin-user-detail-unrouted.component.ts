@@ -45,8 +45,4 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
     });
   }
 
-  do() {
-    this.oRouter.navigate(['/admin', 'user', 'plist']);
-  }
-
 }
