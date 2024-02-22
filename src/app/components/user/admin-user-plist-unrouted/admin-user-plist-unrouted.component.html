@@ -21,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of oPage?.content" class=" hover:table-hover-color">
+      <tr *ngFor="let user of oPage?.content" class=" hover:table-hover-color" class="has-text-centered">
         <td class="has-text-centered px-4 py-2 hover:table-hover-color" (click)="doView(user)">{{ user.username }}</td>
         <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.name }} {{ user.surname }}</td>
         <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.email }}</td>
@@ -34,10 +34,10 @@
         <td class="has-text-centered px-4 py-2 hover:table-hover-color">{{ user.purchases }}</td>
         <td class="has-text-centered px-4 py-2 hover:table-hover-color">
           <a [routerLink]="['/admin', 'user', 'edit', user.id]" class="button is-small" title="Actualizar">
-            <i class="fas fa-edit"></i>
+            <i class="fa-regular fa-pen-to-square"></i>
           </a>
           <button (click)="doView(user)" class="button is-small" title="Ver Detalles">
-            <i class="fas fa-info-circle"></i>
+            <i class="fa-regular fa-eye"></i>
           </button>
           <button (click)="doRemove(user)" class="button is-small" title="Eliminar">
             <i class="fas fa-trash-alt"></i>

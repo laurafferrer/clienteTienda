@@ -11,28 +11,25 @@
   <table class="table is-fullwidth">
     <thead class="">
       <tr>
-        <th class="has-text-centered ">ID</th>
-        <th class="has-text-centered ">Nombre</th>
-        <th class="has-text-centered ">Productos</th>
-        <th class="has-text-centered ">Acciones</th>
+        <th class="has-text-centered table-color px-4 py-2">ID</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Nombre</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let category of oPage?.content" class="has-text-centered">
-        <td (click)="doView(category)"> <p>{{ category.id }}</p> </td>
-        <td> <p>{{ category.name }}</p> </td>
-        <td>
-          <a [routerLink]="['/admin','category','plist','byproduct',category.id]"
-            *ngIf="category.product>0">{{category.product}}</a>
-          <span *ngIf="category.product==0">0</span>
-        </td>
-        <td class="has-text-centered">
+      <tr *ngFor="let category of oPage?.content" class=" hover:table-hover-color"  class="has-text-centered">
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color" (click)="doView(category)"> <p>{{ category.id }}</p> </td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color"> <p>{{ category.name }}</p> </td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">
           <a [routerLink]="['/admin', 'category', 'edit', category.id]"
-            class="button is-small" title="Actualizar"> Actualizar
+            class="button is-small" title="Actualizar">
+            <i class="fa-regular fa-pen-to-square"></i>
           </a>
-          <button class="button is-small" (click)="doView(category)" title="Ver Detalles"> Ver
+          <button class="button is-small" (click)="doView(category)" title="Ver Detalles"> 
+            <i class="fa-regular fa-eye"></i>
           </button>
-          <button (click)="doRemove(category)" class="button is-small" title="Eliminar"> Eliminar
+          <button (click)="doRemove(category)" class="button is-small" title="Eliminar"> 
+            <i class="fas fa-trash-alt"></i>
           </button>
         </td>
       </tr>

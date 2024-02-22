@@ -20,7 +20,7 @@
       {{ category.name }}
     </button>
       <!-- Botón "Quitar filtro" con estilo de Bulma -->
-    <button *ngIf="oFindByCategory" type="button" (click)="removeFilter()" class="button is-danger">
+    <button *ngIf="oFindByCategory" type="button" class="button is-small is-outlined is-danger" (click)="removeFilter()">
       Quitar filtro
     </button>
   </div>

@@ -11,33 +11,36 @@
   <table class="table is-fullwidth">
     <thead class="">
       <tr>
-        <th class="has-text-centered">Name</th>
-        <th class="has-text-centered">Price</th>
-        <th class="has-text-centered">Stock</th>
-        <th class="has-text-centered">Image</th>
-        <th class="has-text-centered">Categoria</th>
-        <th class="has-text-centered">Actions</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Name</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Price</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Stock</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Image</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Categoria</th>
+        <th class="has-text-centered table-color has-text-Khaki px-4 py-2">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of oPage?.content" class="">
-        <td (click)="doView(product)"> <p> {{product.name}} </p> </td>
-        <td> {{product.price + "€"}} </td>
-        <td> {{product.stock}} </td>
-        <td>
+      <tr *ngFor="let product of oPage?.content" class=" hover:table-hover-color"  class="has-text-centered">
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color" (click)="doView(product)"> <p> {{product.name}} </p> </td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color"> {{product.price + "€"}} </td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color"> {{product.stock}} </td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">
           <img [src]="product.image" alt="Imagen del producto" class="image is-64x64">
         </td>
-        <td> {{ product.category ? product.category.name : 'N/A' }} </td>
-        <td class="has-text-centered">
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color"> {{ product.category ? product.category.name : 'N/A' }} </td>
+        <td class="has-text-centered px-4 py-2 hover:table-hover-color">
           <a [routerLink]="['/admin', 'product', 'edit', product.id]"
-            class="button is-small" title="Actualizar"> Actualizar
+            class="button is-small" title="Actualizar"> 
+            <i class="fa-regular fa-pen-to-square"></i>
           </a>
-          <button class="button is-small" (click)="doView(product)" title="Ver Detalles"> Ver
+          <button class="button is-small" (click)="doView(product)" title="Ver Detalles"> 
+            <i class="fa-regular fa-eye"></i>
           </button>
           <p-confirmPopup>
 
         </p-confirmPopup>
-          <button (click)="doRemove(product)" class="button is-small" title="Eliminar"> Eliminar
+          <button (click)="doRemove(product)" class="button is-small" title="Eliminar"> 
+            <i class="fas fa-trash-alt"></i>
           </button>
         </td>
       </tr>
