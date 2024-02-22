@@ -45,8 +45,4 @@ export class AdminProductDetailUnroutedComponent implements OnInit {
     });
   }
 
-  do() {
-    this.oRouter.navigate(['/admin', 'product', 'plist' ]);
-  }
-
 }
